@@ -65,7 +65,7 @@
 
 
 import React from 'react';
-import { Anchor, Row, Col } from 'antd';
+import { Anchor } from 'antd';
 import { Divider, Flex, Tag,Button ,Layout,Input, Row, Col,Switch,Card } from 'antd';
 import { CloseOutlined ,MenuUnfoldOutlined,SearchOutlined,ShoppingOutlined } from '@ant-design/icons';
 import './index.css';
