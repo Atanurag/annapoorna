@@ -1,21 +1,32 @@
-.custom-header {
-  display: flex; /* Removed for Row/Col layout */
-  /* Adjust padding if needed */
-  background-color: #fff; /* Set background color */
-  border-bottom: 1px solid #ddd; /* Add border (optional) */
-  align-items: center;
-  justify-content:space-around;
+.main-page .header {
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  background-color:white;
+  border-bottom: 1px solid #ddd;
+  height:100px;
+  padding:7px;
+   position: sticky;
+  top: 0;
+  z-index: 1;
+  width:100%;
 }
 
-.logo-container {
-  width: 50px;
+.main-page .header .logo-container {
+  
+  height: 90px;
+  width: 150px;
   display: flex;
   align-items: center;
+  margin-left: 12px;
  
  /* Adjust width for your logo */
 }
 
-.logo-container img {
+.main-page .header .logo-container img {
+  height: 48px;
+  width: 141px;
+
   /* Style your logo image here (e.g., width, height) */
 }
 
@@ -32,4 +43,24 @@
   outline: 0;
   -webkit-box-shadow: 0 0 0 2px rgba(87,168,233, .2);
   box-shadow: 0 0 0 2px rgba(87,168,233, .2);
+}
+
+
+
+@media only screen and (max-width: 400px) {
+  .main-page .header .logo-container {
+   
+    display: flex;
+    align-items: center;
+    height: 36px;
+    width: 150px;
+    
+   /* Adjust width for your logo */
+  }
+  
+  .main-page .header .logo-container img {
+    height: 36px;
+    width: 90px;
+    /* Style your logo image here (e.g., width, height) */
+  }
 }
