@@ -266,17 +266,18 @@ const App = () =>{
     // Implement a proper unique ID generation logic
     return 'txid-' + Date.now();
   }
+  const [wy,setWy] =React.useState('')
 let y= React.useRef()
   React.useEffect(()=>{
     y=setInterval(()=>{
-      fetch('https://vast-tan-bandicoot-yoke.cyclic.app/callback').then(e=>e.json()).then(e=>console.log(e,'i'))
+      fetch('https://vast-tan-bandicoot-yoke.cyclic.app/callback').then(e=>e.json()).then(e=>setWy(e))
     },1000)
 return ()=>clearInterval(y)
   },[])
   return (
 <>
 <button onClick={()=>{handlePayment()}}>Pay with UP</button>
-
+<p>{wy}</p>
 {/* 
 overlays
 <div style={{position: 'fixed',
