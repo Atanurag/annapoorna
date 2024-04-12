@@ -219,9 +219,57 @@ const App = () =>{
         ]}]
   )
  
+
+  function createUpiPaymentLink(payeeVPA, payeeName, transactionAmount, transactionRefId, callbackUrl) {
+    try {
+      const transactionId = generateUniqueTransactionId(); // Replace with a function that generates unique IDs
+      const transactionNote = 'Payment for order #12345';
+      const currencyCode = 'INR';
+      
+      // Ensure all parameters are URL-encoded
+      const encodedPayeeVPA = encodeURIComponent(payeeVPA);
+      const encodedPayeeName = encodeURIComponent(payeeName);
+      const encodedTransactionNote = encodeURIComponent(transactionNote);
+      const encodedCallbackUrl = encodeURIComponent(callbackUrl);
+  
+      return `upi://pay?pa=${encodedPayeeVPA}&pn=${encodedPayeeName}&tid=${transactionId}&tr=${transactionRefId}&tn=${encodedTransactionNote}&am=${transactionAmount}&cu=${currencyCode}&url=${encodedCallbackUrl}`;
+    } catch (err) {
+      console.error('Error creating UPI link:', err);
+      throw err; // Propagate the error
+    }
+  }
+  
+  function handlePayment() {
+    try {
+      const payeeVPA = 'BHARATPE90727475218@yesbankltd';
+      const payeeName = 'Verified Merchant';
+      const transactionAmount = '1.0'; // Amount in rupees
+      const transactionRefId = 'TXN56343otrw423234';
+      const callbackUrl = 'https://abc.com';
+      const upiLink = createUpiPaymentLink(payeeVPA, payeeName, transactionAmount, transactionRefId, callbackUrl);
+      openUpiPaymentLink(upiLink);
+    } catch (err) {
+      console.error('Error handling payment:', err);
+    }
+  }
+  
+  function openUpiPaymentLink(upiLink) {
+    try {
+      window.open(upiLink, '_blank');
+    } catch (err) {
+      console.error('Error opening UPI link:', err);
+    }
+  }
+  
+  // Example function to generate a unique transaction ID
+  function generateUniqueTransactionId() {
+    // Implement a proper unique ID generation logic
+    return 'txid-' + Date.now();
+  }
+
   return (
 <>
-
+<button onClick={()=>{handlePayment()}}>Pay with UPI</button>
 
 {/* 
 overlays
@@ -295,13 +343,6 @@ overlays
         </Col>
       </Row>
     </Header>
-
-
-
-
-
-
-
 
 
 
