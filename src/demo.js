@@ -245,7 +245,7 @@ const App = () =>{
       const payeeName = 'Verified Merchant';
       const transactionAmount = '1.0'; // Amount in rupees
       const transactionRefId = 'TXN56343otrw423234';
-      const callbackUrl = 'https://abc.com';
+      const callbackUrl = 'https://vast-tan-bandicoot-yoke.cyclic.app/callback';
       const upiLink = createUpiPaymentLink(payeeVPA, payeeName, transactionAmount, transactionRefId, callbackUrl);
       openUpiPaymentLink(upiLink);
     } catch (err) {
@@ -266,7 +266,13 @@ const App = () =>{
     // Implement a proper unique ID generation logic
     return 'txid-' + Date.now();
   }
-
+let y= React.useRef()
+  React.useEffect(()=>{
+    y=setInterval(()=>{
+      fetch('https://vast-tan-bandicoot-yoke.cyclic.app/callback').then(e=>e.json()).then(e=>console.log(e,'i'))
+    },1000)
+return ()=>clearInterval(y)
+  },[])
   return (
 <>
 <button onClick={()=>{handlePayment()}}>Pay with UPI</button>
