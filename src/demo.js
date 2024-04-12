@@ -382,12 +382,15 @@ style={{textAlign:'center',padding:'30px',overflowY:'scroll',height:'150px',bord
 }}/>
 <div style={{position:'absolute',background:'red',top:5,borderRadius:'50%',color:'white',padding:'5px',height:'12px',width:'12px',fontWeight:'800',left:'50px',display:'flex',justifyContent:"center",alignItems:'center'}}>{selFood?.length}</div>
 <p style={{color:'white',position:'absolute',top:'17px',left:'75px',fontWeight:'bold'}}>₹{selFood?.reduce((ac,cu)=>ac+cu.price,0)}</p>
-<a href={`upi://pay?pa=7875853859@paytm&pn=anurag&tn=Test%20UPI&am=${selFood?.reduce((ac,cu)=>ac+cu.price,0)}&cu=INR&mc=1234&tr=01234re`}><Button type="primary" style={{position:'absolute',right:'12px',fontWeight:'bold'}}>pay
+{/* <a href={`upi://pay?pa=7875853859@paytm&pn=anurag&tn=Test%20UPI&am=${selFood?.reduce((ac,cu)=>ac+cu.price,0)}&cu=INR&mc=1234&tr=01234re`}><Button type="primary" style={{position:'absolute',right:'12px',fontWeight:'bold'}}>pay
+  </Button></a> */}
+<a href={`upi://pay?pa=BHARATPE90727475218@yesbankltd&pn=Verified%20Merchant&tid=7474jejeegb74748eheje&tn=Test%20UPI&am=${selFood?.reduce((ac,cu)=>ac+cu.price,0)}&cu=INR&mc=999999&tr=babajjdjq834848324&url=https://abc.com`}><Button type="primary" style={{position:'absolute',right:'12px',fontWeight:'bold'}}>pay
   </Button></a>
-
-  {/* <a href={`upi://pay?pa=7875853859@paytm&amp;pn=anurag&amp;tn=Test%20UPI&amp;am=1&amp;cu=INR&amp;mc=1234&amp;tr=01234`}><Button type="primary" text={"pp"} style={{position:'absolute',right:'12px',fontWeight:'bold'}}>pay
+  {/* <a href={`upi://pay?pa=7875853859@paytm&am=1pn=anurag&amp;tn=Test%20UPI&amp;am=1&amp;cu=INR&amp;mc=1234&amp;tr=01234`}><Button type="primary" text={"pp"} style={{position:'absolute',right:'12px',fontWeight:'bold'}}>pay
   </Button></a> */}
 </div>
+
+{/* `upi://pay?pa=${payeeVPA}&pn=${payeeName}&mc=${merchantCode}&tid=${transactionId}&tr=${transactionRefId}&tn=${transactionNote}&am=${transactionAmount}&cu=${currencyCode}&url=${callbackUrl}` */}
 
 {/* paytmmp://pay?pa=7875853859@paytm&pn=anurag&tn=Test UPI&am=1&cu=INR&mc=1234&tr=01234 */}
 </div>}
