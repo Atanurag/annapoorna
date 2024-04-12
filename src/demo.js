@@ -275,7 +275,7 @@ return ()=>clearInterval(y)
   },[])
   return (
 <>
-<button onClick={()=>{handlePayment()}}>Pay with UPI</button>
+<button onClick={()=>{handlePayment()}}>Pay with UP</button>
 
 {/* 
 overlays
