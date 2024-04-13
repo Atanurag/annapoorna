@@ -277,7 +277,7 @@ const App = () =>{
   return (
 <>
 <button onClick={()=>{handlePayment()}}>Pay with UP</button>
-<p>{wy}</p>
+{/* <p>{wy}</p> */}
 {/* 
 overlays
 <div style={{position: 'fixed',
