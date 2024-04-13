@@ -246,7 +246,7 @@ const App = () =>{
       const transactionAmount = '1.0'; // Amount in rupees
       const transactionRefId = 'TXN56343otrw4232334';
       //const callbackUrl = 'https://8b531e0e-eb1d-4615-a175-1d03aed63513-00-14eudonfdu6o9.pike.replit.dev/p';
-      const callbackUrl = 'https://17174cc3-e036-41c5-82a6-1ce90c624cd6-00-2oq5i07bzmsdh.pike.replit.dev:5000/callback'
+      const callbackUrl = 'https://t.ly/5Tocf'
       const upiLink = createUpiPaymentLink(payeeVPA, payeeName, transactionAmount, transactionRefId, callbackUrl);
       openUpiPaymentLink(upiLink);
     } catch (err) {
