@@ -244,8 +244,8 @@ const App = () =>{
       const payeeVPA = 'BHARATPE90727475218@yesbankltd';
       const payeeName = 'Verified Merchant';
       const transactionAmount = '1.0'; // Amount in rupees
-      const transactionRefId = 'TXN56343otrw423234';
-      const callbackUrl = 'https://vast-tan-bandicoot-yoke.cyclic.app/callback';
+      const transactionRefId = 'TXN56343otrw4232334';
+      const callbackUrl = 'https://8b531e0e-eb1d-4615-a175-1d03aed63513-00-14eudonfdu6o9.pike.replit.dev/p';
       const upiLink = createUpiPaymentLink(payeeVPA, payeeName, transactionAmount, transactionRefId, callbackUrl);
       openUpiPaymentLink(upiLink);
     } catch (err) {
@@ -266,14 +266,14 @@ const App = () =>{
     // Implement a proper unique ID generation logic
     return 'txid-' + Date.now();
   }
-  const [wy,setWy] =React.useState('')
-let y= React.useRef()
-  React.useEffect(()=>{
-    y=setInterval(()=>{
-      fetch('https://vast-tan-bandicoot-yoke.cyclic.app/callback').then(e=>e.json()).then(e=>setWy(e))
-    },1000)
-return ()=>clearInterval(y)
-  },[])
+//   const [wy,setWy] =React.useState('')
+// let y= React.useRef()
+//   React.useEffect(()=>{
+//     y=setInterval(()=>{
+//       fetch('https://vast-tan-bandicoot-yoke.cyclic.app/callback').then(e=>e.json()).then(e=>setWy(e))
+//     },1000)
+// return ()=>clearInterval(y)
+//   },[])
   return (
 <>
 <button onClick={()=>{handlePayment()}}>Pay with UP</button>
