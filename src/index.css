@@ -29,6 +29,58 @@
 
   /* Style your logo image here (e.g., width, height) */
 }
+.main-page .header .switch-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 70px;
+  height: 30px;
+  border-radius: 8px; 
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+}
+.main-page .header .switch-box span{
+  font-weight:bold;
+}
+.main-page .header .input-box{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.main-page .bottom-anchor{
+  background: #fff;
+    position: fixed;
+    /* bottom: t?'0px':'-280px', // Corrected this line */
+    left: 50%;
+    width: 100%;
+    transform: translateX(-50%);
+    z-index: 999;
+    border:1px solid gray;
+    transition: bottom 0.3s ease-in-out;
+    border-top-left-radius:23px;
+    border-top-right-radius:23px;
+}
+.main-page .push-to-bottom{
+  bottom:-280px;
+}
+.main-page .push-to-top{
+  bottom:0px;
+}
+.main-page .bottom-anchor .anchor-box{
+  text-align:center;
+  padding:30px;
+  overflow-Y:scroll;
+  height:150px;
+  border-top-left-radius:23px;
+  border-top-right-radius:23px;
+  margin:12px;
+}
+.main-page .bottom-anchor .cross{
+  float:right;
+  margin-right:56px;
+  margin-bottom:65px;
+  font-size:25px;
+}
 
 .search-bar {
 

@@ -223,16 +223,18 @@ const App = () =>{
   function createUpiPaymentLink(payeeVPA, payeeName, transactionAmount, transactionRefId, callbackUrl) {
     try {
       const transactionId = generateUniqueTransactionId(); // Replace with a function that generates unique IDs
-      const transactionNote = 'Pay to BharatPe Merchant';
+      const transactionNote = 'asfdsfds ffgdfg ';
       const currencyCode = 'INR';
-      
+      const merchantCode = '5399'
       // Ensure all parameters are URL-encoded
       const encodedPayeeVPA = encodeURIComponent(payeeVPA);
       const encodedPayeeName = encodeURIComponent(payeeName);
       const encodedTransactionNote = encodeURIComponent(transactionNote);
       const encodedCallbackUrl = encodeURIComponent(callbackUrl);
   
-      return `upi://pay?pa=${encodedPayeeVPA}&pn=${encodedPayeeName}&tid=${transactionId}&tr=${transactionRefId}&tn=${encodedTransactionNote}&am=${transactionAmount}&cu=${currencyCode}&url=${encodedCallbackUrl}`;
+      return `upi://pay?pa=${encodedPayeeVPA}&pn=${encodedPayeeName}&mc=${merchantCode}&tid=${transactionId}&tr=${transactionRefId}&tn=${transactionNote}&am=${transactionAmount}&cu=${currencyCode}&url=${callbackUrl}`;
+
+      // return `upi://pay?pa=${encodedPayeeVPA}&pn=${encodedPayeeName}&tid=${transactionId}&tr=${transactionRefId}&tn=${encodedTransactionNote}&am=${transactionAmount}&cu=${currencyCode}&url=${encodedCallbackUrl}`;
     } catch (err) {
       console.error('Error creating UPI link:', err);
       throw err; // Propagate the error
@@ -241,10 +243,10 @@ const App = () =>{
   
   function handlePayment() {
     try {
-      const payeeVPA = 'BHARATPE.90070065432@fbpe';
-      const payeeName = 'Verified Merchant';
+      const payeeVPA = 'gpay-11187302856@okbizaxis';
+      const payeeName = 'Google Pay Merchant';
       const transactionAmount = '1.0'; // Amount in rupees
-      const transactionRefId = 'TXN56343otrw4sfdae3232334';
+      const transactionRefId = '1187302856';
       //const callbackUrl = 'https://8b531e0e-eb1d-4615-a175-1d03aed63513-00-14eudonfdu6o9.pike.replit.dev/p';
       const callbackUrl = 'https://t.ly/5Tocf'
       const upiLink = createUpiPaymentLink(payeeVPA, payeeName, transactionAmount, transactionRefId, callbackUrl);
@@ -311,32 +313,21 @@ overlays
           <Input size="large" placeholder="Search For Items..." prefix={<SearchOutlined/>} onChange={(e)=>{
             setInp(e.target.value)
              console.log(inp)}} value={inp}/>
-
-
           </div>
         </Col>
         <Col  xs={6} sm={4} md={4} lg={4}>
-          <div style={{
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-evenly',
-  width: '70px', 
-  height: '30px',
-  borderRadius: '8px', 
-  boxShadow: '0 0 3px rgba(0, 0, 0, 0.4)',
-}}>
-            <span style={{fontWeight:'bold'}}>Veg</span>
+          <div className='switch-box'>
+            <span>Veg</span>
           <Switch size="small" value={isVeg} onChange={(e)=>{setIsVeg(e)
-          }} />
+          }}/>
 
           </div>
         </Col>
         <Col  xs={24} sm={11} md={0} lg={0}>
-          <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+          <div className='input-box'>
           <Input size="large" placeholder="Search For Items..." prefix={<SearchOutlined/>} onChange={(e)=>{
             setInp(e.target.value)
              console.log(inp)}} value={inp} />
-
           </div>
         </Col>
       </Row>
@@ -356,12 +347,8 @@ overlays
 
 
 
-
-
-
-
-
-<div style={{
+{/* bottom anchor element*/}
+{/* <div style={{
     background: '#fff',
     position: 'fixed',
     bottom: t?'0px':'-280px', // Corrected this line
@@ -374,11 +361,11 @@ overlays
     borderTopLeftRadius:'23px',
     borderTopRightRadius:'23px'
     
-}}>
-
+}}> */}
+<div className={`bottom-anchor ${t ? 'push-to-top' : 'push-to-bottom'}`}>
 <Anchor
 onClick={()=>setT(!t)}
-style={{textAlign:'center',padding:'30px',overflowY:'scroll',height:'150px',borderTopLeftRadius:'23px',borderTopRightRadius:'23px',margin:'12px'}}
+className='anchor-box'
         items={[
           {
             key: 'part-1',
@@ -403,7 +390,7 @@ style={{textAlign:'center',padding:'30px',overflowY:'scroll',height:'150px',bord
       />
  <CloseOutlined onClick={()=>{
     setT(!t)
-  }}  style={{float:'right',marginRight:'56px',marginBottom:'65px',fontSize:'25px'}}/>
+  }}  className='cross'/>
 
 
 </div>
