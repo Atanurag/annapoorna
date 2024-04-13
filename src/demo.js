@@ -252,7 +252,7 @@ const App = () =>{
       const upiLink = createUpiPaymentLink(payeeVPA, payeeName, transactionAmount, transactionRefId, callbackUrl);
       openUpiPaymentLink(upiLink);
     } catch (err) {
-      console.error('Error handling payment:', err);
+      console.error('Error handling payment', err);
     }
   }
   
