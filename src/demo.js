@@ -69,7 +69,8 @@ import { Anchor } from 'antd';
 import { Divider, Flex, Tag,Button ,Layout,Input, Row, Col,Switch,Card } from 'antd';
 import { CloseOutlined ,MenuUnfoldOutlined,SearchOutlined,ShoppingOutlined } from '@ant-design/icons';
 import './index.css';
-   
+import io from 'socket.io-client'
+
 const { Header, Content, Footer } = Layout;
 
 const App = () =>{
@@ -265,6 +266,12 @@ const App = () =>{
   function generateUniqueTransactionId() {
     return 'txid-' + Date.now();
   }
+
+  const socket = io.connect('https://17174cc3-e036-41c5-82a6-1ce90c624cd6-00-2oq5i07bzmsdh.pike.replit.dev:5000')
+socket.on("connect", () => {
+  console.log("Socket connected");
+});
+socket.on('payment_response',(e)=>console.log(e))
   return (
 <>
 <button onClick={()=>{handlePayment()}}>Pay with UP</button>
