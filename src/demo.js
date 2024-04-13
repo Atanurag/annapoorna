@@ -223,7 +223,7 @@ const App = () =>{
   function createUpiPaymentLink(payeeVPA, payeeName, transactionAmount, transactionRefId, callbackUrl) {
     try {
       const transactionId = generateUniqueTransactionId(); // Replace with a function that generates unique IDs
-      const transactionNote = 'Payment for order #12345';
+      const transactionNote = 'Pay to BharatPe Merchant';
       const currencyCode = 'INR';
       
       // Ensure all parameters are URL-encoded
@@ -241,10 +241,10 @@ const App = () =>{
   
   function handlePayment() {
     try {
-      const payeeVPA = 'BHARATPE90727475218@yesbankltd';
+      const payeeVPA = 'BHARATPE.90070065432@fbpe';
       const payeeName = 'Verified Merchant';
       const transactionAmount = '1.0'; // Amount in rupees
-      const transactionRefId = 'TXN56343otrw4232334';
+      const transactionRefId = 'TXN56343otrw4sfdae3232334';
       //const callbackUrl = 'https://8b531e0e-eb1d-4615-a175-1d03aed63513-00-14eudonfdu6o9.pike.replit.dev/p';
       const callbackUrl = 'https://t.ly/5Tocf'
       const upiLink = createUpiPaymentLink(payeeVPA, payeeName, transactionAmount, transactionRefId, callbackUrl);
@@ -262,19 +262,9 @@ const App = () =>{
     }
   }
   
-  // Example function to generate a unique transaction ID
   function generateUniqueTransactionId() {
-    // Implement a proper unique ID generation logic
     return 'txid-' + Date.now();
   }
-//   const [wy,setWy] =React.useState('')
-// let y= React.useRef()
-//   React.useEffect(()=>{
-//     y=setInterval(()=>{
-//       fetch('https://vast-tan-bandicoot-yoke.cyclic.app/callback').then(e=>e.json()).then(e=>setWy(e))
-//     },1000)
-// return ()=>clearInterval(y)
-//   },[])
   return (
 <>
 <button onClick={()=>{handlePayment()}}>Pay with UP</button>
