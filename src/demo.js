@@ -279,7 +279,7 @@ socket.on('payment_response',(e)=>console.log(e))
   return (
 <>
 <a href={`upi://pay?pa=iotronicssystempvtlt.62347918@hdfcbank&pn=VerifiedMerchant&mode=00&orgid=00000&tid=${dyn}&tr=${dyn}&mam=null&tn=trialdemopayment&am=1&cu=INR&url=https://t.ly/5Tocf`}>
-  <Button style={{marginTop:'12px'}}>
+  <Button type='primary' style={{marginTop:'12px'}} >
 pay upi
   </Button> </a>
   {/* <button><a href={`upi://pay?pa=iotronicssystempvtlt.62347918@hdfcbank&pn=VerifiedMerchant&mode=00&orgid=00000&tid=${dyn}&tr=${dyn}&mam=null&tn=trialdemopayment&am=1&cu=INR&url=https://t.ly/5Tocf`}>
