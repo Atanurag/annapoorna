@@ -220,7 +220,7 @@ const App = () =>{
         ]}]
   )
  
-
+ let dyn =  generateUniqueTransactionId();
   function createUpiPaymentLink(payeeVPA, payeeName, transactionAmount, transactionRefId, callbackUrl) {
     try {
       const transactionId = generateUniqueTransactionId(); // Replace with a function that generates unique IDs
@@ -233,19 +233,23 @@ const App = () =>{
       const encodedTransactionNote = encodeURIComponent(transactionNote);
       const encodedCallbackUrl = encodeURIComponent(callbackUrl);
   
-      return `upi://pay?pa=${encodedPayeeVPA}&pn=${encodedPayeeName}&tid=${transactionId}&tr=${transactionRefId}&tn=${encodedTransactionNote}&am=${transactionAmount}&cu=${currencyCode}&url=${encodedCallbackUrl}`;
+      return `upi://pay?pa=${encodedPayeeVPA}&pn=${encodedPayeeName}&mode=00&orgid=00000&tid=${dyn}&tr=${dyn}&mam=null&tn=trialdemopaytment&am=1&cu=INR&url=https://t.ly/5Tocf`;
     } catch (err) {
       console.error('Error creating UPI link:', err);
       throw err; // Propagate the error
     }
   }
-  
+ // return `upi://pay?pa=iotronicssystempvtlt.62347918@hdfcbank&pn=VerifiedMerchant&mode=00&orgid=00000&tid=${dyn}&tr=${dyn}&mam=null&tn=trialdemopaytment&am=1&cu=INR&url=https://t.ly/5Tocf`;
+
+ //' return `upi://pay?pa=iotronicssystempvtlt.62347918@hdfcbank&pn=VerifiedMerchant&mode=00&orgid=00000&tid=${transactionId}&tr=${transactionRefId}&mam=null&tn=${encodedTransactionNote}&am=${transactionAmount}&cu=${currencyCode}&url=${encodedCallbackUrl}`;
+
   function handlePayment() {
     try {
-      const payeeVPA = 'BHARATPE.90070065432@fbpe';
+      //const payeeVPA = 'BHARATPE.90070065432@fbpe';
+      const payeeVPA = 'iotronicssystempvtlt.62347918@hdfcbank';
       const payeeName = 'Verified Merchant';
       const transactionAmount = '1.0'; // Amount in rupees
-      const transactionRefId = 'TXN56343otrw4sfdae3232334';
+      const transactionRefId =  generateUniqueTransactionId();
       //const callbackUrl = 'https://8b531e0e-eb1d-4615-a175-1d03aed63513-00-14eudonfdu6o9.pike.replit.dev/p';
       const callbackUrl = 'https://t.ly/5Tocf'
       const upiLink = createUpiPaymentLink(payeeVPA, payeeName, transactionAmount, transactionRefId, callbackUrl);
@@ -267,14 +271,21 @@ const App = () =>{
     return 'txid-' + Date.now();
   }
 
-  const socket = io.connect('https://17174cc3-e036-41c5-82a6-1ce90c624cd6-00-2oq5i07bzmsdh.pike.replit.dev:5000')
+const socket = io.connect('https://17174cc3-e036-41c5-82a6-1ce90c624cd6-00-2oq5i07bzmsdh.pike.replit.dev:5000')
 socket.on("connect", () => {
   console.log("Socket connected");
 });
 socket.on('payment_response',(e)=>console.log(e))
   return (
 <>
-<button onClick={()=>{handlePayment()}}>Pay with UP</button>
+<a href={`upi://pay?pa=iotronicssystempvtlt.62347918@hdfcbank&pn=VerifiedMerchant&mode=00&orgid=00000&tid=${dyn}&tr=${dyn}&mam=null&tn=trialdemopayment&am=1&cu=INR&url=https://t.ly/5Tocf`}>
+  <Button>
+pay
+  </Button> </a>
+  {/* <button><a href={`upi://pay?pa=iotronicssystempvtlt.62347918@hdfcbank&pn=VerifiedMerchant&mode=00&orgid=00000&tid=${dyn}&tr=${dyn}&mam=null&tn=trialdemopayment&am=1&cu=INR&url=https://t.ly/5Tocf`}>
+    <Button type="primary" style={{position:'absolute',right:'12px',fontWeight:'bold'}}>pay
+  </Button></button> */}
+{/* <button onClick={()=>{handlePayment()}} style={{marginTop:'50px',padding:'12px',float:'right',color:''}}>Pay with UPi</button> */}
 {/* <p>{wy}</p> */}
 {/* 
 overlays
@@ -430,7 +441,7 @@ style={{textAlign:'center',padding:'30px',overflowY:'scroll',height:'150px',bord
 <p style={{color:'white',position:'absolute',top:'17px',left:'75px',fontWeight:'bold'}}>₹{selFood?.reduce((ac,cu)=>ac+cu.price,0)}</p>
 {/* <a href={`upi://pay?pa=7875853859@paytm&pn=anurag&tn=Test%20UPI&am=${selFood?.reduce((ac,cu)=>ac+cu.price,0)}&cu=INR&mc=1234&tr=01234re`}><Button type="primary" style={{position:'absolute',right:'12px',fontWeight:'bold'}}>pay
   </Button></a> */}
-<a href={`upi://pay?pa=BHARATPE90727475218@yesbankltd&pn=Verified%20Merchant&tid=7474jejeegb74748eheje&tn=Test%20UPI&am=${selFood?.reduce((ac,cu)=>ac+cu.price,0)}&cu=INR&mc=999999&tr=babajjdjq834848324&url=https://abc.com`}><Button type="primary" style={{position:'absolute',right:'12px',fontWeight:'bold'}}>pay
+<a href={`upi://pay?pa=iotronicssystempvtlt.62347918@hdfcbank&pn=VerifiedMerchant&mode=00&orgid=00000&tid=${dyn}&tr=${dyn}&mam=null&tn=trialdemopaytment&am=1&cu=INR&url=https://t.ly/5Tocf`}><Button type="primary" style={{position:'absolute',right:'12px',fontWeight:'bold'}}>pay
   </Button></a>
   {/* <a href={`upi://pay?pa=7875853859@paytm&am=1pn=anurag&amp;tn=Test%20UPI&amp;am=1&amp;cu=INR&amp;mc=1234&amp;tr=01234`}><Button type="primary" text={"pp"} style={{position:'absolute',right:'12px',fontWeight:'bold'}}>pay
   </Button></a> */}
