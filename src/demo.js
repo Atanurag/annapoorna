@@ -278,7 +278,7 @@ socket.on("connect", () => {
 socket.on('payment_response',(e)=>console.log(e))
   return (
 <>
-<a href={`upi://pay?pa=iotronicssystempvtlt.62347918@hdfcbank&pn=VerifiedMerchant&mode=00&orgid=00000&tid=${dyn}&tr=${dyn}&mam=null&tn=trialdemopayment&am=1&cu=INR&url=https://t.ly/5Tocf`}>
+<a href={`upi://pay?pa=iotronicssystempvtlt.62347918@hdfcbank&pn=VerifiedMerchant&mode=00&orgid=00000&tid=ye7848hebd843773dbdg73&tr=ye7848hebd843773dbdg73&mam=null&tn=trialdemopayment&am=1&cu=INR&url=https://t.ly/5Tocf&sign=B4I%2Fcnfzc6RkAYK%2FKFsK%2BJMBrVRUwWjOQTXYcahAiunfD%2BTq8%2ByetxomthQZcS9kb2MyN%2BTDWDMkY%2F2UAR%2BNTCH%2B15h%2Fo0QMEgpxxvxT7477aMlbSKgjpjWF4JIaWnueX1SHszOAtNhjF0DpuFdLleIrrv7Nm2MbdMFPfXURt21FLnhigXvIrC25jrnCVsqVzjn3LCVCc3iS93ohGhx%2F9tgJrjRYskTTv7rdZ0%2F4aZ%2Ba3zQ1PHIpZfiOkX4Txr2plL81Z2OXv263WD6alxqAMkofNE%2F4%2FHMhhJQBssuPYMR3pewpuHS9RqweSpKdEqfkB1MwTmnfJpd5CPRnptK%2F7w%3D%3D`}>
   <Button type='primary' style={{marginTop:'12px'}} >
 pay upi
   </Button> </a>
