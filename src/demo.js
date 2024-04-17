@@ -278,7 +278,7 @@ socket.on("connect", () => {
 socket.on('payment_response',(e)=>console.log(e))
   return (
 <>
-<a href={`upi://pay?pa=iotronicssystempvtlt.62347918@hdfcbank&pn=VerifiedMerchant&mode=00&orgid=00000&tid=ye7848hebd843773dbdg73&tr=ye7848hebd843773dbdg73&mam=null&tn=trialdemopayment&am=1&cu=INR&sign=Dhi2U%2BmpW8RUbyj5k1HW9dkKuLpA3%2B59AqkGf87Hyy45G3%2Bil46WtQtEdChH11aRa0NBGd%2B6SdP5dqKH1ho0jTlfEqkPsGNfcLtSS9IQpny6UAwTWNHILgPn%2Bz8TAR8NxOxJzIHGkjAzoTaulhFawot4VHLrCamR2qHMqa17S0EfZB4iehj1r1aESgKGXUEno5VGaTnxL0AV3KTjs3dLEzuAdgs6Hdhyg%2FPs2DVFEgn6kYdIgyK8CnqscaA6idO3FsKFJPc6SKgedKj2xZXqnVSLSrM%2FUFa88S31lp8tfAP0vALBj2h7mdUxTgdP24DDV72kgRtSa4G9xywHqFUgig%3D%3D`}>
+<a href={`upi://pay?pa=iotronicssystempvtlt.62347918@hdfcbank&pn=VerifiedMerchant&mode=00&orgid=00000&tid=${dyn}&tr=${dyn}&mam=null&tn=trialdemopayment&am=1&cu=INR&url=https://t.ly/5Tocf`}>
   <Button type='primary' style={{marginTop:'12px'}} >
 pay upi
   </Button> </a>
@@ -334,23 +334,15 @@ overlays
           </div>
         </Col>
         <Col  xs={6} sm={4} md={4} lg={4}>
-          <div style={{
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-evenly',
-  width: '70px', 
-  height: '30px',
-  borderRadius: '8px', 
-  boxShadow: '0 0 3px rgba(0, 0, 0, 0.4)',
-}}>
-            <span style={{fontWeight:'bold'}}>Veg</span>
+          <div className='switch-box'>
+            <span>Veg</span>
           <Switch size="small" value={isVeg} onChange={(e)=>{setIsVeg(e)
           }} />
 
           </div>
         </Col>
         <Col  xs={24} sm={11} md={0} lg={0}>
-          <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+          <div classname='input-box'>
           <Input size="large" placeholder="Search For Items..." prefix={<SearchOutlined/>} onChange={(e)=>{
             setInp(e.target.value)
              console.log(inp)}} value={inp} />
@@ -379,25 +371,12 @@ overlays
 
 
 
-<div style={{
-    background: '#fff',
-    position: 'fixed',
-    bottom: t?'0px':'-280px', // Corrected this line
-    left: '50%', 
-    width: '100%',
-    transform: 'translateX(-50%)', // Corrected this line
-    zIndex: 999,
-    border:'1px solid gray',
-    transition: 'bottom 0.3s ease-in-out',
-    borderTopLeftRadius:'23px',
-    borderTopRightRadius:'23px'
-    
-}}>
+<div className={`bottom-anchor ${t?'push-to-top':'push-to-bottom'}`}>
 
 <Anchor
 onClick={()=>setT(!t)}
-style={{textAlign:'center',padding:'30px',overflowY:'scroll',height:'150px',borderTopLeftRadius:'23px',borderTopRightRadius:'23px',margin:'12px'}}
-        items={[
+className='anchor-box'   
+     items={[
           {
             key: 'part-1',
             href: '#part-1',
@@ -421,7 +400,7 @@ style={{textAlign:'center',padding:'30px',overflowY:'scroll',height:'150px',bord
       />
  <CloseOutlined onClick={()=>{
     setT(!t)
-  }}  style={{float:'right',marginRight:'56px',marginBottom:'65px',fontSize:'25px'}}/>
+  }}  className='cross'/>
 
 
 </div>
