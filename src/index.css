@@ -82,6 +82,14 @@
   font-size:25px;
 }
 
+.main-page .cart-box{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  background:black;
+  z-index:9999;
+  padding:9px 0;
+}
 .search-bar {
 
   flex-grow: 1; /* Removed for Row/Col layout */

@@ -410,8 +410,12 @@ className='anchor-box'
   <img style={{width:'104%'}} src="https://img.freepik.com/free-vector/hand-drawn-asian-food-sale-banner-template_23-2150057614.jpg?ga=GA1.1.1667821893.1709318575&" alt=""/>
 </div>
 
+
+
+
 {/* {cart} start*/}
-{selFood?.length>0 &&<div style={{position:'fixed',bottom:0,right:'80',width:'100%',background:'black',zIndex:'9999',padding:'9px 0'}}>
+{selFood?.length>0 &&
+<div className='cart-box'>
 <div style={{podition:'relative',padding:'0 30px'}} >
 <ShoppingOutlined  style={{fontSize:'34px',color:'white'}}onClick={()=>{
   setToggleCart(!toggleCart)
