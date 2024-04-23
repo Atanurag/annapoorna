@@ -278,10 +278,14 @@ socket.on("connect", () => {
 socket.on('payment_response',(e)=>console.log(e))
   return (
 <>
-<a href={`upi://pay?pa=iotronicssystempvtlt.62347918@hdfcbank&pn=VerifiedMerchant&mode=00&orgid=00000&tid=${dyn}&tr=${dyn}&mam=null&tn=trialdemopayment&am=1&cu=INR&url=https://t.ly/5Tocf`}>
+<a href={`pa=kk.payutest@hdfcbank&pn=&tr=403993715531413903&tid=PPPL403993715531413903230424143439&am=1.00&cu=INR&tn=UPIIntent`}>
   <Button type='primary' style={{marginTop:'12px'}} >
 pay upi
-  </Button> </a>
+  </Button> </a> 
+{/* <a href={`upi://pay?pa=iotronicssystempvtlt.62347918@hdfcbank&pn=VerifiedMerchant&mode=00&orgid=00000&tid=${dyn}&tr=${dyn}&mam=null&tn=trialdemopayment&am=1&cu=INR&url=https://t.ly/5Tocf`}>
+  <Button type='primary' style={{marginTop:'12px'}} >
+pay upi
+  </Button> </a> */}
   {/* <button><a href={`upi://pay?pa=iotronicssystempvtlt.62347918@hdfcbank&pn=VerifiedMerchant&mode=00&orgid=00000&tid=${dyn}&tr=${dyn}&mam=null&tn=trialdemopayment&am=1&cu=INR&url=https://t.ly/5Tocf`}>
     <Button type="primary" style={{position:'absolute',right:'12px',fontWeight:'bold'}}>pay
   </Button></button> */}
