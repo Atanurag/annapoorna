@@ -278,6 +278,9 @@ socket.on("connect", () => {
 socket.on('payment_response',(e)=>console.log(e))
   return (
 <>
+<a href='upi://pay?pa=kk.payutest@hdfcbank&pn=&tr=403993715531414244&tid=PPPL403993715531414244230424150937&am=1.00&cu=INR&tn=UPIIntent'>sss</a>
+
+
 <a href={`upi://pay?pa=kk.payutest@hdfcbank&pn=demo&tr=dacff41d43b36b0242527417947c00f75b161120a930fbc1c42550b01d209a5c&am=1.00`}>
   <Button type='primary' style={{marginTop:'12px'}} >
 pay upi
