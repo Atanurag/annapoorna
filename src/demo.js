@@ -222,65 +222,65 @@ const App = () =>{
         },
         ]}]
   )
- 
- let dyn =  generateUniqueTransactionId();
-  function createUpiPaymentLink(payeeVPA, payeeName, transactionAmount, transactionRefId, callbackUrl) {
-    try {
-      const transactionId = generateUniqueTransactionId(); // Replace with a function that generates unique IDs
-      const transactionNote = 'Pay to BharatPe Merchant';
-      const currencyCode = 'INR';
-      
-      // Ensure all parameters are URL-encoded
-      const encodedPayeeVPA = encodeURIComponent(payeeVPA);
-      const encodedPayeeName = encodeURIComponent(payeeName);
-      const encodedTransactionNote = encodeURIComponent(transactionNote);
-      const encodedCallbackUrl = encodeURIComponent(callbackUrl);
-  
-      return `upi://pay?pa=${encodedPayeeVPA}&pn=${encodedPayeeName}&mode=00&orgid=00000&tid=${dyn}&tr=${dyn}&mam=null&tn=trialdemopaytment&am=1&cu=INR&url=https://t.ly/5Tocf`;
-    } catch (err) {
-      console.error('Error creating UPI link:', err);
-      throw err; // Propagate the error
-    }
-  }
- // return `upi://pay?pa=iotronicssystempvtlt.62347918@hdfcbank&pn=VerifiedMerchant&mode=00&orgid=00000&tid=${dyn}&tr=${dyn}&mam=null&tn=trialdemopaytment&am=1&cu=INR&url=https://t.ly/5Tocf`;
-
- //' return `upi://pay?pa=iotronicssystempvtlt.62347918@hdfcbank&pn=VerifiedMerchant&mode=00&orgid=00000&tid=${transactionId}&tr=${transactionRefId}&mam=null&tn=${encodedTransactionNote}&am=${transactionAmount}&cu=${currencyCode}&url=${encodedCallbackUrl}`;
-
-  function handlePayment() {
-    try {
-      //const payeeVPA = 'BHARATPE.90070065432@fbpe';
-      const payeeVPA = 'iotronicssystempvtlt.62347918@hdfcbank';
-      const payeeName = 'Verified Merchant';
-      const transactionAmount = '1.0'; // Amount in rupees
-      const transactionRefId =  generateUniqueTransactionId();
-      //const callbackUrl = 'https://8b531e0e-eb1d-4615-a175-1d03aed63513-00-14eudonfdu6o9.pike.replit.dev/p';
-      const callbackUrl = 'https://t.ly/5Tocf'
-      const upiLink = createUpiPaymentLink(payeeVPA, payeeName, transactionAmount, transactionRefId, callbackUrl);
-      openUpiPaymentLink(upiLink);
-    } catch (err) {
-      console.error('Error handling payment:', err);
-    }
-  }
-  
-  function openUpiPaymentLink(upiLink) {
-    try {
-      window.open(upiLink, '_blank');
-    } catch (err) {
-      console.error('Error opening UPI link:', err);
-    }
-  }
-  
   function generateUniqueTransactionId() {
     return 'txid-' + Date.now();
   }
 
-const socket = io.connect('https://17174cc3-e036-41c5-82a6-1ce90c624cd6-00-2oq5i07bzmsdh.pike.replit.dev:5000')
-socket.on("connect", () => {
-  console.log("Socket connected");
-});
-socket.on('payment_response',(e)=>console.log(e))
+ let dyn =  generateUniqueTransactionId();
+ // return `upi://pay?pa=iotronicssystempvtlt.62347918@hdfcbank&pn=VerifiedMerchant&mode=00&orgid=00000&tid=${dyn}&tr=${dyn}&mam=null&tn=trialdemopaytment&am=1&cu=INR&url=https://t.ly/5Tocf`;
+
+ //' return `upi://pay?pa=iotronicssystempvtlt.62347918@hdfcbank&pn=VerifiedMerchant&mode=00&orgid=00000&tid=${transactionId}&tr=${transactionRefId}&mam=null&tn=${encodedTransactionNote}&am=${transactionAmount}&cu=${currencyCode}&url=${encodedCallbackUrl}`;
+
+
+
+ async function initiateTxn(){
+  try{
+let startTxn = await fetch('https://8b531e0e-eb1d-4615-a175-1d03aed63513-00-14eudonfdu6o9.pike.replit.dev:9000/initiate-payment')
+let data = await startTxn.json()
+localStorage.setItem('txnId',JSON.stringify(data.metaData.txnId))
+console.log(data)
+window.open(`upi://pay?pa=${data.result.merchantVpa}&pn=${data.result.merchantName}&tr=${data.metaData.referenceId}&am=${data.result.amount}`,'_blank');
+
+}
+  catch(err){
+    console.log(err)
+  }
+ }
+//initiateTxn()
+
+async function verifyTxn(){
+  try{
+let verifyTxn = await fetch('https://8b531e0e-eb1d-4615-a175-1d03aed63513-00-14eudonfdu6o9.pike.replit.dev:9000/verify-txn')
+let data = await  verifyTxn .json()
+
+console.log(data)
+
+}
+  catch(err){
+    console.log(err)
+  }
+ }
+ verifyTxn()
+  const [p,setP] =React.useState(false)
+  function handelUserComeback(){
+    if(localStorage.getItem('txnId') &&  document.visibilityState === 'visible'){
+      setP(true)
+     // localStorage.removeItem('paymentInitiated');
+    }
+  }
+React.useEffect(()=>{
+window.addEventListener('visibilitychange',handelUserComeback)
+return ()=> {window.removeEventListener('visibilitychange')}
+},[])
+// const socket = io.connect('https://17174cc3-e036-41c5-82a6-1ce90c624cd6-00-2oq5i07bzmsdh.pike.replit.dev:5000')
+// socket.on("connect", () => {
+//   console.log("Socket connected");
+// });
+// socket.on('payment_response',(e)=>console.log(e))
   return (
 <>
+{p&& 'hello baby'}
+<p onClick={()=>initiateTxn()}>dsds</p>
 <a href={`upi://pay?pa=kk.payutest@hdfcbank&pn=demo&tr=dacff41d43b36b0242527417947c00f75b161120a930fbc1c42550b01d209a5c&am=1.00`}>
   <Button type='primary' style={{marginTop:'12px'}} >
 pay upi
