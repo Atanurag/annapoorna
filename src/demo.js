@@ -63,6 +63,9 @@
 // export default App;
 
 
+//function initiateTxn(amount,txnid,productinfo='storefront',)
+
+
 
 import React from 'react';
 import { Anchor } from 'antd';
