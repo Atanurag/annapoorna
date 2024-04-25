@@ -277,12 +277,15 @@ return data;
 //verifyTxn()
   
   function handelUserComeback(){
-    if(localStorage.getItem('txnId') &&  document.visibilityState === 'visible'){
+    if((localStorage.getItem('txnId') && document.visibilityState === 'visible')){
       setP(true)
      // localStorage.removeItem('paymentInitiated');
     }
   }
 React.useEffect(()=>{
+  if(localStorage.getItem('txnId')){
+    setP(true)
+  }
 window.addEventListener('visibilitychange',handelUserComeback)
 return ()=> {window.removeEventListener('visibilitychange')}
 },[])
@@ -293,7 +296,13 @@ return ()=> {window.removeEventListener('visibilitychange')}
 // socket.on('payment_response',(e)=>console.log(e))
   return (
 <>
+
 {  p && 'hello baby'}
+
+<button onClick={()=>{
+  localStorage.removeItem('txnId');
+  setP(false)
+}}>rem</button>
 <p onClick={()=>initiateTxn()}>dsds</p>
 <a href={`upi://pay?pa=kk.payutest@hdfcbank&pn=demo&tr=dacff41d43b36b0242527417947c00f75b161120a930fbc1c42550b01d209a5c&am=1.00`}>
   <Button type='primary' style={{marginTop:'12px'}} >
