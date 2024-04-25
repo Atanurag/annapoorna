@@ -233,17 +233,16 @@ const App = () =>{
 
 
  const [p,setP] =React.useState(false)
+
  async function initiateTxn(){
   try{
 let startTxn = await fetch('https://8b531e0e-eb1d-4615-a175-1d03aed63513-00-14eudonfdu6o9.pike.replit.dev:9000/initiate-payment')
 let data = await startTxn.json()
-
 window.open(`upi://pay?pa=${data.result.merchantVpa}&pn=${data.result.merchantName}&tr=${data.metaData.referenceId}&am=${data.result.amount}`,'_blank');
 setTimeout(()=>{
   localStorage.setItem('txnId',JSON.stringify(data.metaData.txnId))
   setP(true)
-},4000)
-
+},5000)
 console.log(data)
 }
   catch(err){
@@ -265,25 +264,28 @@ return data;
   }
  }
 
-//  React.useEffect(()=>{
-// if( localStorage.getItem('txnId')){
-//   verifyTxn().then(e=>{
+ React.useEffect(()=>{
+if(localStorage.getItem('txnId')){
+  setP(true)
+  verifyTxn().then(e=>{
 
-//     if(e.transaction_details[JSON.parse(localStorage.getItem('txnId'))].status === 'pending'){
-// console.log('poo')
+    if(e.transaction_details[JSON.parse(localStorage.getItem('txnId'))].status === 'pending'){
 
-// // localStorage.removeItem('txnId')
-//     }
-//   })
-// }
-//  },[])
+console.log('pending')
+// localStorage.removeItem('txnId')
+//   setP(false)
+// localStorage.removeItem('txnId')
+    }
+  })
+}
+ },[])
 //verifyTxn()
   
-React.useEffect(()=>{
-  if(localStorage.getItem('txnId') ){
-setP(true)
-  }
-},[])
+// React.useEffect(()=>{
+//   if(localStorage.getItem('txnId') ){
+// setP(true)
+//   }
+// },[])
   // function handelUserComeback(){
   //   if((localStorage.getItem('txnId') && document.visibilityState === 'visible')){
   //     setP(true)
@@ -394,7 +396,54 @@ overlays
 
 
 
+    <div style={{ 
+    position: 'fixed',
+    display: 'flex',
+    width: '100%',
+    height: '100%',
+    top: '0',
+    left: '0',
+    right: '0',
+    bottom: '0',
+    backgroundColor: 'rgba(0,0,0,0.6)',
+    zIndex: '2',
+    cursor: 'pointer',
+    justifyContent: 'center',  // Added justify-content: center
+    alignItems: 'center',      // Added align-items: center
+}}>
+    <Card  bordered={false} style={{position:'relative',width:'90%'}} title={<span style={{fontSize:'14px'}}> Order Id: kddgfgfdfs454d <br/> Order Status: Completed  <span style={{
+      backgroundColor:'green',
+  height: '10px',
+  width: '10px'
+  ,
+  borderRadius: '50%',
+  display: 'inline-block'}}></span>  </span>}>
+<p style={{}}>Thank you for your order</p>
 
+<div style={{display:'flex',justifyContent:'space-between',fontWeight:'500',margin:'4px'}}>
+<p style={{wordBreak:'break-word',width:'200px',fontSize:'14px'}}>Dosa (Qty 1)</p>
+<p  style={{width:'45px',fontSize:'14px'}}>₹ 25</p>
+</div>
+<div style={{display:'flex',justifyContent:'space-between',fontWeight:'500',margin:'4px'}}>
+<p style={{wordBreak:'break-word',width:'200px',fontSize:'14px'}}>Idli/sambhar (Qty1)</p>
+<p  style={{width:'45px',fontSize:'14px'}}>₹ 20</p>
+</div>
+<div style={{display:'flex',justifyContent:'space-between',fontWeight:'500',margin:'4px'}}>
+<p style={{wordBreak:'break-word',width:'200px',fontSize:'14px'}}>utappa (Qty1)</p>
+<p  style={{width:'45px',fontSize:'14px'}}>₹ 25</p>
+</div>
+<Divider style={{margin:'10px 0px'}}/>
+
+<div style={{display:'flex',justifyContent:'space-between',fontWeight:'500'}}>
+<p style={{wordBreak:'break-word',width:'200px',fontSize:'14px'}}>Total</p>
+<p style={{width:'45px',fontSize:'14px'}}>₹ 70</p>
+</div>
+
+<Button type="primary" disabled={true}  style={{float:'right',marginTop:'19px'}} onClick={()=>{}}>
+        Done
+        </Button>
+ </Card>
+  </div>
 
 
 
