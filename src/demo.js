@@ -287,7 +287,7 @@ if(p || localStorage.getItem('txnId')){
 // socket.on('payment_response',(e)=>console.log(e))
   return (
 <>
-{( p || localStorage.getItem('txnId')) && 'hello baby'}
+{(  localStorage.getItem('txnId')) && 'hello baby'}
 <p onClick={()=>initiateTxn()}>dsds</p>
 <a href={`upi://pay?pa=kk.payutest@hdfcbank&pn=demo&tr=dacff41d43b36b0242527417947c00f75b161120a930fbc1c42550b01d209a5c&am=1.00`}>
   <Button type='primary' style={{marginTop:'12px'}} >
