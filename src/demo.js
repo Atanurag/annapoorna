@@ -283,9 +283,9 @@ return data;
     }
   }
 React.useEffect(()=>{
-  if(localStorage.getItem('txnId')){
-    setP(true)
-  }
+  // if(localStorage.getItem('txnId')){
+  //   setP(true)
+  // }
 window.addEventListener('visibilitychange',handelUserComeback)
 return ()=> {window.removeEventListener('visibilitychange')}
 },[])
