@@ -307,7 +307,7 @@ console.log('pending')
   return (
 <>
 
-{  p && 'hello baby'}
+{/* {  p && 'hello baby'}
 
 <button onClick={()=>{
   localStorage.removeItem('txnId');
@@ -317,7 +317,7 @@ console.log('pending')
 <a href={`upi://pay?pa=kk.payutest@hdfcbank&pn=demo&tr=dacff41d43b36b0242527417947c00f75b161120a930fbc1c42550b01d209a5c&am=1.00`}>
   <Button type='primary' style={{marginTop:'12px'}} >
 pay upi
-  </Button> </a> 
+  </Button> </a>  */}
 {/* <a href={`upi://pay?pa=iotronicssystempvtlt.62347918@hdfcbank&pn=VerifiedMerchant&mode=00&orgid=00000&tid=${dyn}&tr=${dyn}&mam=null&tn=trialdemopayment&am=1&cu=INR&url=https://t.ly/5Tocf`}>
   <Button type='primary' style={{marginTop:'12px'}} >
 pay upi
@@ -395,7 +395,8 @@ overlays
 
 
 
-
+{/* overlay */}
+{p &&
     <div style={{ 
     position: 'fixed',
     display: 'flex',
@@ -443,8 +444,8 @@ overlays
         Done
         </Button>
  </Card>
-  </div>
-
+  </div>}
+{/* overlay */}
 
 
 
