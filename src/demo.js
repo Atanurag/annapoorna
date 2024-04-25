@@ -639,11 +639,12 @@ className='anchor-box'
 {food[0].content.filter(e=>e.name.toLowerCase().includes(inp.toLowerCase()) && e.isVeg===isVeg).length>0 ? food[0].content.filter(e=>e.name.toLowerCase().includes(inp.toLowerCase()) && e.isVeg===isVeg).map((e,i)=>{
   return (<>
 
-<div key={i}
+<div
+                        key={i}
                           style={{
                             display: 'flex',
                             background: '#fff',
-                            width: '250px',
+                            width: '300px',
                             border: '1px solid #ccc',
                             borderRadius: '8px',
                             padding: '5px',
@@ -655,7 +656,7 @@ className='anchor-box'
                         >
                           <div
                             style={{
-                              width: '130px',
+                              width: '140px',
                               height: '200px',
                               borderRadius: '10px',
                             }}
@@ -679,7 +680,8 @@ className='anchor-box'
                               display: 'flex',
                               flexDirection: 'column',
                               alignItems: 'space-between',
-                              width: '100px',
+                              justifyContent:'center',
+                              width: '140px',
                               padding: '12px 0 0 0',
                             }}
                           >
@@ -738,11 +740,12 @@ className='anchor-box'
 {food[1].content.filter(e=>e.name.toLowerCase().includes(inp.toLowerCase()) && e.isVeg===isVeg).length>0 ? food[1].content.filter(e=>e.name.toLowerCase().includes(inp.toLowerCase()) && e.isVeg===isVeg).map((e,i)=>{
   return (<>
    
-   <div key={i}
+   <div
+                        key={i}
                           style={{
                             display: 'flex',
                             background: '#fff',
-                            width: '250px',
+                            width: '300px',
                             border: '1px solid #ccc',
                             borderRadius: '8px',
                             padding: '5px',
@@ -754,7 +757,7 @@ className='anchor-box'
                         >
                           <div
                             style={{
-                              width: '130px',
+                              width: '140px',
                               height: '200px',
                               borderRadius: '10px',
                             }}
@@ -778,7 +781,8 @@ className='anchor-box'
                               display: 'flex',
                               flexDirection: 'column',
                               alignItems: 'space-between',
-                              width: '100px',
+                              justifyContent:'center',
+                              width: '140px',
                               padding: '12px 0 0 0',
                             }}
                           >
@@ -819,7 +823,6 @@ className='anchor-box'
                             </Button>
                           </div>
                         </div>
-
   
   </>)
 }):'No Items...'}
@@ -840,10 +843,11 @@ className='anchor-box'
 
 
    <div
-                  key={i}        style={{
+                        key={i}
+                          style={{
                             display: 'flex',
                             background: '#fff',
-                            width: '250px',
+                            width: '300px',
                             border: '1px solid #ccc',
                             borderRadius: '8px',
                             padding: '5px',
@@ -855,7 +859,7 @@ className='anchor-box'
                         >
                           <div
                             style={{
-                              width: '130px',
+                              width: '140px',
                               height: '200px',
                               borderRadius: '10px',
                             }}
@@ -879,7 +883,8 @@ className='anchor-box'
                               display: 'flex',
                               flexDirection: 'column',
                               alignItems: 'space-between',
-                              width: '100px',
+                              justifyContent:'center',
+                              width: '140px',
                               padding: '12px 0 0 0',
                             }}
                           >
