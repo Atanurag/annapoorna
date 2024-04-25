@@ -239,7 +239,7 @@ let startTxn = await fetch('https://8b531e0e-eb1d-4615-a175-1d03aed63513-00-14eu
 let data = await startTxn.json()
 
 window.open(`upi://pay?pa=${data.result.merchantVpa}&pn=${data.result.merchantName}&tr=${data.metaData.referenceId}&am=${data.result.amount}`,'_blank');
-setP(true)
+
 localStorage.setItem('txnId',JSON.stringify(data.metaData.txnId))
 console.log(data)
 }
@@ -254,7 +254,7 @@ async function verifyTxn(){
 let verifyTxn = await fetch('https://8b531e0e-eb1d-4615-a175-1d03aed63513-00-14eudonfdu6o9.pike.replit.dev:9000/verify-txn')
 let data = await  verifyTxn .json()
 
-console.log(data)
+return data;
 
 }
   catch(err){
@@ -263,12 +263,18 @@ console.log(data)
  }
 
  React.useEffect(()=>{
-if(p || localStorage.getItem('txnId')){
+if( localStorage.getItem('txnId')){
+  verifyTxn().then(e=>{
 
+    if(e.transaction_details[JSON.parse(localStorage.getItem('txnId'))].status === 'pending'){
+console.log('poo')
 
+// localStorage.removeItem('txnId')
+    }
+  })
 }
  },[])
-// verifyTxn()
+//verifyTxn()
   
   // function handelUserComeback(){
   //   if(localStorage.getItem('txnId') &&  document.visibilityState === 'visible'){
