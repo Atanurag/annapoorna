@@ -239,9 +239,11 @@ let startTxn = await fetch('https://8b531e0e-eb1d-4615-a175-1d03aed63513-00-14eu
 let data = await startTxn.json()
 
 window.open(`upi://pay?pa=${data.result.merchantVpa}&pn=${data.result.merchantName}&tr=${data.metaData.referenceId}&am=${data.result.amount}`,'_blank');
+setTimeout(()=>{
+  localStorage.setItem('txnId',JSON.stringify(data.metaData.txnId))
+  setP(true)
+},4000)
 
-localStorage.setItem('txnId',JSON.stringify(data.metaData.txnId))
-setP(true)
 console.log(data)
 }
   catch(err){
