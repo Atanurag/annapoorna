@@ -271,15 +271,15 @@ return data;
     console.log(err)
   }
  }
-
+const[o,setO] =React.useState('')
  React.useEffect(()=>{
 if(localStorage.getItem('txnId')){
   setP(true)
+  console.log('000')
   document.getElementsByTagName('body')[0].style.overflow = 'hidden';
   verifyTxn().then(e=>{
-
     if(e.transaction_details[JSON.parse(localStorage.getItem('txnId'))].status === 'pending'){
-
+      setO(e.transaction_details[JSON.parse(localStorage.getItem('txnId'))].status)
 console.log('pending')
 // localStorage.removeItem('txnId')
 //   setP(false)
@@ -287,7 +287,7 @@ console.log('pending')
     }
   })
 }
- },[])
+ },[p])
 //verifyTxn()
   
 // React.useEffect(()=>{
@@ -374,7 +374,7 @@ overlays
           </div>
         </Col>
         <Col  xs={0} sm={0} md={11} lg={8}>
-          <div classname='input-box'>
+          <div className='input-box'>
           <Input size="large" placeholder="Search For Items..." prefix={<SearchOutlined/>} onChange={(e)=>{
             setInp(e.target.value)
              console.log(inp)}} value={inp}/>
@@ -391,7 +391,7 @@ overlays
           </div>
         </Col>
         <Col  xs={24} sm={11} md={0} lg={0}>
-          <div classname='input-box'>
+          <div className='input-box'>
           <Input size="large" placeholder="Search For Items..." prefix={<SearchOutlined/>} onChange={(e)=>{
             setInp(e.target.value)
              console.log(inp)}} value={inp} />
@@ -422,7 +422,7 @@ overlays
     alignItems: 'center',      // Added align-items: center
 }}
 >
-    <Card  bordered={false} style={{position:'relative',width:'90%'}} title={<span style={{fontSize:'14px'}}> Order Id: {JSON.parse(localStorage.getItem('txnId'))} <br/> Order Status: Pending  <span style={{
+    <Card  bordered={false} style={{position:'relative',width:'90%'}} title={<span style={{fontSize:'14px'}}> Order Id: {JSON.parse(localStorage.getItem('txnId'))} <br/> Order Status: {o}  <span style={{
       backgroundColor:'#fccf2b',
   height: '10px',
   width: '10px'
@@ -546,7 +546,7 @@ className='anchor-box'
 {/* <div style={{height:'150px',border:'1px solid red',width:'150px'}}></div> */}
 {selFood?.map((e,i)=>{
   return(<>
-  <div style={{borderBottom:'1px solid black',width:'200px',padding:'12px 0',display:'flex',justifyContent:'space-around'}}>
+  <div key={i} style={{borderBottom:'1px solid black',width:'200px',padding:'12px 0',display:'flex',justifyContent:'space-around'}}>
 <p style={{fontWeight:'bold'}}>{e.name}</p> <p style={{fontWeight:'bold'}}>₹ {e.price}</p>
   </div>
   
@@ -614,7 +614,7 @@ className='anchor-box'
   return (<>
 
 
-<div style={{ 
+<div key={i} style={{ 
   background:'#fff',
     width:'250px',
     border: '1px solid #ccc', 
@@ -660,7 +660,7 @@ className='anchor-box'
 
 
 
-   <div style={{ 
+   <div key={i} style={{ 
   background:'#fff',
     width:'250px',
     border: '1px solid #ccc', 
@@ -705,7 +705,7 @@ className='anchor-box'
    
 
 
-   <div style={{ 
+   <div key={i} style={{ 
   background:'#fff',
     width:'250px',
     border: '1px solid #ccc', 
