@@ -95,6 +95,13 @@ const App = () =>{
           tag: "Classic"
         },
         {
+          name: "Filter Coffee",
+          description: "Strong coffee brewed in a traditional South Indian filter",
+          price: 1,
+          isVeg: true,
+          tag: "Beverage"
+        },
+        {
           name: "Idli",
           description: "Steamed savory rice cakes",
           price: 30,
@@ -207,9 +214,9 @@ const App = () =>{
           tag: "Dessert"
         },
         {
-          name: "Filter Coffee",
+          name: "Filter Coffee Kadak masala",
           description: "Strong coffee brewed in a traditional South Indian filter",
-          price: 1,
+          price: 5,
           isVeg: true,
           tag: "Beverage"
         },
@@ -242,6 +249,7 @@ window.open(`upi://pay?pa=${data.result.merchantVpa}&pn=${data.result.merchantNa
 setTimeout(()=>{
   localStorage.setItem('txnId',JSON.stringify(data.metaData.txnId))
   setP(true)
+  document.getElementsByTagName('body')[0].style.overflow = 'hidden';
 },5000)
 console.log(data)
 }
@@ -267,6 +275,7 @@ return data;
  React.useEffect(()=>{
 if(localStorage.getItem('txnId')){
   setP(true)
+  document.getElementsByTagName('body')[0].style.overflow = 'hidden';
   verifyTxn().then(e=>{
 
     if(e.transaction_details[JSON.parse(localStorage.getItem('txnId'))].status === 'pending'){
@@ -411,9 +420,10 @@ overlays
     cursor: 'pointer',
     justifyContent: 'center',  // Added justify-content: center
     alignItems: 'center',      // Added align-items: center
-}}>
-    <Card  bordered={false} style={{position:'relative',width:'90%'}} title={<span style={{fontSize:'14px'}}> Order Id: kddgfgfdfs454d <br/> Order Status: Completed  <span style={{
-      backgroundColor:'green',
+}}
+>
+    <Card  bordered={false} style={{position:'relative',width:'90%'}} title={<span style={{fontSize:'14px'}}> Order Id: {JSON.parse(localStorage.getItem('txnId'))} <br/> Order Status: Pending  <span style={{
+      backgroundColor:'#fccf2b',
   height: '10px',
   width: '10px'
   ,
@@ -422,22 +432,14 @@ overlays
 <p style={{}}>Thank you for your order</p>
 
 <div style={{display:'flex',justifyContent:'space-between',fontWeight:'500',margin:'4px'}}>
-<p style={{wordBreak:'break-word',width:'200px',fontSize:'14px'}}>Dosa (Qty 1)</p>
-<p  style={{width:'45px',fontSize:'14px'}}>₹ 25</p>
-</div>
-<div style={{display:'flex',justifyContent:'space-between',fontWeight:'500',margin:'4px'}}>
-<p style={{wordBreak:'break-word',width:'200px',fontSize:'14px'}}>Idli/sambhar (Qty1)</p>
-<p  style={{width:'45px',fontSize:'14px'}}>₹ 20</p>
-</div>
-<div style={{display:'flex',justifyContent:'space-between',fontWeight:'500',margin:'4px'}}>
-<p style={{wordBreak:'break-word',width:'200px',fontSize:'14px'}}>utappa (Qty1)</p>
-<p  style={{width:'45px',fontSize:'14px'}}>₹ 25</p>
+<p style={{wordBreak:'break-word',width:'200px',fontSize:'14px'}}>Filter Coffee</p>
+<p  style={{width:'45px',fontSize:'14px'}}>₹ 1</p>
 </div>
 <Divider style={{margin:'10px 0px'}}/>
 
 <div style={{display:'flex',justifyContent:'space-between',fontWeight:'500'}}>
 <p style={{wordBreak:'break-word',width:'200px',fontSize:'14px'}}>Total</p>
-<p style={{width:'45px',fontSize:'14px'}}>₹ 70</p>
+<p style={{width:'45px',fontSize:'14px'}}>₹ 1</p>
 </div>
 
 <Button type="primary" disabled={true}  style={{float:'right',marginTop:'19px'}} onClick={()=>{}}>
@@ -502,7 +504,7 @@ className='anchor-box'
 
 
 {/* {cart} start*/}
-{selFood?.length>0 &&
+{(selFood?.length>0 && !p) &&
 <div className='cart-box'>
 <div style={{podition:'relative',padding:'0 30px'}} >
 <ShoppingOutlined  style={{fontSize:'34px',color:'white'}}onClick={()=>{
@@ -512,10 +514,12 @@ className='anchor-box'
 <p style={{color:'white',position:'absolute',top:'17px',left:'75px',fontWeight:'bold'}}>₹{selFood?.reduce((ac,cu)=>ac+cu.price,0)}</p>
 {/* <a href={`upi://pay?pa=7875853859@paytm&pn=anurag&tn=Test%20UPI&am=${selFood?.reduce((ac,cu)=>ac+cu.price,0)}&cu=INR&mc=1234&tr=01234re`}><Button type="primary" style={{position:'absolute',right:'12px',fontWeight:'bold'}}>pay
   </Button></a> */}
-<a href={`upi://pay?pa=iotronicssystempvtlt.62347918@hdfcbank&pn=VerifiedMerchant&mode=00&orgid=00000&tid=${dyn}&tr=${dyn}&mam=null&tn=trialdemopaytment&am=1&cu=INR&url=https://t.ly/5Tocf`}><Button type="primary" style={{position:'absolute',right:'12px',fontWeight:'bold'}}>pay
-  </Button></a>
-  {/* <a href={`upi://pay?pa=7875853859@paytm&am=1pn=anurag&amp;tn=Test%20UPI&amp;am=1&amp;cu=INR&amp;mc=1234&amp;tr=01234`}><Button type="primary" text={"pp"} style={{position:'absolute',right:'12px',fontWeight:'bold'}}>pay
+{/* <a href={`upi://pay?pa=iotronicssystempvtlt.62347918@hdfcbank&pn=VerifiedMerchant&mode=00&orgid=00000&tid=${dyn}&tr=${dyn}&mam=null&tn=trialdemopaytment&am=1&cu=INR&url=https://t.ly/5Tocf`}><Button type="primary" style={{position:'absolute',right:'12px',fontWeight:'bold'}}>pay
   </Button></a> */}
+<Button type="primary" style={{position:'absolute',right:'12px',fontWeight:'bold'}} onClick={()=>initiateTxn()}>pay
+  </Button>
+  
+  
 </div>
 
 {/* `upi://pay?pa=${payeeVPA}&pn=${payeeName}&mc=${merchantCode}&tid=${transactionId}&tr=${transactionRefId}&tn=${transactionNote}&am=${transactionAmount}&cu=${currencyCode}&url=${callbackUrl}` */}
