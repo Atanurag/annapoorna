@@ -232,15 +232,16 @@ const App = () =>{
  //' return `upi://pay?pa=iotronicssystempvtlt.62347918@hdfcbank&pn=VerifiedMerchant&mode=00&orgid=00000&tid=${transactionId}&tr=${transactionRefId}&mam=null&tn=${encodedTransactionNote}&am=${transactionAmount}&cu=${currencyCode}&url=${encodedCallbackUrl}`;
 
 
-
+ const [p,setP] =React.useState(false)
  async function initiateTxn(){
   try{
 let startTxn = await fetch('https://8b531e0e-eb1d-4615-a175-1d03aed63513-00-14eudonfdu6o9.pike.replit.dev:9000/initiate-payment')
 let data = await startTxn.json()
+
+window.open(`upi://pay?pa=${data.result.merchantVpa}&pn=${data.result.merchantName}&tr=${data.metaData.referenceId}&am=${data.result.amount}`,'_blank');
+setP(true)
 localStorage.setItem('txnId',JSON.stringify(data.metaData.txnId))
 console.log(data)
-window.open(`upi://pay?pa=${data.result.merchantVpa}&pn=${data.result.merchantName}&tr=${data.metaData.referenceId}&am=${data.result.amount}`,'_blank');
-
 }
   catch(err){
     console.log(err)
@@ -260,18 +261,25 @@ console.log(data)
     console.log(err)
   }
  }
- verifyTxn()
-  const [p,setP] =React.useState(false)
-  function handelUserComeback(){
-    if(localStorage.getItem('txnId') &&  document.visibilityState === 'visible'){
-      setP(true)
-     // localStorage.removeItem('paymentInitiated');
-    }
-  }
-React.useEffect(()=>{
-window.addEventListener('visibilitychange',handelUserComeback)
-return ()=> {window.removeEventListener('visibilitychange')}
-},[])
+
+ React.useEffect(()=>{
+if(p || localStorage.getItem('txnId')){
+
+
+}
+ },[])
+// verifyTxn()
+  
+  // function handelUserComeback(){
+  //   if(localStorage.getItem('txnId') &&  document.visibilityState === 'visible'){
+  //     setP(true)
+  //    // localStorage.removeItem('paymentInitiated');
+  //   }
+  // }
+// React.useEffect(()=>{
+// window.addEventListener('visibilitychange',handelUserComeback)
+// return ()=> {window.removeEventListener('visibilitychange')}
+// },[])
 // const socket = io.connect('https://17174cc3-e036-41c5-82a6-1ce90c624cd6-00-2oq5i07bzmsdh.pike.replit.dev:5000')
 // socket.on("connect", () => {
 //   console.log("Socket connected");
@@ -279,7 +287,7 @@ return ()=> {window.removeEventListener('visibilitychange')}
 // socket.on('payment_response',(e)=>console.log(e))
   return (
 <>
-{p&& 'hello baby'}
+{( p || localStorage.getItem('txnId')) && 'hello baby'}
 <p onClick={()=>initiateTxn()}>dsds</p>
 <a href={`upi://pay?pa=kk.payutest@hdfcbank&pn=demo&tr=dacff41d43b36b0242527417947c00f75b161120a930fbc1c42550b01d209a5c&am=1.00`}>
   <Button type='primary' style={{marginTop:'12px'}} >
