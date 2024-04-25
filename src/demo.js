@@ -278,13 +278,13 @@ if(localStorage.getItem('txnId')){
   console.log('000')
   document.getElementsByTagName('body')[0].style.overflow = 'hidden';
   verifyTxn().then(e=>{
-    if(e.transaction_details[JSON.parse(localStorage.getItem('txnId'))].status === 'pending'){
+    
       setO(e.transaction_details[JSON.parse(localStorage.getItem('txnId'))].status)
 console.log('pending')
 // localStorage.removeItem('txnId')
 //   setP(false)
 // localStorage.removeItem('txnId')
-    }
+    
   })
 }
  },[p])
