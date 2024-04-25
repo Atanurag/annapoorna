@@ -64,7 +64,18 @@
 
 
 //function initiateTxn(amount,txnid,productinfo='storefront',)
+// const fetcher = async (url) => {
+//   const response = await fetch(url);
 
+//   if (!response.ok) {
+//     throw new Error('Failed to fetch data'); // Handle errors appropriately
+//   }
+
+//   return response.json();
+// };
+
+//  const { data, error, isLoading } = useSWR('https://8b531e0e-eb1d-4615-a175-1d03aed63513-00-14eudonfdu6o9.pike.replit.dev:9000/verify-txn', fetcher);
+// console.log(data,'p')
 
 
 import React from 'react';
@@ -73,6 +84,7 @@ import { Divider, Flex, Tag,Button ,Layout,Input, Row, Col,Switch,Card } from 'a
 import { CloseOutlined ,MenuUnfoldOutlined,SearchOutlined,ShoppingOutlined } from '@ant-design/icons';
 import './index.css';
 import io from 'socket.io-client'
+//import useSWR from "swr";
 
 const { Header, Content, Footer } = Layout;
 
@@ -82,153 +94,167 @@ const App = () =>{
   const [isVeg,setIsVeg] = React.useState(true);
   const [selFood,setSelFood] = React.useState([])
   const[toggleCart,setToggleCart] = React.useState(false)
-  const [food,setFood] = React.useState([
+  const [food, setFood] = React.useState([
     // Breakfast Items (Heading)
     {
       heading: 'Breakfast Items',
       content: [
         {
-          name: "Dosa",
-          description: "A thin, crispy crepe made from fermented rice and lentil batter",
+          name: 'Dosa',
+          description:
+            'A thin, crispy crepe made from fermented rice and lentil batter',
           price: 50,
           isVeg: true,
-          tag: "Classic"
+          tag: 'Classic',
+          img: 'https://t3.ftcdn.net/jpg/02/72/47/94/360_F_272479453_Kl30iWCD9WWhlU8BNORRtNUR1ADxXTCh.jpg',
         },
         {
-          name: "Filter Coffee",
-          description: "Strong coffee brewed in a traditional South Indian filter",
-          price: 1,
-          isVeg: true,
-          tag: "Beverage"
-        },
-        {
-          name: "Idli",
-          description: "Steamed savory rice cakes",
+          name: 'Idli',
+          description: 'Steamed savory rice cakes',
           price: 30,
           isVeg: true,
-          tag: "Classic"
+          tag: 'Classic',
+          img: 'https://media.istockphoto.com/id/1087685244/photo/delicious-homemade-iddli-iddly-sambar-chutny.jpg?s=612x612&w=0&k=20&c=iVeZOTmOf0ZmAOtq1QELwlWnhumQL7wcZ-RBmdNiBBw=',
         },
         {
-          name: "Vada",
-          description: "Lentil fritters",
+          name: 'Vada',
+          description: 'Lentil fritters',
           price: 20,
           isVeg: true,
-          tag: "Classic"
+          tag: 'Classic',
+          img: 'https://img.freepik.com/premium-photo/sago-delight-sabudana-wada-vada-classic-indian-snack-vertical-mobile-wallpaper_896558-36481.jpg',
         },
         {
-          name: "Upma",
-          description: "Savory semolina porridge",
+          name: 'Upma',
+          description: 'Savory semolina porridge',
           price: 40,
           isVeg: true,
-          tag: "Healthy"
+          tag: 'Healthy',
+          img: 'https://media.istockphoto.com/id/1306315890/photo/upma-or-rava-upma.jpg?s=612x612&w=0&k=20&c=YIK5fSdhs8sJ-VCSk9XkX2q-TYn7Oyr6XDgWtXpxzLY=',
         },
         {
-          name: "Pongal",
-          description: "Rice dish cooked with lentils and spices",
+          name: 'Pongal',
+          description: 'Rice dish cooked with lentils and spices',
           price: 45,
           isVeg: true,
-          tag: "Comfort Food"
-        }
-      ]
+          tag: 'Comfort Food',
+          img: 'https://media.istockphoto.com/id/1246803805/photo/poha.jpg?s=612x612&w=0&k=20&c=e2_A22vR_xBMpomibGbZ-y_hYdmdmuGG5zrOBWs4F-8=',
+        },
+      ],
     },
-  
+
     // Main Course Items (Heading)
     {
       heading: 'Main Course Items',
       content: [
         {
-          name: "Sambar",
-          description: "Lentil and vegetable stew",
+          name: 'Sambar',
+          description: 'Lentil and vegetable stew',
           price: 40,
           isVeg: true,
-          tag: "Accompaniment"
+          tag: 'Accompaniment',
+          img: 'https://c1.staticflickr.com/5/4610/27981857169_5234a6db7d_b.jpg',
         },
         {
-          name: "Rasam",
-          description: "Spicy lentil soup",
+          name: 'Rasam',
+          description: 'Spicy lentil soup',
           price: 35,
           isVeg: true,
-          tag: "Soup"
+          tag: 'Soup',
+          img: 'https://media.istockphoto.com/id/1076130942/photo/green-peas-curry-matar-masala-north-indian-punjabi-cuisine-vegetarian-food.jpg?s=612x612&w=0&k=20&c=MfYEe2DJGAzJ7kvNcfhWaqfW1Ci80N-rt5HLImHKlk0=',
         },
         {
-          name: "Uttapam",
-          description: "Thick pancake made from fermented rice and lentil batter",
+          name: 'Uttapam',
+          description:
+            'Thick pancake made from fermented rice and lentil batter',
           price: 55,
           isVeg: true,
-          tag: "Main Course"
+          tag: 'Main Course',
+          img: 'https://images.pexels.com/photos/17869140/pexels-photo-17869140/free-photo-of-plate-of-small-uttapam.jpeg',
         },
         {
-          name: "Masala Dosa",
-          description: "Dosa stuffed with spiced potato filling",
+          name: 'Masala Dosa',
+          description: 'Dosa stuffed with spiced potato filling',
           price: 60,
           isVeg: true,
-          tag: "Main Course"
+          tag: 'Main Course',
+          img: 'https://media.istockphoto.com/id/183321245/photo/south-indian-crepe-masala-dosa.jpg?s=612x612&w=0&k=20&c=c6Z7P5uovp2M9JVS0rlS8nCKRL73QkTYRyL7FK348Os=',
         },
         {
-          name: "Rava Dosa",
-          description: "Dosa made from semolina batter",
+          name: 'Rava Dosa',
+          description: 'Dosa made from semolina batter',
           price: 50,
           isVeg: true,
-          tag: "Main Course"
+          tag: 'Main Course',
+          img: 'https://media.istockphoto.com/id/1460788339/photo/south-indian-vegetarian-breakfast.jpg?s=612x612&w=0&k=20&c=_h9ObiAsvzhew_Mir9JHtSOwlvIUWj8awcvl-uStEfU=',
         },
         {
-          name: "Puri",
-          description: "Deep-fried unleavened bread",
+          name: 'Puri',
+          description: 'Deep-fried unleavened bread',
           price: 25,
           isVeg: true,
-          tag: "Side Dish"
+          tag: 'Side Dish',
+          img: 'https://media.istockphoto.com/id/178612386/photo/puri-patty-curry-breakfast.jpg?s=612x612&w=0&k=20&c=NQnyqbzDfFu8o9c-PABAJH0HPEUqfFDDGxZRspoOApo=',
         },
         {
-          name: "Egg Bonda",
-          description: "Bonda stuffed with a boiled egg",
+          name: 'Egg Bonda',
+          description: 'Bonda stuffed with a boiled egg',
           price: 25,
           isVeg: false,
-          tag: "Non-Veg"
+          tag: 'Non-Veg',
+          img: 'https://media.istockphoto.com/id/1128177492/photo/potato-dumpling-stuffed-with-greaves.jpg?s=612x612&w=0&k=20&c=OkoBgV2Jeo9fUDaIl8qRoKZUAjh5Sdn9cVghSwlm60g=',
         },
         {
-          name: "Medu Vada",
-          description: "Urad dal fritters shaped like donuts",
+          name: 'Medu Vada',
+          description: 'Urad dal fritters shaped like donuts',
           price: 30,
           isVeg: true,
-          tag: "Side Dish"
+          tag: 'Side Dish',
+          img: 'https://media.istockphoto.com/id/1459336670/photo/image-of-asian-street-food-at-market-stall-for-sale-uludu-wade-dhal-vada-savoury-indian.jpg?s=612x612&w=0&k=20&c=mzbqFp371DUi_0PfHgymmsygTRDNVwFdeU21wtzoJXk=',
         },
         {
-          name: "Chicken Chettinad",
-          description: "Spicy chicken dish from the Chettinad region",
+          name: 'Chicken Chettinad',
+          description: 'Spicy chicken dish from the Chettinad region',
           price: 80,
           isVeg: false,
-          tag: "Non-Veg Main Course"
-        }
-      ]
+          tag: 'Non-Veg Main Course',
+          img: 'https://media.istockphoto.com/id/477108743/photo/chettinad-chicken.jpg?s=612x612&w=0&k=20&c=PkKlNaLCdESAmmFyk20LYtbanJaeDn9Ym-FtmHqTV7U=',
+        },
+      ],
     },
-  
+
     // Snacks & Beverages (Heading)
     {
       heading: 'Snacks & Beverages',
       content: [
         {
-          name: "Payasam",
-          description: "Sweet milk pudding",
+          name: 'Payasam',
+          description: 'Sweet milk pudding',
           price: 40,
           isVeg: true,
-          tag: "Dessert"
+          tag: 'Dessert',
+          img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Kheer_%28Payasam%29.jpg/1536px-Kheer_%28Payasam%29.jpg',
         },
         {
-          name: "Filter Coffee Kadak masala",
-          description: "Strong coffee brewed in a traditional South Indian filter",
-          price: 5,
+          name: 'Filter Coffee',
+          description:
+            'Strong coffee brewed in a traditional South Indian filter',
+          price: 1,
           isVeg: true,
-          tag: "Beverage"
+          tag: 'Beverage',
+          img: 'https://media.istockphoto.com/id/1356557482/photo/fresh-filter-coffee.jpg?s=612x612&w=0&k=20&c=rHM-kO9AXB9k2TyEMp3vrAM9EbpR8MNCvGDwLgqWT1k=',
         },
         {
-          name: "Coconut Chutney",
-          description: "Spicy condiment made with coconut",
+          name: 'Coconut Chutney',
+          description: 'Spicy condiment made with coconut',
           price: 20,
           isVeg: true,
-          tag: "Condiment"
+          tag: 'Condiment',
+          img: 'https://media.istockphoto.com/id/1083233290/photo/nariyal-or-coconut-chutney-served-in-a-bowl-isolated-over-moody-background-selective-focus.jpg?s=612x612&w=0&k=20&c=dIJOWjqwPnFkaUYhG2Oay7ZerPtFizkyUDqGcgF3C98=',
         },
-        ]}]
-  )
+      ],
+    },
+  ]);
   function generateUniqueTransactionId() {
     return 'txid-' + Date.now();
   }
@@ -613,32 +639,87 @@ className='anchor-box'
 {food[0].content.filter(e=>e.name.toLowerCase().includes(inp.toLowerCase()) && e.isVeg===isVeg).length>0 ? food[0].content.filter(e=>e.name.toLowerCase().includes(inp.toLowerCase()) && e.isVeg===isVeg).map((e,i)=>{
   return (<>
 
-
-<div key={i} style={{ 
-  background:'#fff',
-    width:'250px',
-    border: '1px solid #ccc', 
-    borderRadius: '8px', 
-    padding: '16px', 
-    marginBottom: '16px', 
-    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-    margin: '10px',
-    textAlign: 'center'
-  }}>
-    <h3 style={{ marginBottom: '8px' }}>{e.name}</h3>
-    <h4 style={{ marginBottom: '8px', fontSize: '16px' }}>₹{e.price}</h4>
-    <p style={{ marginBottom: '8px', fontSize: '14px',wordBreak:'break-word' }}>{e.description}</p>
-    <div style={{ marginBottom: '8px' }}>
-      
-    <Tag color="geekblue">{e.tag}</Tag>
-     
-    </div>
-    <Button type="primary"onClick={()=>{
+<div key={i}
+                          style={{
+                            display: 'flex',
+                            background: '#fff',
+                            width: '250px',
+                            border: '1px solid #ccc',
+                            borderRadius: '8px',
+                            padding: '5px',
+                            marginBottom: '16px',
+                            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                            margin: '10px',
+                            justifyContent: 'space-around',
+                          }}
+                        >
+                          <div
+                            style={{
+                              width: '130px',
+                              height: '200px',
+                              borderRadius: '10px',
+                            }}
+                          >
+                            <img
+                              style={{
+                                objectFit: 'contain',
+                                width: '100%',
+                                height: '100%',
+                                borderRadius: '10px',
+                              }}
+                              src={
+                                e.img ||
+                                'https://img.freepik.com/premium-photo/vada-pav-wada-pao-is-indian-desi-burger-is-roadside-fast-food-dish-from-maharashtra-selective-focus_466689-67470.jpg'
+                              }
+                              alt="Vada Pav - Indian Street Food"
+                            />
+                          </div>
+                          <div
+                            style={{
+                              display: 'flex',
+                              flexDirection: 'column',
+                              alignItems: 'space-between',
+                              width: '100px',
+                              padding: '12px 0 0 0',
+                            }}
+                          >
+                            <h3
+                              style={{
+                                marginBottom: '8px',
+                                wordBreak: 'break-word',
+                              }}
+                            >
+                              {e.name}
+                            </h3>
+                            <p
+                              style={{
+                                marginBottom: '8px',
+                                fontSize: '20px',
+                                fontWeight: 'bold',
+                              }}
+                            >
+                              ₹ {e.price}
+                            </p>
+                            <p
+                              style={{
+                                marginBottom: '8px',
+                                fontSize: '13px',
+                                wordBreak: 'break-word',
+                                lineHeight: '14px',
+                              }}
+                            >
+                              {e.description}
+                            </p>
+                            <div style={{ marginBottom: '8px' }}>
+                              <Tag color="geekblue">{e.tag}</Tag>
+                            </div>
+                            <Button type="primary"  onClick={()=>{
     setSelFood([...selFood,e])
   }}>
-         Add
-        </Button>
-  </div>
+                              Add
+                            </Button>
+                          </div>
+                        </div>
 
   </>)
 }):<p style={{}}>No Items...</p>}
@@ -657,34 +738,87 @@ className='anchor-box'
 {food[1].content.filter(e=>e.name.toLowerCase().includes(inp.toLowerCase()) && e.isVeg===isVeg).length>0 ? food[1].content.filter(e=>e.name.toLowerCase().includes(inp.toLowerCase()) && e.isVeg===isVeg).map((e,i)=>{
   return (<>
    
-
-
-
-   <div key={i} style={{ 
-  background:'#fff',
-    width:'250px',
-    border: '1px solid #ccc', 
-    borderRadius: '8px', 
-    padding: '16px', 
-    marginBottom: '16px', 
-    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-    margin: '10px',
-    textAlign: 'center'
-  }}>
-    <h3 style={{ marginBottom: '8px' }}>{e.name}</h3>
-    <h4 style={{ marginBottom: '8px', fontSize: '16px' }}>₹{e.price}</h4>
-    <p style={{ marginBottom: '8px', fontSize: '14px',wordBreak:'break-word' }}>{e.description}</p>
-    <div style={{ marginBottom: '8px' }}>
-      
-    <Tag color="geekblue">{e.tag}</Tag>
-     
-    </div>
-    <Button type="primary"  onClick={()=>{
+   <div key={i}
+                          style={{
+                            display: 'flex',
+                            background: '#fff',
+                            width: '250px',
+                            border: '1px solid #ccc',
+                            borderRadius: '8px',
+                            padding: '5px',
+                            marginBottom: '16px',
+                            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                            margin: '10px',
+                            justifyContent: 'space-around',
+                          }}
+                        >
+                          <div
+                            style={{
+                              width: '130px',
+                              height: '200px',
+                              borderRadius: '10px',
+                            }}
+                          >
+                            <img
+                              style={{
+                                objectFit: 'contain',
+                                width: '100%',
+                                height: '100%',
+                                borderRadius: '10px',
+                              }}
+                              src={
+                                e.img ||
+                                'https://img.freepik.com/premium-photo/vada-pav-wada-pao-is-indian-desi-burger-is-roadside-fast-food-dish-from-maharashtra-selective-focus_466689-67470.jpg'
+                              }
+                              alt="Vada Pav - Indian Street Food"
+                            />
+                          </div>
+                          <div
+                            style={{
+                              display: 'flex',
+                              flexDirection: 'column',
+                              alignItems: 'space-between',
+                              width: '100px',
+                              padding: '12px 0 0 0',
+                            }}
+                          >
+                            <h3
+                              style={{
+                                marginBottom: '8px',
+                                wordBreak: 'break-word',
+                              }}
+                            >
+                              {e.name}
+                            </h3>
+                            <p
+                              style={{
+                                marginBottom: '8px',
+                                fontSize: '20px',
+                                fontWeight: 'bold',
+                              }}
+                            >
+                              ₹ {e.price}
+                            </p>
+                            <p
+                              style={{
+                                marginBottom: '8px',
+                                fontSize: '13px',
+                                wordBreak: 'break-word',
+                                lineHeight: '14px',
+                              }}
+                            >
+                              {e.description}
+                            </p>
+                            <div style={{ marginBottom: '8px' }}>
+                              <Tag color="geekblue">{e.tag}</Tag>
+                            </div>
+                            <Button type="primary"  onClick={()=>{
     setSelFood([...selFood,e])
   }}>
-         Add
-        </Button>
-  </div>
+                              Add
+                            </Button>
+                          </div>
+                        </div>
 
   
   </>)
@@ -705,31 +839,87 @@ className='anchor-box'
    
 
 
-   <div key={i} style={{ 
-  background:'#fff',
-    width:'250px',
-    border: '1px solid #ccc', 
-    borderRadius: '8px', 
-    padding: '16px', 
-    marginBottom: '16px', 
-    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-    margin: '10px',
-    textAlign: 'center'
-  }}>
-    <h3 style={{ marginBottom: '8px' }}>{e.name}</h3>
-    <h4 style={{ marginBottom: '8px', fontSize: '16px' }}>₹{e.price}</h4>
-    <p style={{ marginBottom: '8px', fontSize: '14px',wordBreak:'break-word' }}>{e.description}</p>
-    <div style={{ marginBottom: '8px' }}>
-      
-    <Tag color="geekblue">{e.tag}</Tag>
-     
-    </div>
-    <Button type="primary"  onClick={()=>{
+   <div
+                  key={i}        style={{
+                            display: 'flex',
+                            background: '#fff',
+                            width: '250px',
+                            border: '1px solid #ccc',
+                            borderRadius: '8px',
+                            padding: '5px',
+                            marginBottom: '16px',
+                            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                            margin: '10px',
+                            justifyContent: 'space-around',
+                          }}
+                        >
+                          <div
+                            style={{
+                              width: '130px',
+                              height: '200px',
+                              borderRadius: '10px',
+                            }}
+                          >
+                            <img
+                              style={{
+                                objectFit: 'contain',
+                                width: '100%',
+                                height: '100%',
+                                borderRadius: '10px',
+                              }}
+                              src={
+                                e.img ||
+                                'https://img.freepik.com/premium-photo/vada-pav-wada-pao-is-indian-desi-burger-is-roadside-fast-food-dish-from-maharashtra-selective-focus_466689-67470.jpg'
+                              }
+                              alt="Vada Pav - Indian Street Food"
+                            />
+                          </div>
+                          <div
+                            style={{
+                              display: 'flex',
+                              flexDirection: 'column',
+                              alignItems: 'space-between',
+                              width: '100px',
+                              padding: '12px 0 0 0',
+                            }}
+                          >
+                            <h3
+                              style={{
+                                marginBottom: '8px',
+                                wordBreak: 'break-word',
+                              }}
+                            >
+                              {e.name}
+                            </h3>
+                            <p
+                              style={{
+                                marginBottom: '8px',
+                                fontSize: '20px',
+                                fontWeight: 'bold',
+                              }}
+                            >
+                              ₹ {e.price}
+                            </p>
+                            <p
+                              style={{
+                                marginBottom: '8px',
+                                fontSize: '13px',
+                                wordBreak: 'break-word',
+                                lineHeight: '14px',
+                              }}
+                            >
+                              {e.description}
+                            </p>
+                            <div style={{ marginBottom: '8px' }}>
+                              <Tag color="geekblue">{e.tag}</Tag>
+                            </div>
+                            <Button type="primary"  onClick={()=>{
     setSelFood([...selFood,e])
   }}>
-         Add
-        </Button>
-  </div>
+                              Add
+                            </Button>
+                          </div>
+                        </div>
 
   </>)
 }):'No Items...'}
