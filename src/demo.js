@@ -262,30 +262,30 @@ return data;
   }
  }
 
- React.useEffect(()=>{
-if( localStorage.getItem('txnId')){
-  verifyTxn().then(e=>{
+//  React.useEffect(()=>{
+// if( localStorage.getItem('txnId')){
+//   verifyTxn().then(e=>{
 
-    if(e.transaction_details[JSON.parse(localStorage.getItem('txnId'))].status === 'pending'){
-console.log('poo')
+//     if(e.transaction_details[JSON.parse(localStorage.getItem('txnId'))].status === 'pending'){
+// console.log('poo')
 
-// localStorage.removeItem('txnId')
-    }
-  })
-}
- },[])
+// // localStorage.removeItem('txnId')
+//     }
+//   })
+// }
+//  },[])
 //verifyTxn()
   
-  // function handelUserComeback(){
-  //   if(localStorage.getItem('txnId') &&  document.visibilityState === 'visible'){
-  //     setP(true)
-  //    // localStorage.removeItem('paymentInitiated');
-  //   }
-  // }
-// React.useEffect(()=>{
-// window.addEventListener('visibilitychange',handelUserComeback)
-// return ()=> {window.removeEventListener('visibilitychange')}
-// },[])
+  function handelUserComeback(){
+    if(localStorage.getItem('txnId') &&  document.visibilityState === 'visible'){
+      setP(true)
+     // localStorage.removeItem('paymentInitiated');
+    }
+  }
+React.useEffect(()=>{
+window.addEventListener('visibilitychange',handelUserComeback)
+return ()=> {window.removeEventListener('visibilitychange')}
+},[])
 // const socket = io.connect('https://17174cc3-e036-41c5-82a6-1ce90c624cd6-00-2oq5i07bzmsdh.pike.replit.dev:5000')
 // socket.on("connect", () => {
 //   console.log("Socket connected");
@@ -293,7 +293,7 @@ console.log('poo')
 // socket.on('payment_response',(e)=>console.log(e))
   return (
 <>
-{(  localStorage.getItem('txnId')) && 'hello baby'}
+{  p && 'hello baby'}
 <p onClick={()=>initiateTxn()}>dsds</p>
 <a href={`upi://pay?pa=kk.payutest@hdfcbank&pn=demo&tr=dacff41d43b36b0242527417947c00f75b161120a930fbc1c42550b01d209a5c&am=1.00`}>
   <Button type='primary' style={{marginTop:'12px'}} >
