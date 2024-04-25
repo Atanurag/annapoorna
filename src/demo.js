@@ -241,6 +241,7 @@ let data = await startTxn.json()
 window.open(`upi://pay?pa=${data.result.merchantVpa}&pn=${data.result.merchantName}&tr=${data.metaData.referenceId}&am=${data.result.amount}`,'_blank');
 
 localStorage.setItem('txnId',JSON.stringify(data.metaData.txnId))
+setP(true)
 console.log(data)
 }
   catch(err){
@@ -276,19 +277,24 @@ return data;
 //  },[])
 //verifyTxn()
   
-  function handelUserComeback(){
-    if((localStorage.getItem('txnId') && document.visibilityState === 'visible')){
-      setP(true)
-     // localStorage.removeItem('paymentInitiated');
-    }
-  }
 React.useEffect(()=>{
-  // if(localStorage.getItem('txnId')){
-  //   setP(true)
-  // }
-window.addEventListener('visibilitychange',handelUserComeback)
-return ()=> {window.removeEventListener('visibilitychange')}
+  if(localStorage.getItem('txnId') ){
+setP(true)
+  }
 },[])
+  // function handelUserComeback(){
+  //   if((localStorage.getItem('txnId') && document.visibilityState === 'visible')){
+  //     setP(true)
+  //    // localStorage.removeItem('paymentInitiated');
+  //   }
+  // }
+// React.useEffect(()=>{
+//   // if(localStorage.getItem('txnId')){
+//   //   setP(true)
+//   // }
+// window.addEventListener('visibilitychange',handelUserComeback)
+// return ()=> {window.removeEventListener('visibilitychange')}
+// },[])
 // const socket = io.connect('https://17174cc3-e036-41c5-82a6-1ce90c624cd6-00-2oq5i07bzmsdh.pike.replit.dev:5000')
 // socket.on("connect", () => {
 //   console.log("Socket connected");
