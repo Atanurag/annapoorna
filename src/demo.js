@@ -1058,7 +1058,7 @@ className='anchor-box'
         <p />
         <p style={{textAlign: 'justify', textIndent: '2em'}}>
         </p><h3 style={{marginTop: '15px'}}>Empowering Vendors &amp; Delighting Customers:</h3>
-        
+        <br/>
         <b>Annapoorna offers a revolutionary suite of tools designed to simplify vendor operations. Our platform helps them. </b>
         For customers, Annapoorna unlocks a world of culinary exploration,Our platform streamlines the ordering and payment process, allowing vendors to focus on what they do best: creating delicious food. Customers benefit from a user-friendly experience that lets them quickly order and pay for their meals, eliminating wait times and cash-only limitations.
         <p />
