@@ -1046,7 +1046,7 @@ className='anchor-box'
   <div style={{width: '100%',padding:'12px'}}>
         <p style={{textAlign: 'justify', textIndent: '2em'}}>
         </p><h2 style={{marginBottom: '20px'}}>About Us</h2>
-       <b> Annapoorna: Where Local Flavors Meet Innovation</b>
+       <b> Annapoorna: Where Local Flavors Meet Innovation. </b>
 
        At Annapoorna, we're driven by a deep appreciation for authentic, local cuisine. We believe that every bite tells a story, reflecting the passion and culinary heritage of talented food vendors who are the cornerstones of our communities.  We're not just a platform; we're a bridge connecting these vendors with food enthusiasts who crave unique and delicious experiences.
 
@@ -1059,7 +1059,7 @@ className='anchor-box'
         <p style={{textAlign: 'justify', textIndent: '2em'}}>
         </p><h3 style={{marginTop: '15px'}}>Empowering Vendors &amp; Delighting Customers:</h3>
         
-        <b>Annapoorna offers a revolutionary suite of tools designed to simplify vendor operations. Our platform helps them</b>
+        <b>Annapoorna offers a revolutionary suite of tools designed to simplify vendor operations. Our platform helps them. </b>
         For customers, Annapoorna unlocks a world of culinary exploration,Our platform streamlines the ordering and payment process, allowing vendors to focus on what they do best: creating delicious food. Customers benefit from a user-friendly experience that lets them quickly order and pay for their meals, eliminating wait times and cash-only limitations.
         <p />
         <p style={{textAlign: 'justify', textIndent: '2em'}}>
