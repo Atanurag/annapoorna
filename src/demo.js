@@ -1046,7 +1046,11 @@ className='anchor-box'
   <div style={{width: '100%',padding:'12px'}}>
         <p style={{textAlign: 'justify', textIndent: '2em'}}>
         </p><h2 style={{marginBottom: '20px'}}>About Us</h2>
-        Annapoorna is a revolutionary platform that bridges the gap between local food vendors and their customers. We've harnessed the power of technology to create a seamless and secure experience for everyone involved.
+       <b> Annapoorna: Where Local Flavors Meet Innovation</b>
+
+       At Annapoorna, we're driven by a deep appreciation for authentic, local cuisine. We believe that every bite tells a story, reflecting the passion and culinary heritage of talented food vendors who are the cornerstones of our communities.  We're not just a platform; we're a bridge connecting these vendors with food enthusiasts who crave unique and delicious experiences.
+
+
         <p />
         <p style={{textAlign: 'justify', textIndent: '2em'}}>
         </p><h3 style={{marginTop: '15px'}}>Our Passion:</h3>
@@ -1054,15 +1058,19 @@ className='anchor-box'
         <p />
         <p style={{textAlign: 'justify', textIndent: '2em'}}>
         </p><h3 style={{marginTop: '15px'}}>Empowering Vendors &amp; Delighting Customers:</h3>
-        Our platform streamlines the ordering and payment process, allowing vendors to focus on what they do best: creating delicious food. Customers benefit from a user-friendly experience that lets them quickly order and pay for their meals, eliminating wait times and cash-only limitations.
+        
+        <b>Annapoorna offers a revolutionary suite of tools designed to simplify vendor operations. Our platform helps them</b>
+        For customers, Annapoorna unlocks a world of culinary exploration,Our platform streamlines the ordering and payment process, allowing vendors to focus on what they do best: creating delicious food. Customers benefit from a user-friendly experience that lets them quickly order and pay for their meals, eliminating wait times and cash-only limitations.
         <p />
         <p style={{textAlign: 'justify', textIndent: '2em'}}>
         </p><h3 style={{marginTop: '15px'}}>More Than Just a Transaction:</h3>
+        We believe in the power of food to bring people together. Annapoorna fosters a connected ecosystem where vendors can build meaningful relationships with their customers. Our platform facilitates:<br/>
         We go beyond simply facilitating transactions. We create a connected ecosystem where local food vendors can build stronger relationships with their customers. Our platform fosters loyalty and encourages repeat business.
         <p />
         <p style={{textAlign: 'justify', textIndent: '2em'}}>
         </p><h3 style={{marginTop: '15px'}}>
           Join the Movement:</h3>
+          Whether you're a passionate vendor eager to share your culinary creations or a food enthusiast seeking new taste adventures, Annapoorna welcomes you. Be part of a vibrant movement that's revitalizing local food experiences. Let's create a future where fresh, high-quality food from talented local vendors is easily accessible to everyone.
         Become part of a movement that's revitalizing local food experiences. Whether you're a passionate vendor or a food enthusiast, Annapoorna makes it easier than ever to enjoy the best local cuisine.
         <b>Together, let's create a more vibrant and delicious future for local food!</b>
         <p />
