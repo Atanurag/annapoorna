@@ -434,7 +434,7 @@ overlays
  <svg onClick={(e)=>{
   e.stopPropagation()
   setShowLinks(!showLinks);
- }} xmlns="http://www.w3.org/2000/svg"  fill="none" style={{height:"24px",width:"24px",marginTop:'25px',marginRight:'4px'}}viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+ }} xmlns="http://www.w3.org/2000/svg"  fill="none" style={{height:"24px",width:"24px",marginTop:'25px',marginRight:'9px'}}viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
   <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
 </svg>
 
@@ -444,7 +444,7 @@ overlays
   zIndex:999,
   right:'12px',
         position:'absolute',
-        width: 150,
+        width: 160,
         height:90,
         border:'0.1px solid lightgray'
       }}>
@@ -567,45 +567,11 @@ className='anchor-box'
   }}  className='cross'/>
 
 
-<div style={{ display:'flex',flexDirection:'column',justifyContent: 'space-between', position: 'absolute', bottom: '30px'}}> 
-        <div style={{color: '#1677ff', fontSize: '12px'}}>About Us</div>
-        <div style={{color: '#1677ff', fontSize: '12px'}}>Privacy Policy</div>
-        <div style={{color: '#1677ff', fontSize: '12px'}}>Terms and Conditions</div>
-      </div>
+
 
 </div>
 
-
-
-<Card  hoverable  bordered={true} style={{
-        width: 200,
-        height:100
-      }}>
-        <div>
-          About Us
-          <br/>
-          Privacy Policy
-          <br/>
-         Terms and Condition
-         
-        </div>
-      </Card>
     
-
-
-
-<Badge
-        className="site-badge-count-109"
-        count={false? 109 : 0}
-        style={{
-          backgroundColor: '#52c41a',
-        }}
-      />
-
-
-
-
-
 
 <div style={{}}>
   <img style={{width:'104%'}} src="https://img.freepik.com/free-vector/hand-drawn-asian-food-sale-banner-template_23-2150057614.jpg?ga=GA1.1.1667821893.1709318575&" alt=""/>
