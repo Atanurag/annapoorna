@@ -454,7 +454,7 @@ overlays
           <Link to ='/privacy-policy'  className='hover'>Privacy Policy</Link>
           
           <br/>
-          <Link to ='/terms-condition'  className='hover'>Terms and Condition</Link>
+          <Link to ='/terms-condition'  className='hover'>Terms and Conditions</Link>
          
          
         </div>
@@ -1130,7 +1130,7 @@ className='anchor-box'
   <div style={{width: '100%',padding:'12px'}}>
   <p style={{textAlign: 'justify', textIndent: '2em'}}>
         </p>
-        <h2 style={{marginBottom: '20px'}}>Terms and Condition</h2>
+        <h2 style={{marginBottom: '20px'}}>Terms and Conditions</h2>
         Welcome to Annapoorna
 These Terms and Conditions govern your access to and use of our online platform  and related services . 
 By accessing or using the Platform, you agree to be bound by these Terms. <b>If you do not agree to all of these Terms, you are not authorized to use the Platform or Services.</b>
