@@ -397,6 +397,11 @@ overlays
     <a href={`phonepe://pay?pa=7875853859@paytm&pn=anurag&tn=Test%20UPI&am=1&cu=INR&mc=8987&tr=67676&url=https%3A%2F%2Freact-2pur3b.stackblitz.io%2Fpayment-status`}><Button type="primary" text={"pp"} style={{fontWeight:'bold'}}>phonepay
   </Button></a>  */}
 
+
+<a style={{marginTop:'12px'}} href={`upi://pay?pa=Q165803552@ybl&am=1&cu=INR`}>pay</a>
+
+{/* &pn=VerifiedMerchant&tid=88889p02w2&tr=8y070u6fg6g6&mam=null&tn=trialdemopayment */}
+
 <Routes >
 <Route path="/"
  element={<>
