@@ -398,9 +398,9 @@ overlays
   </Button></a>  */}
 
 
-<a style={{marginTop:'12px'}} href={`upi://pay?pa=Q165803552@ybl&am=1&cu=INR`}>pay</a>
+<a style={{marginTop:'12px'}} href={`upi://pay?pa=Q165803552@ybl&pn=VerifiedMerchant&tid=88889p02w2&tr=8y070u6fg6g6&mam=null&tn=trialdemopayment&am=1&cu=INR`}>pay</a>
 
-{/* &pn=VerifiedMerchant&tid=88889p02w2&tr=8y070u6fg6g6&mam=null&tn=trialdemopayment */}
+{/*  */}
 
 <Routes >
 <Route path="/"
