@@ -9,7 +9,7 @@
    position: sticky;
   top: 0;
   z-index: 1;
-  width:100%;
+  /* width:100%; */
 }
 
 .main-page .header .logo-container {
@@ -50,6 +50,7 @@
 }
 .main-page .header .input-box{
   display:flex;
+  margin-top: 12px;
   align-items:center;
   justify-content:space-between;
 }
@@ -125,6 +126,12 @@
    /* Adjust width for your logo */
   }
   
+  .main-page .header .input-box{
+    display:flex;
+    margin-top: -20px;
+    align-items:center;
+    justify-content:space-between;
+  }
   .main-page .header .logo-container img {
     height: 36px;
     width: 90px;

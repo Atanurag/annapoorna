@@ -417,7 +417,7 @@ overlays
           </div>
           </div>
         </Col>
-        <Col  xs={0} sm={0} md={11} lg={8}>
+        <Col  xs={0} sm={0} md={11} lg={8} >
           <div className='input-box'>
           <Input size="large" placeholder="Search For Items..." prefix={<SearchOutlined/>} onChange={(e)=>{
             setInp(e.target.value)
@@ -579,7 +579,7 @@ className='anchor-box'
     
 
 <div style={{}}>
-  <img style={{width:'104%'}} src="https://img.freepik.com/free-vector/hand-drawn-asian-food-sale-banner-template_23-2150057614.jpg?ga=GA1.1.1667821893.1709318575&" alt=""/>
+  <img style={{width:'100%'}} src="https://img.freepik.com/free-vector/hand-drawn-asian-food-sale-banner-template_23-2150057614.jpg?ga=GA1.1.1667821893.1709318575&" alt=""/>
 </div>
 
 
@@ -658,9 +658,9 @@ className='anchor-box'
 
 
   <Row style={{marginTop:'40px'}}>
-    
+
     <Col xs={0} sm={0} md={6} lg={6} style={{border:'1px solid red'}}>
-      <div style={{position:'fixed'}}>
+      <div style={{position:'sticky',top:'135px'}}>
       <Anchor
         items={[
           {
