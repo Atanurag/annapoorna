@@ -659,30 +659,30 @@ className='anchor-box'
 
   <Row style={{marginTop:'40px'}}>
 
-    <Col xs={0} sm={0} md={6} lg={6} style={{border:'1px solid red'}}>
+    <Col xs={0} sm={0} md={5} lg={5} style={{border:'1px solid red'}}>
       <div style={{position:'sticky',top:'135px'}}>
       <Anchor
         items={[
           {
             key: 'part-1',
             href: '#part-1',
-            title: 'Part 1',
+            title: 'Breakfast Items',
           },
           {
             key: 'part-2',
             href: '#part-2',
-            title: 'Part 2',
+            title: 'Main Course Items',
           },
           {
             key: 'part-3',
             href: '#part-3',
-            title: 'Part 3',
+            title: 'Snacks & Beverages',
           },
         ]}
       />
       </div>
     </Col>
-    <Col xs={24} sm={24} md={18} lg={18} style={{marginBottom:'39px'}}>
+    <Col xs={24} sm={24} md={19} lg={19} style={{marginBottom:'39px'}}>
       <div
          id="part-1"
         style={{
