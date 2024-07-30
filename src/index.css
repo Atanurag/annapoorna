@@ -115,6 +115,24 @@
 
 
 
+.main-page .ant-anchor-wrapper .ant-anchor .ant-anchor-link-title{
+  margin: 5px;
+  background: yellow;
+  padding: 5px;
+
+}
+.main-page .ant-anchor-wrapper .ant-anchor .ant-anchor-link-title{
+overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
+position: relative;
+width:161px;
+ display: block; 
+margin-block-end: 3px;
+color: rgba(0, 0, 0, 0.88);
+transition: all 0.3s;
+}
+
 @media only screen and (max-width: 400px) {
   .main-page .header .logo-container {
    
