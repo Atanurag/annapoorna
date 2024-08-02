@@ -126,6 +126,7 @@ overflow: hidden;
 white-space: nowrap;
 text-overflow: ellipsis;
 position: relative;
+left: -21px;
 width:161px;
  display: block; 
 margin-block-end: 3px;
