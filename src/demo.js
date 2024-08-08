@@ -662,6 +662,9 @@ className='anchor-box'
     <Col xs={0} sm={0} md={5} lg={5} style={{border:'1px solid red'}}>
       <div style={{position:'sticky',top:'135px'}}>
       <Anchor
+      style={{maxHeight:"100vh",
+        marginLeft:"12px"
+    }}
         items={[
           {
             key: 'part-1',
