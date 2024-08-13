@@ -75,6 +75,8 @@
   bottom:0px;
 }
 .main-page .bottom-anchor .anchor-box{
+  display: flex;
+  justify-content: center;
   text-align:center;
   padding:30px;
   overflow-Y:scroll;
@@ -117,7 +119,7 @@
 
 .main-page .ant-anchor-wrapper .ant-anchor .ant-anchor-link-title{
   margin: 5px;
-  background: #e7e7d9;
+  background: #f7f7b6;
   padding: 5px;
 
 }
