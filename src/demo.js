@@ -346,6 +346,26 @@ document.addEventListener('click',()=>{
   setShowLinks(false);
 })
 },[])
+
+
+
+
+const [isSmallScreen, setIsSmallScreen] = React.useState(false);
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) { 
+        setIsSmallScreen(true);
+      } else {
+        setIsSmallScreen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    handleResize(); 
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
   return (
 <>
 
@@ -398,7 +418,7 @@ overlays
   </Button></a>  */}
 
 
-<a style={{marginTop:'12px'}} href={`upi://pay?pa=Q165803552@ybl&pn=VerifiedMerchant&tid=88889p02w2&tr=8y070u6fg6g6&mam=null&tn=trialdemopayment&am=1&cu=INR`}>pay</a>
+{/* <a style={{marginTop:'12px'}} href={`upi://pay?pa=Q165803552@ybl&pn=VerifiedMerchant&tid=88889p02w2&tr=8y070u6fg6g6&mam=null&tn=trialdemopayment&am=1&cu=INR`}>pay</a> */}
 
 {/*  */}
 
@@ -435,7 +455,7 @@ overlays
 
           </div>
 
-<div style={{position:'relative'}}>
+<div style={{position:'relative',cursor:'pointer'}}>
  <svg onClick={(e)=>{
   e.stopPropagation()
   setShowLinks(!showLinks);
@@ -451,7 +471,8 @@ overlays
         position:'absolute',
         width: 160,
         height:100,
-        border:'0.1px solid lightgray'
+        border:'0.1px solid lightgray',
+        cursor:'pointer'
       }}>
         <div>
           <Link to ='/about-us' className='hover'>About Us</Link>
@@ -578,9 +599,9 @@ className='anchor-box'
 
     
 
-<div style={{}}>
+{/* <div style={{}}>
   <img style={{width:'100%'}} src="https://img.freepik.com/free-vector/hand-drawn-asian-food-sale-banner-template_23-2150057614.jpg?ga=GA1.1.1667821893.1709318575&" alt=""/>
-</div>
+</div> */}
 
 
 
@@ -659,7 +680,7 @@ className='anchor-box'
 
   <Row style={{marginTop:'40px'}}>
 
-    <Col xs={0} sm={0} md={5} lg={5} style={{border:'1px solid red'}}>
+    <Col xs={0} sm={0} md={5} lg={5} >
       <div style={{position:'sticky',top:'135px'}}>
       <Anchor
       style={{maxHeight:"100vh",
@@ -994,16 +1015,16 @@ className='anchor-box'
       </div>
     </Col>
   </Row>
-  <Button
-  style={{position:'fixed',bottom:65,right:30,color:'white',background:'black'}}
-          
-          icon={<MenuUnfoldOutlined />}
-          
-          onClick={()=>{
-            setT(!t)
-          }}
-          size={'large'}
-        />
+{isSmallScreen && <Button
+style={{position:'fixed',bottom:65,right:30,color:'white',background:'black'}}
+      
+      icon={<MenuUnfoldOutlined />}
+      
+      onClick={()=>{
+        setT(!t)
+      }}
+      size={'large'}
+    />}
   {/* <button style={{position:'fixed',bottom:50,right:60}} >rrr</button> */}
   </div>
  </>}
@@ -1143,7 +1164,7 @@ className='anchor-box'
         <p />
         <p style={{textAlign: 'justify', textIndent: '2em'}}>
        
-        </p>Annapoorna
+        </p>Annapoorna by Iotronics
         
         <br/>
 Address: 2nd Floor, Block, DERBI Foundation, 1, Hosur Rd, Kudlu Gate, Srinivasa Nagar, Hal Layout, Singasandra, Bengaluru, Karnataka 560068
