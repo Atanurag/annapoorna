@@ -450,17 +450,17 @@ overlays
   right:'12px',
         position:'absolute',
         width: 160,
-        height:90,
+        height:100,
         border:'0.1px solid lightgray'
       }}>
         <div>
           <Link to ='/about-us' className='hover'>About Us</Link>
           <br/>
           <Link to ='/privacy-policy'  className='hover'>Privacy Policy</Link>
-          
+          <br/>
+          <Link to ='/contact-us'  className='hover'>Contact Us</Link>
           <br/>
           <Link to ='/terms-condition'  className='hover'>Terms and Conditions</Link>
-         
          
         </div>
       </Card>}
@@ -663,7 +663,7 @@ className='anchor-box'
       <div style={{position:'sticky',top:'135px'}}>
       <Anchor
       style={{maxHeight:"100vh",
-        marginLeft:"12px"
+        marginLeft:"24px"
     }}
         items={[
           {
@@ -1124,6 +1124,72 @@ className='anchor-box'
       </div>
 
 </>}/>
+
+
+
+<Route path='/contact-us'  element={<>
+  <span onClick={()=>{
+     navigate(-1);
+  }} style={{margin:'12px ', backgroundColor: '#3498db', width:'28px', display: 'flex', color: '#ffffff', fontWeight: 'bold', padding: '0.5px 3px', gap: '2px', borderRadius: '5px', cursor: 'pointer'}}>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" style={{width: '24px', height: '24px'}}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
+        </svg>
+      </span>
+  <div style={{width: '100%',padding:'12px'}}>
+        <p style={{textAlign: 'justify', textIndent: '2em'}}>
+        </p><h2 style={{marginBottom: '20px'}}>Contact Us</h2>
+       <b> We value your feedback and inquiries. Please don't hesitate to reach out to us using the following contact information: </b>
+       <br/>
+        <p />
+        <p style={{textAlign: 'justify', textIndent: '2em'}}>
+       
+        </p>Annapoorna
+        
+        <br/>
+Address: 2nd Floor, Block, DERBI Foundation, 1, Hosur Rd, Kudlu Gate, Srinivasa Nagar, Hal Layout, Singasandra, Bengaluru, Karnataka 560068
+<br/>
+Email: anurag@iotronsys.com
+<br/>
+Phone: +91 7875853859
+<br/>
+        
+        <p style={{textAlign: 'justify', textIndent: '2em'}}>
+        </p><h3 style={{marginTop: '15px'}}>Empowering Vendors &amp; Delighting Customers:</h3>
+        <br/>
+       
+        For general inquiries or support:anurag@iotronsys.com
+
+We strive to respond to all inquiries within 24 hours.        <p />
+        
+        <p style={{textAlign: 'justify', textIndent: '2em'}}>
+        </p><h3 style={{marginTop: '15px'}}>
+        We look forward to hearing from you!</h3>
+         
+        <p />
+      </div>
+
+
+
+
+
+
+
+
+
+</>}/>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <Route path='/terms-condition'  element={<>
