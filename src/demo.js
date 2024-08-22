@@ -466,9 +466,9 @@ function onBuyClicked() {
     {
       supportedMethods: ['https://tez.google.com/pay'],
       data: {
-        pa: 'merchant-vpa@xxx',
+        pa: 'shivaytiwari951@oksbi',
         pn: 'Merchant Name',
-        tr: '5812ABCD',  // your custom transaction reference ID
+        tr: '5812ABpD',  // your custom transaction reference ID
         url: 'https://teams.microsoft.com/v2/',
         mc: '5812', // your merchant category code
       },
