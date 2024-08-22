@@ -268,14 +268,17 @@ const App = () =>{
 
 
  const [p,setP] =React.useState(false)
-
+ 
  async function initiateTxn(){
   try{
-let startTxn = await fetch('https://8b531e0e-eb1d-4615-a175-1d03aed63513-00-14eudonfdu6o9.pike.replit.dev:9000/initiate-payment')
-let data = await startTxn.json()
-window.open(`upi://pay?pa=${data.result.merchantVpa}&pn=${data.result.merchantName}&tr=${data.metaData.referenceId}&am=${data.result.amount}`,'_blank');
+// let startTxn = await fetch('https://8b531e0e-eb1d-4615-a175-1d03aed63513-00-14eudonfdu6o9.pike.replit.dev:9000/initiate-payment')
+// let data = await startTxn.json()
+// window.open(`upi://pay?pa=${data.result.merchantVpa}&pn=${data.result.merchantName}&tr=${data.metaData.referenceId}&am=${data.result.amount}`,'_blank');
+
+onBuyClicked();
+
 setTimeout(()=>{
-  localStorage.setItem('txnId',JSON.stringify(data.metaData.txnId))
+  localStorage.setItem('txnId',JSON.stringify('5812ABpD'))
   setP(true)
   document.getElementsByTagName('body')[0].style.overflow = 'hidden';
 },5000)
@@ -548,7 +551,7 @@ function showPaymentUI(request, canMakePayment) {
       .then(function(instrument) {
  
         window.clearTimeout(paymentTimeout);
-        processResponse(instrument); // Handle response from browser.
+        //processResponse(instrument); // Handle response from browser.
       })
       .catch(function(err) {
         console.log(err);
