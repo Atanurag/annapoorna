@@ -752,7 +752,12 @@ overlays
 <p style={{width:'45px',fontSize:'14px'}}>₹ {selFood?.reduce((ac,cu)=>ac+cu.price,0)}</p>
 </div>
 
-<Button type="primary" disabled={false}  style={{float:'right',marginTop:'19px'}} onClick={()=>{}}>
+<Button type="primary" disabled={false}  style={{float:'right',marginTop:'19px'}} onClick={
+  ()=>{
+  localStorage.removeItem('txnId');
+  setP(false);
+}
+}>
         Done
         </Button>
  </Card>
