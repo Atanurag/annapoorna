@@ -756,7 +756,7 @@ overlays
   ()=>{
   localStorage.removeItem('txnId');
   setP(false);
-  document.getElementsByTagName('body')[0].style.overflow = 'scroll';
+  document.getElementsByTagName('body')[0].style.overflow = 'auto';
 }
 }>
         Done
