@@ -366,6 +366,199 @@ const [isSmallScreen, setIsSmallScreen] = React.useState(false);
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+
+
+//google pay start 
+
+//create payment request object
+const supportedInstruments = [
+  {
+    supportedMethods: ['https://tez.google.com/pay'],
+    data: {
+      pa: 'merchant-vpa@xxx',
+      pn: 'Merchant Name',
+      tr: '5812ABCD',  // your custom transaction reference ID
+      url: 'https://teams.microsoft.com/v2/',
+      mc: '5812', // your merchant category code
+     
+    },
+  }
+];
+//order details
+const details = {
+  total: {
+    label: 'Total',
+    amount: {
+      currency: 'INR',
+      value: '1.00', // sample amount
+    },
+  },
+  displayItems: [{
+    label: 'Original Amount',
+    amount: {
+      currency: 'INR',
+      value: '1.00',
+    },
+  }],
+};
+
+
+//payemnt request api firing
+function paymentRequest(){
+let request = null;
+try {
+  request = new PaymentRequest(supportedInstruments, details);
+} catch (e) {
+  console.log('Payment Request Error: ' + e.message);
+  return;
+}
+if (!request) {
+  console.log('Web payments are not supported in this browser.');
+  return;
+}
+}
+
+//can make payment checking for browser supporting 
+/**
+ *
+ * @private
+ * @param {PaymentRequest} request The payment request object.
+ * @return {Promise} a promise containing the result of whether can make payment.
+ */
+const canMakePaymentCache = 'canMakePaymentCache';
+
+async function checkCanMakePayment (request) {
+  // Check canMakePayment cache, use cache result directly if it exists.
+  if (sessionStorage.hasOwnProperty(canMakePaymentCache)) {
+    return Promise.resolve(JSON.parse(sessionStorage[canMakePaymentCache]));
+  }
+  // If canMakePayment() isn't available, default to assume the method is
+  // supported.
+  var canMakePaymentPromise = Promise.resolve(true);
+
+  // Feature detect canMakePayment().
+  if (request.canMakePayment) {
+    canMakePaymentPromise = request.canMakePayment();
+  }
+
+  return canMakePaymentPromise
+      .then((result) => {
+        // Store the result in cache for future usage.
+        sessionStorage[canMakePaymentCache] = result;
+        return result;
+      })
+      .catch((err) => {
+        console.log('Error calling canMakePayment: ' + err);
+      });
+}
+
+
+/** Launches payment request flow when user taps on buy button. */
+function onBuyClicked() {
+  if (!window.PaymentRequest) {
+    console.log('Web payments are not supported in this browser.');
+    return;
+  }
+
+  // Create supported payment method.
+  const supportedInstruments = [
+    {
+      supportedMethods: ['https://tez.google.com/pay'],
+      data: {
+        pa: 'merchant-vpa@xxx',
+        pn: 'Merchant Name',
+        tr: '5812ABCD',  // your custom transaction reference ID
+        url: 'https://teams.microsoft.com/v2/',
+        mc: '5812', // your merchant category code
+      },
+    }
+  ];
+
+  // Create order detail data.
+  const details = {
+    total: {
+      label: 'Total',
+      amount: {
+        currency: 'INR',
+        value: '1.00', // sample amount
+      },
+    },
+    displayItems: [{
+      label: 'Original Amount',
+      amount: {
+        currency: 'INR',
+        value: '1.00',
+      },
+    }],
+  };
+
+  // Create payment request object.
+  let request = null;
+  try {
+    request = new PaymentRequest(supportedInstruments, details);
+  } catch (e) {
+    console.log('Payment Request Error: ' + e.message);
+    return;
+  }
+  if (!request) {
+    console.log('Web payments are not supported in this browser.');
+    return;
+  }
+
+  var canMakePaymentPromise = checkCanMakePayment(request);
+  canMakePaymentPromise
+      .then((result) => {
+        showPaymentUI(request, result);
+      })
+      .catch((err) => {
+        console.log('Error calling checkCanMakePayment: ' + err);
+      });
+}
+
+
+
+/**
+* Show the payment request UI.
+*
+* @private
+* @param {PaymentRequest} request The payment request object.
+* @param {Promise} canMakePayment The promise for whether can make payment.
+*/
+function showPaymentUI(request, canMakePayment) {
+  if (!canMakePayment) {
+    alert('not ready to pay');
+    //handleNotReadyToPay();
+    return;
+  }
+ 
+  // Set payment timeout.
+  let paymentTimeout = window.setTimeout(function() {
+    window.clearTimeout(paymentTimeout);
+    request.abort()
+        .then(function() {
+          console.log('Payment timed out after 20 minutes.');
+        })
+        .catch(function() {
+          console.log('Unable to abort, user is in the process of paying.');
+        });
+  }, 20 * 60 * 1000); /* 20 minutes */
+ 
+  request.show()
+      .then(function(instrument) {
+ 
+        window.clearTimeout(paymentTimeout);
+        processResponse(instrument); // Handle response from browser.
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
+ }
+// if(checkCanMakePayment()){
+  //paymentRequest()
+// }
+
+
   return (
 <>
 
@@ -418,7 +611,9 @@ overlays
   </Button></a>  */}
 
 
-{/* <a style={{marginTop:'12px'}} href={`upi://pay?pa=Q165803552@ybl&pn=VerifiedMerchant&tid=88889p02w2&tr=8y070u6fg6g6&mam=null&tn=trialdemopayment&am=1&cu=INR`}>pay</a> */}
+<a style={{marginTop:'12px'}} onClick={()=>{
+  onBuyClicked();
+}}>pay</a>
 
 {/*  */}
 
@@ -599,9 +794,14 @@ className='anchor-box'
 
     
 
-{/* <div style={{}}>
-  <img style={{width:'100%'}} src="https://img.freepik.com/free-vector/hand-drawn-asian-food-sale-banner-template_23-2150057614.jpg?ga=GA1.1.1667821893.1709318575&" alt=""/>
-</div> */}
+ <div style={{}}>
+
+
+
+  <img style={{width:'100%'}} src="https://i.ibb.co/9vMtWxk/INDIAN-FOOD-2.jpg" alt=""/>
+
+  {/* //<img style={{width:'100%'}} src="https://img.freepik.com/free-vector/hand-drawn-asian-food-sale-banner-template_23-2150057614.jpg?ga=GA1.1.1667821893.1709318575&" alt=""/> */}
+</div> 
 
 
 
