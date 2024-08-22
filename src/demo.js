@@ -469,10 +469,10 @@ function onBuyClicked() {
     {
       supportedMethods: ['https://tez.google.com/pay'],
       data: {
-        pa: 'shivaytiwari951@oksbi',
+        pa: '7875853859@pthdfc',
         pn: 'Merchant Name',
         tr: '5812ABpD',  // your custom transaction reference ID
-        url: 'https://teams.microsoft.com/v2/',
+        url: 'https://annapoorna.vercel.app/',
         mc: '5812', // your merchant category code
       },
     }
@@ -484,14 +484,14 @@ function onBuyClicked() {
       label: 'Total',
       amount: {
         currency: 'INR',
-        value: '1.00', // sample amount
+        value: selFood?.reduce((ac, cu) => ac + cu.price, 0).toFixed(2), // sample amount
       },
     },
     displayItems: [{
       label: 'Original Amount',
       amount: {
         currency: 'INR',
-        value: '1.00',
+        value: selFood?.reduce((ac, cu) => ac + cu.price, 0).toFixed(2),
       },
     }],
   };
