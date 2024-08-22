@@ -611,9 +611,9 @@ overlays
   </Button></a>  */}
 
 
-<a style={{marginTop:'12px'}} onClick={()=>{
+{/* <a style={{marginTop:'12px'}} onClick={()=>{
   onBuyClicked();
-}}>pay</a>
+}}>pay</a> */}
 
 {/*  */}
 
@@ -798,7 +798,7 @@ className='anchor-box'
 
 
 
-  <img style={{width:'100%'}} src="https://i.ibb.co/9vMtWxk/INDIAN-FOOD-2.jpg" alt=""/>
+  {/* <img style={{width:'100%'}} src="https://i.ibb.co/9vMtWxk/INDIAN-FOOD-2.jpg" alt=""/> */}
 
   {/* //<img style={{width:'100%'}} src="https://img.freepik.com/free-vector/hand-drawn-asian-food-sale-banner-template_23-2150057614.jpg?ga=GA1.1.1667821893.1709318575&" alt=""/> */}
 </div> 
