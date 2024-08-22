@@ -721,7 +721,7 @@ overlays
 }}
 >
     <Card  bordered={false} style={{position:'relative',width:'90%'}} title={<span style={{fontSize:'14px'}}> Order Id: {JSON.parse(localStorage.getItem('txnId'))} <br/> Order Status: Failed  <span style={{
-      backgroundColor:'#fccf2b',
+      backgroundColor:'red',
   height: '10px',
   width: '10px'
   ,
