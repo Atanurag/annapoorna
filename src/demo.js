@@ -278,7 +278,7 @@ const App = () =>{
 onBuyClicked();
 
 setTimeout(()=>{
-  localStorage.setItem('txnId',JSON.stringify('5812ABpD'))
+  localStorage.setItem('txnId',JSON.stringify('5812ABpwD'))
   setP(true)
   document.getElementsByTagName('body')[0].style.overflow = 'hidden';
 },5000)
@@ -308,15 +308,15 @@ if(localStorage.getItem('txnId')){
   setP(true)
   console.log('000')
   document.getElementsByTagName('body')[0].style.overflow = 'hidden';
-  verifyTxn().then(e=>{
+//   verifyTxn().then(e=>{
     
-      setO(e.transaction_details[JSON.parse(localStorage.getItem('txnId'))].status)
-console.log('pending')
-// localStorage.removeItem('txnId')
-//   setP(false)
-// localStorage.removeItem('txnId')
+//       setO(e.transaction_details[JSON.parse(localStorage.getItem('txnId'))].status)
+// console.log('pending')
+// // localStorage.removeItem('txnId')
+// //   setP(false)
+// // localStorage.removeItem('txnId')
     
-  })
+//   })
 }
  },[p])
 //verifyTxn()
