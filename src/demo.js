@@ -720,7 +720,7 @@ overlays
     alignItems: 'center',      // Added align-items: center
 }}
 >
-    <Card  bordered={false} style={{position:'relative',width:'90%'}} title={<span style={{fontSize:'14px'}}> Order Id: {JSON.parse(localStorage.getItem('txnId'))} <br/> Order Status: {o}  <span style={{
+    <Card  bordered={false} style={{position:'relative',width:'90%'}} title={<span style={{fontSize:'14px'}}> Order Id: {JSON.parse(localStorage.getItem('txnId'))} <br/> Order Status: Failed  <span style={{
       backgroundColor:'#fccf2b',
   height: '10px',
   width: '10px'
@@ -752,7 +752,7 @@ overlays
 <p style={{width:'45px',fontSize:'14px'}}>₹ {selFood?.reduce((ac,cu)=>ac+cu.price,0)}</p>
 </div>
 
-<Button type="primary" disabled={true}  style={{float:'right',marginTop:'19px'}} onClick={()=>{}}>
+<Button type="primary" disabled={false}  style={{float:'right',marginTop:'19px'}} onClick={()=>{}}>
         Done
         </Button>
  </Card>
