@@ -469,9 +469,9 @@ function onBuyClicked() {
     {
       supportedMethods: ['https://tez.google.com/pay'],
       data: {
-        pa: '7875853859@pthdfc',
-        pn: 'Merchant Name',
-        tr: '5812ABpD',  // your custom transaction reference ID
+        pa: 'shivaytiwari951@oksbi',
+        pn: 'Anurag Tiwari',
+        tr: '5812ABpwD',  // your custom transaction reference ID
         url: 'https://annapoorna.vercel.app/',
         mc: '5812', // your merchant category code
       },
