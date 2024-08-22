@@ -871,7 +871,10 @@ className='anchor-box'
 {selFood?.map((e,i)=>{
   return(<>
   <div key={i} style={{borderBottom:'1px solid black',width:'200px',padding:'12px 0',display:'flex',justifyContent:'space-around'}}>
-<p style={{fontWeight:'bold'}}>{e.name}</p> <p style={{fontWeight:'bold'}}>₹ {e.price}</p>
+<p style={{fontWeight:'bold'}}>{e.name}</p> <p style={{fontWeight:'bold'}}>₹ {e.price} &nbsp; &nbsp;&nbsp; <span>
+  <CloseOutlined onClick={()=>{
+   setSelFood(selFood.filter(r=>r.name !== e.name));
+  }}  style={{fontSize:'21px'}}/> </span>   </p>
   </div>
   
   </>)
