@@ -268,7 +268,7 @@ const App = () =>{
 
 
  const [p,setP] =React.useState(false)
- 
+
  async function initiateTxn(){
   try{
 // let startTxn = await fetch('https://8b531e0e-eb1d-4615-a175-1d03aed63513-00-14eudonfdu6o9.pike.replit.dev:9000/initiate-payment')
@@ -729,15 +729,27 @@ overlays
   display: 'inline-block'}}></span>  </span>}>
 <p style={{}}>Thank you for your order</p>
 
-<div style={{display:'flex',justifyContent:'space-between',fontWeight:'500',margin:'4px'}}>
+
+{selFood?.map((e,i)=>{
+  return (
+    <>
+    <div style={{display:'flex',justifyContent:'space-between',fontWeight:'500',margin:'4px'}}>
+<p style={{wordBreak:'break-word',width:'200px',fontSize:'14px'}}>{e.name}</p>
+<p  style={{width:'45px',fontSize:'14px'}}>₹ {e.price}</p>
+</div>
+    </>
+  )
+})}
+
+{/* <div style={{display:'flex',justifyContent:'space-between',fontWeight:'500',margin:'4px'}}>
 <p style={{wordBreak:'break-word',width:'200px',fontSize:'14px'}}>Filter Coffee</p>
 <p  style={{width:'45px',fontSize:'14px'}}>₹ 1</p>
-</div>
+</div> */}
 <Divider style={{margin:'10px 0px'}}/>
 
 <div style={{display:'flex',justifyContent:'space-between',fontWeight:'500'}}>
 <p style={{wordBreak:'break-word',width:'200px',fontSize:'14px'}}>Total</p>
-<p style={{width:'45px',fontSize:'14px'}}>₹ 1</p>
+<p style={{width:'45px',fontSize:'14px'}}>₹ {selFood?.reduce((ac,cu)=>ac+cu.price,0)}</p>
 </div>
 
 <Button type="primary" disabled={true}  style={{float:'right',marginTop:'19px'}} onClick={()=>{}}>
