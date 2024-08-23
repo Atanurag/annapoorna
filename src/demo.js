@@ -760,7 +760,7 @@ overlays
   setSelFood([]);
 }
 }>
-        Done
+        OK
         </Button>
  </Card>
   </div>}
