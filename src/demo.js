@@ -382,7 +382,7 @@ const supportedInstruments = [
       pa: 'merchant-vpa@xxx',
       pn: 'Merchant Name',
       tr: '5812ABCD',  // your custom transaction reference ID
-      url: 'https://annapoorna.vercel.app',
+      url: 'https://17174cc3-e036-41c5-82a6-1ce90c624cd6-00-2oq5i07bzmsdh.pike.replit.dev:5000',
       mc: '5812', // your merchant category code
      
     },
@@ -472,7 +472,7 @@ function onBuyClicked() {
         pa: 'shivaytiwari951@oksbi',
         pn: 'Anurag Tiwari',
         tr: '5812ABpwD',  // your custom transaction reference ID
-        //url: 'https://annapoorna.vercel.app/',
+        url: 'https://annapoorna.vercel.app/',
         mc: '5812', // your merchant category code
       },
     }
