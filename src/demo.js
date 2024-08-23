@@ -472,7 +472,7 @@ function onBuyClicked() {
         pa: 'shivaytiwari951@oksbi',
         pn: 'Anurag Tiwari',
         tr: '5812ABpwD',  // your custom transaction reference ID
-        url: 'https://annapoorna.vercel.app/',
+        //url: 'https://annapoorna.vercel.app/',
         mc: '5812', // your merchant category code
       },
     }
