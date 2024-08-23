@@ -488,7 +488,7 @@ function onBuyClicked() {
       data: {
         pa: '7875853859@pthdfc',
         pn: 'Anurag Tiwari',
-        tr: '5812ABpwDi',// your custom transaction reference ID
+        tr: '5812ABpwDe',// your custom transaction reference ID
         url:'https://17174cc3-e036-41c5-82a6-1ce90c624cd6-00-2oq5i07bzmsdh.pike.repslit.dev:5000',
         mc: '5812', // your merchant category code
       },
