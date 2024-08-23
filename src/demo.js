@@ -757,6 +757,7 @@ overlays
   localStorage.removeItem('txnId');
   setP(false);
   document.getElementsByTagName('body')[0].style.overflow = 'auto';
+  setSelFood([]);
 }
 }>
         Done
