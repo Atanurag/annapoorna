@@ -382,7 +382,7 @@ const supportedInstruments = [
       pa: 'merchant-vpa@xxx',
       pn: 'Merchant Name',
       tr: '5812ABCD',  // your custom transaction reference ID
-      url: 'https://teams.microsoft.com/v2/',
+      url: 'https://annapoorna.vercel.app',
       mc: '5812', // your merchant category code
      
     },
