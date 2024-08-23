@@ -108,6 +108,7 @@ const App = () =>{
           price: 50,
           isVeg: true,
           tag: 'Classic',
+          quantity:0,
           img: 'https://t3.ftcdn.net/jpg/02/72/47/94/360_F_272479453_Kl30iWCD9WWhlU8BNORRtNUR1ADxXTCh.jpg',
         },
         {
@@ -116,6 +117,7 @@ const App = () =>{
           price: 30,
           isVeg: true,
           tag: 'Classic',
+          quantity:0,
           img: 'https://media.istockphoto.com/id/1087685244/photo/delicious-homemade-iddli-iddly-sambar-chutny.jpg?s=612x612&w=0&k=20&c=iVeZOTmOf0ZmAOtq1QELwlWnhumQL7wcZ-RBmdNiBBw=',
         },
         {
@@ -124,6 +126,7 @@ const App = () =>{
           price: 20,
           isVeg: true,
           tag: 'Classic',
+          quantity:0,
           img: 'https://img.freepik.com/premium-photo/sago-delight-sabudana-wada-vada-classic-indian-snack-vertical-mobile-wallpaper_896558-36481.jpg',
         },
         {
@@ -132,6 +135,7 @@ const App = () =>{
           price: 40,
           isVeg: true,
           tag: 'Healthy',
+          quantity:0,
           img: 'https://media.istockphoto.com/id/1306315890/photo/upma-or-rava-upma.jpg?s=612x612&w=0&k=20&c=YIK5fSdhs8sJ-VCSk9XkX2q-TYn7Oyr6XDgWtXpxzLY=',
         },
         {
@@ -140,6 +144,7 @@ const App = () =>{
           price: 45,
           isVeg: true,
           tag: 'Comfort Food',
+          quantity:0,
           img: 'https://media.istockphoto.com/id/1246803805/photo/poha.jpg?s=612x612&w=0&k=20&c=e2_A22vR_xBMpomibGbZ-y_hYdmdmuGG5zrOBWs4F-8=',
         },
       ],
@@ -155,6 +160,7 @@ const App = () =>{
           price: 40,
           isVeg: true,
           tag: 'Accompaniment',
+          quantity:0,
           img: 'https://c1.staticflickr.com/5/4610/27981857169_5234a6db7d_b.jpg',
         },
         {
@@ -163,6 +169,7 @@ const App = () =>{
           price: 35,
           isVeg: true,
           tag: 'Soup',
+          quantity:0,
           img: 'https://media.istockphoto.com/id/1076130942/photo/green-peas-curry-matar-masala-north-indian-punjabi-cuisine-vegetarian-food.jpg?s=612x612&w=0&k=20&c=MfYEe2DJGAzJ7kvNcfhWaqfW1Ci80N-rt5HLImHKlk0=',
         },
         {
@@ -172,6 +179,7 @@ const App = () =>{
           price: 55,
           isVeg: true,
           tag: 'Main Course',
+          quantity:0,
           img: 'https://images.pexels.com/photos/17869140/pexels-photo-17869140/free-photo-of-plate-of-small-uttapam.jpeg',
         },
         {
@@ -180,6 +188,7 @@ const App = () =>{
           price: 60,
           isVeg: true,
           tag: 'Main Course',
+          quantity:0,
           img: 'https://media.istockphoto.com/id/183321245/photo/south-indian-crepe-masala-dosa.jpg?s=612x612&w=0&k=20&c=c6Z7P5uovp2M9JVS0rlS8nCKRL73QkTYRyL7FK348Os=',
         },
         {
@@ -188,6 +197,7 @@ const App = () =>{
           price: 50,
           isVeg: true,
           tag: 'Main Course',
+          quantity:0,
           img: 'https://media.istockphoto.com/id/1460788339/photo/south-indian-vegetarian-breakfast.jpg?s=612x612&w=0&k=20&c=_h9ObiAsvzhew_Mir9JHtSOwlvIUWj8awcvl-uStEfU=',
         },
         {
@@ -196,6 +206,7 @@ const App = () =>{
           price: 25,
           isVeg: true,
           tag: 'Side Dish',
+          quantity:0,
           img: 'https://media.istockphoto.com/id/178612386/photo/puri-patty-curry-breakfast.jpg?s=612x612&w=0&k=20&c=NQnyqbzDfFu8o9c-PABAJH0HPEUqfFDDGxZRspoOApo=',
         },
         {
@@ -204,6 +215,7 @@ const App = () =>{
           price: 25,
           isVeg: false,
           tag: 'Non-Veg',
+          quantity:0,
           img: 'https://media.istockphoto.com/id/1128177492/photo/potato-dumpling-stuffed-with-greaves.jpg?s=612x612&w=0&k=20&c=OkoBgV2Jeo9fUDaIl8qRoKZUAjh5Sdn9cVghSwlm60g=',
         },
         {
@@ -212,6 +224,7 @@ const App = () =>{
           price: 30,
           isVeg: true,
           tag: 'Side Dish',
+          quantity:0,
           img: 'https://media.istockphoto.com/id/1459336670/photo/image-of-asian-street-food-at-market-stall-for-sale-uludu-wade-dhal-vada-savoury-indian.jpg?s=612x612&w=0&k=20&c=mzbqFp371DUi_0PfHgymmsygTRDNVwFdeU21wtzoJXk=',
         },
         {
@@ -220,6 +233,7 @@ const App = () =>{
           price: 80,
           isVeg: false,
           tag: 'Non-Veg Main Course',
+          quantity:0,
           img: 'https://media.istockphoto.com/id/477108743/photo/chettinad-chicken.jpg?s=612x612&w=0&k=20&c=PkKlNaLCdESAmmFyk20LYtbanJaeDn9Ym-FtmHqTV7U=',
         },
       ],
@@ -235,6 +249,7 @@ const App = () =>{
           price: 40,
           isVeg: true,
           tag: 'Dessert',
+          quantity:0,
           img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Kheer_%28Payasam%29.jpg/1536px-Kheer_%28Payasam%29.jpg',
         },
         {
@@ -244,6 +259,7 @@ const App = () =>{
           price: 1,
           isVeg: true,
           tag: 'Beverage',
+          quantity:0,
           img: 'https://media.istockphoto.com/id/1356557482/photo/fresh-filter-coffee.jpg?s=612x612&w=0&k=20&c=rHM-kO9AXB9k2TyEMp3vrAM9EbpR8MNCvGDwLgqWT1k=',
         },
         {
@@ -252,6 +268,7 @@ const App = () =>{
           price: 20,
           isVeg: true,
           tag: 'Condiment',
+          quantity:0,
           img: 'https://media.istockphoto.com/id/1083233290/photo/nariyal-or-coconut-chutney-served-in-a-bowl-isolated-over-moody-background-selective-focus.jpg?s=612x612&w=0&k=20&c=dIJOWjqwPnFkaUYhG2Oay7ZerPtFizkyUDqGcgF3C98=',
         },
       ],
@@ -469,9 +486,9 @@ function onBuyClicked() {
     {
       supportedMethods: ['https://tez.google.com/pay'],
       data: {
-        pa: 'shivaytiwari951@oksbi',
+        pa: '7875853859@pthdfc',
         pn: 'Anurag Tiwari',
-        tr: '5812ABpwD',  // your custom transaction reference ID
+        tr: '5812ABpwDi',  // your custom transaction reference ID
         url:'https://17174cc3-e036-41c5-82a6-1ce90c624cd6-00-2oq5i07bzmsdh.pike.repslit.dev:5000',
         mc: '5812', // your merchant category code
       },
@@ -551,6 +568,7 @@ function showPaymentUI(request, canMakePayment) {
       .then(function(instrument) {
  
         window.clearTimeout(paymentTimeout);
+        alert(instrument);
         //processResponse(instrument); // Handle response from browser.
       })
       .catch(function(err) {
@@ -1021,10 +1039,29 @@ className='anchor-box'
                               <Tag color="geekblue">{e.tag}</Tag>
                             </div>
                             <Button type="primary"  onClick={()=>{
+
+
     setSelFood([...selFood,e])
+
   }}>
                               Add
                             </Button>
+
+                          
+
+
+<div style={{ display: 'flex', alignItems: 'center' }}>
+<Button  type="primary" style={{ fontWeight:'bold'}}>-</Button>
+
+      <div style={{ width: '40px',fontWeight:'500', textAlign: 'center', fontSize: '16px', padding: '10px' }}>
+       {e.quantity}
+      </div>
+      <Button  type="primary" style={{ fontWeight:'500'}}>+</Button>
+
+    </div>
+
+
+
                           </div>
                         </div>
 
