@@ -80,7 +80,7 @@
 
 import React from 'react';
 import { Anchor } from 'antd';
-import { Routes, Route,Link,useNavigate } from 'react-router-dom';
+import { Routes, Route,Link,useNavigate, json } from 'react-router-dom';
 import { Divider, Flex, Tag,Button ,Layout,Input, Row, Col,Switch,Card,Badge } from 'antd';
 import { CloseOutlined ,MenuUnfoldOutlined,SearchOutlined,ShoppingOutlined } from '@ant-design/icons';
 import './index.css';
@@ -491,7 +491,7 @@ function onBuyClicked() {
       data: {
         pa: '7875853859@pthdfc',
         pn: 'Anurag Tiwari-1',
-        tr: 'h28r3u549ry8r7Doeo',// your custom transaction reference ID
+        tr: 'h28r3u549ry8tr7Doeo',// your custom transaction reference ID
         url:'https://17174cc3-e036-41c5-82a6-1ce90c624cd6-00-2oq5i07bzmsdh.pike.repslit.dev:5000',
         mc: '5812', // your merchant category code
       },
@@ -565,33 +565,39 @@ function showPaymentUI(request, canMakePayment) {
         window.clearTimeout(paymentTimeout);
         //alert(instrument);
          let dataString = JSON.stringify(instrument);
+         fetch('https://c0ccd437-87bb-4fd4-b585-6ef2b6165e6e-00-xn5f3f0kqnav.sisko.replit.dev/'
+, {
+  method: 'POST',
+  headers: new Headers({'Content-Type': 'application/json'}),
+   body: JSON.stringify(instrument),
+}).then(e=>e.json()).then(d=>console.log(d));
         // const tezResponse = JSON.parse(dataString.details.tezResponse);
         // //alert(JSON.stringify(instrument) + 'error showPayment ui show() then');
         // const status = tezResponse.Status;
         // const txnRef = tezResponse.txnRef;
-        setTimeout(()=>{
+        // setTimeout(()=>{
 
 
-          try {
-            // Parse the tezResponse which is a stringified JSON
-            const tezResponse = JSON.parse(dataString.details.tezResponse);
+        //   try {
+        //     // Parse the tezResponse which is a stringified JSON
+        //     const tezResponse = JSON.parse(dataString.details.tezResponse);
         
-            // Extract status and txnRef
-            const status = tezResponse.Status;
-            const txnRef = tezResponse.txnRef;
+        //     // Extract status and txnRef
+        //     const status = tezResponse.Status;
+        //     const txnRef = tezResponse.txnRef;
         
-            // Set them into the state
-            setResponseOfPayment({ status: status, txnRef: txnRef });
+        //     // Set them into the state
+        //     setResponseOfPayment({ status: status, txnRef: txnRef });
         
-            // Hide overflow if necessary
-            document.getElementsByTagName('body')[0].style.overflow = 'hidden';
-          } catch (error) {
-            console.error('Error parsing payment response:', error);
-          }
+        //     // Hide overflow if necessary
+        //     document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+        //   } catch (error) {
+        //     console.error('Error parsing payment response:', error);
+        //   }
 
             //  setResponseOfPayment({status:status,txnRef:txnRef});
             //  document.getElementsByTagName('body')[0].style.overflow = 'hidden';
-           },1000)
+          //  },1000)
         
          
         //processResponse(instrument); // Handle response from browser.
@@ -616,9 +622,9 @@ function showPaymentUI(request, canMakePayment) {
 // }
 // fetch('https://c0ccd437-87bb-4fd4-b585-6ef2b6165e6e-00-xn5f3f0kqnav.sisko.replit.dev/'
 // , {
-//   method: 'GET',
+//   method: 'POST',
 //   headers: new Headers({'Content-Type': 'application/json'}),
-//   // body: instrumentString,
+//    body: JSON.stringify({'k':'p'}),
 // }).then(e=>e.json()).then(d=>console.log(d));
 
 
