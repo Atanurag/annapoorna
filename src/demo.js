@@ -491,7 +491,7 @@ function onBuyClicked() {
       data: {
         pa: '7875853859@pthdfc',
         pn: 'Anurag Tiwari-1',
-        tr: 'h28r3u549ry8tr7Doeo',// your custom transaction reference ID
+        tr: 'h28r3u549ryt8tr7Doeo',// your custom transaction reference ID
         url:'https://17174cc3-e036-41c5-82a6-1ce90c624cd6-00-2oq5i07bzmsdh.pike.repslit.dev:5000',
         mc: '5812', // your merchant category code
       },
@@ -569,7 +569,7 @@ function showPaymentUI(request, canMakePayment) {
 , {
   method: 'POST',
   headers: new Headers({'Content-Type': 'application/json'}),
-   body: JSON.stringify(instrument),
+   body: JSON.stringify({k:instrument}),
 }).then(e=>e.json()).then(d=>console.log(d));
         // const tezResponse = JSON.parse(dataString.details.tezResponse);
         // //alert(JSON.stringify(instrument) + 'error showPayment ui show() then');
