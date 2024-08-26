@@ -783,6 +783,7 @@ overlays
   // setP(false);
   document.getElementsByTagName('body')[0].style.overflow = 'auto';
   setSelFood([]);
+ setResponseOfPayment(null);
 }
 }>
         OK
