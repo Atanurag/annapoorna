@@ -369,8 +369,6 @@ document.addEventListener('click',()=>{
 
 const [responseOfPayment,setResponseOfPayment] = React.useState(null);
 
-
-
 const [isSmallScreen, setIsSmallScreen] = React.useState(false);
 
   React.useEffect(() => {
@@ -492,7 +490,7 @@ function onBuyClicked() {
       data: {
         pa: '7875853859@pthdfc',
         pn: 'Anurag Tiwari-1',
-        tr: 'h28r3u54982De',// your custom transaction reference ID
+        tr: 'h28r3u54987De',// your custom transaction reference ID
         url:'https://17174cc3-e036-41c5-82a6-1ce90c624cd6-00-2oq5i07bzmsdh.pike.repslit.dev:5000',
         mc: '5812', // your merchant category code
       },
@@ -568,7 +566,7 @@ function showPaymentUI(request, canMakePayment) {
         //alert(JSON.stringify(instrument) + 'error showPayment ui show() then');
 
         setTimeout(()=>{
-            setResponseOfPayment(instrument);
+             setResponseOfPayment(instrument);
              document.getElementsByTagName('body')[0].style.overflow = 'hidden';
            },1000)
         
@@ -732,7 +730,7 @@ overlays
 
 
 {/* overlay */}
-{responseOfPayment!=null &&
+{responseOfPayment != null &&
     <div style={{ 
     position: 'fixed',
     display: 'flex',
@@ -750,8 +748,7 @@ overlays
 }}
 >
     <Card  bordered={false} style={{position:'relative',width:'90%'}}
-     title={<span style={{fontSize:'14px'}}> Order Id:
-      {responseOfPayment?.details?.tezResponse?.txnRef} <br/> Order Status: { responseOfPayment?.details?.tezResponse?.Status}  <span style={{
+     title={<span style={{fontSize:'14px'}}>Order Id: {responseOfPayment?.details?.tezResponse?.txnRef} <br/> Order Status: {responseOfPayment?.details?.tezResponse?.Status}  <span style={{
       backgroundColor:'red',
   height: '10px',
   width: '10px'
