@@ -260,7 +260,8 @@ const App = () =>{
           isVeg: true,
           tag: 'Beverage',
           quantity:0,
-          img: 'https://media.istockphoto.com/id/1356557482/photo/fresh-filter-coffee.jpg?s=612x612&w=0&k=20&c=rHM-kO9AXB9k2TyEMp3vrAM9EbpR8MNCvGDwLgqWT1k=',
+          img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbJz_8ItU9p_au1RhX_uEZXEXpaAOB1nSCPQ&s'
+          //img: 'https://media.istockphoto.com/id/1356557482/photo/fresh-filter-coffee.jpg?s=612x612&w=0&k=20&c=rHM-kO9AXB9k2TyEMp3vrAM9EbpR8MNCvGDwLgqWT1k=',
         },
         {
           name: 'Coconut Chutney',
