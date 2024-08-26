@@ -474,7 +474,10 @@ async function checkCanMakePayment (request) {
 }
 
 
-
+const [paymentState, setPaymentState] = useState({
+  status: '',
+  txnRef: '',
+});
 
 /** Launches payment request flow when user taps on buy button. */
 function onBuyClicked() {
@@ -563,49 +566,30 @@ function showPaymentUI(request, canMakePayment) {
       .then(function(instrument) {
  
         window.clearTimeout(paymentTimeout);
-        //alert(instrument);
-        let dataString = JSON.stringify({k: instrument});
-        fetch('https://c0ccd437-87bb-4fd4-b585-6ef2b6165e6e-00-xn5f3f0kqnav.sisko.replit.dev/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: dataString,
-        })
-        .then(response => response.json())
-        .then(data => {
-          alert(JSON.stringify({ status: data.status, txnRef: data.txnRef ,e:data.e}));
+        const status = instrument.details.Status;
+        const txnRef = instrument.details.txnRef;
+        setTimeout(()=>{
+          setPaymentState({ status, txnRef });
           document.getElementsByTagName('body')[0].style.overflow = 'hidden';
-          console.log(data);
-        })
-        .catch(error => console.error('Error:', error));
-        // const tezResponse = JSON.parse(dataString.details.tezResponse);
-        // //alert(JSON.stringify(instrument) + 'error showPayment ui show() then');
-        // const status = tezResponse.Status;
-        // const txnRef = tezResponse.txnRef;
-        // setTimeout(()=>{
-
-
-        //   try {
-        //     // Parse the tezResponse which is a stringified JSON
-        //     const tezResponse = JSON.parse(dataString.details.tezResponse);
+        },1000)
         
-        //     // Extract status and txnRef
-        //     const status = tezResponse.Status;
-        //     const txnRef = tezResponse.txnRef;
-        
-        //     // Set them into the state
-        //     setResponseOfPayment({ status: status, txnRef: txnRef });
-        
-        //     // Hide overflow if necessary
-        //     document.getElementsByTagName('body')[0].style.overflow = 'hidden';
-        //   } catch (error) {
-        //     console.error('Error parsing payment response:', error);
-        //   }
-
-            //  setResponseOfPayment({status:status,txnRef:txnRef});
-            //  document.getElementsByTagName('body')[0].style.overflow = 'hidden';
-          //  },1000)
+        //alert(instrument);
+        // let dataString = JSON.stringify({k: instrument});
+        // fetch('https://c0ccd437-87bb-4fd4-b585-6ef2b6165e6e-00-xn5f3f0kqnav.sisko.replit.dev/', {
+        //   method: 'POST',
+        //   headers: {
+        //     'Content-Type': 'application/json'
+        //   },
+        //   body: dataString,
+        // })
+        // .then(response => response.json())
+        // .then(data => {
+        //   alert(JSON.stringify({ status: data.status, txnRef: data.txnRef ,e:data.e}));
+        //   document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+        //   console.log(data);
+        // })
+        // .catch(error => console.error('Error:', error));
+       
         
          
         //processResponse(instrument); // Handle response from browser.
@@ -613,9 +597,9 @@ function showPaymentUI(request, canMakePayment) {
       .catch(function(err) {
 
         setTimeout(()=>{
-          setResponseOfPayment({
-          status:'erroror77777776serrewrw',
-          txnRef:'949494'
+          setPaymentState({
+          status:'Failed',
+          txnRef:'--'
           }
             );
           document.getElementsByTagName('body')[0].style.overflow = 'hidden';
@@ -777,7 +761,7 @@ overlays
 
 
 {/* overlay */}
-{responseOfPayment != null &&
+{paymentState?.status != null && paymentState?.status != '' &&
     <div style={{ 
     position: 'fixed',
     display: 'flex',
@@ -795,8 +779,8 @@ overlays
 }}
 >
     <Card  bordered={false} style={{position:'relative',width:'90%'}}
-     title={<span style={{fontSize:'14px'}}>Order Id: {responseOfPayment?.txnRef} <br/> Order Status: {responseOfPayment?.status}  <span style={{
-      backgroundColor:'red',
+     title={<span style={{fontSize:'14px'}}>Order Id: {paymentState?.txnRef} <br/> Order Status: {paymentState?.status}  <span style={{
+      // backgroundColor:'red',
   height: '10px',
   width: '10px'
   ,
@@ -833,7 +817,10 @@ overlays
   // setP(false);
   document.getElementsByTagName('body')[0].style.overflow = 'auto';
   setSelFood([]);
- setResponseOfPayment(null);
+ setPaymentState({
+  status: '',
+  txnRef: '',
+});
 }
 }>
         OK
