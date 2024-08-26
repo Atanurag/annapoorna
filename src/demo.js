@@ -322,9 +322,9 @@ return data;
 const[o,setO] =React.useState('')
  React.useEffect(()=>{
 if(localStorage.getItem('txnId')){
-  setP(true)
-  console.log('000')
-  document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+  // setP(true)
+  // console.log('000')
+  // document.getElementsByTagName('body')[0].style.overflow = 'hidden';
 //   verifyTxn().then(e=>{
     
 //       setO(e.transaction_details[JSON.parse(localStorage.getItem('txnId'))].status)
@@ -367,6 +367,7 @@ document.addEventListener('click',()=>{
 })
 },[])
 
+const [responseOfPayment,setResponseOfPayment] = React.useState(null);
 
 
 
@@ -474,7 +475,6 @@ async function checkCanMakePayment (request) {
 }
 
 
-const [responseOfPayment,setResponseOfPayment] = React.useState(null);
 
 
 /** Launches payment request flow when user taps on buy button. */
@@ -492,7 +492,7 @@ function onBuyClicked() {
       data: {
         pa: '7875853859@pthdfc',
         pn: 'Anurag Tiwari-1',
-        tr: 'h21r3u54982De',// your custom transaction reference ID
+        tr: 'h28r3u54982De',// your custom transaction reference ID
         //url:'https://17174cc3-e036-41c5-82a6-1ce90c624cd6-00-2oq5i07bzmsdh.pike.repslit.dev:5000',
         mc: '5812', // your merchant category code
       },
@@ -566,9 +566,9 @@ function showPaymentUI(request, canMakePayment) {
         window.clearTimeout(paymentTimeout);
         //alert(instrument);
         //alert(JSON.stringify(instrument) + 'error showPayment ui show() then');
-        document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+        
         setResponseOfPayment(instrument);
-
+        document.getElementsByTagName('body')[0].style.overflow = 'hidden';
         //processResponse(instrument); // Handle response from browser.
       })
       .catch(function(err) {
