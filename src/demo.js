@@ -745,7 +745,9 @@ overlays
     alignItems: 'center',      // Added align-items: center
 }}
 >
-    <Card  bordered={false} style={{position:'relative',width:'90%'}} title={<span style={{fontSize:'14px'}}> Order Id: {responseOfPayment?.details['tezResponse']['txnRef']} <br/> Order Status: {responseOfPayment?.details['tezResponse']['Status']}  <span style={{
+    <Card  bordered={false} style={{position:'relative',width:'90%'}}
+     title={<span style={{fontSize:'14px'}}> Order Id:
+      {responseOfPayment?.details.tezResponse.txnRef} <br/> Order Status: {responseOfPayment?.details.tezResponse.Status}  <span style={{
       backgroundColor:'red',
   height: '10px',
   width: '10px'
