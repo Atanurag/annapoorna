@@ -286,26 +286,26 @@ const App = () =>{
 
  const [p,setP] =React.useState(false)
 
- async function initiateTxn(){
-  try{
-// let startTxn = await fetch('https://8b531e0e-eb1d-4615-a175-1d03aed63513-00-14eudonfdu6o9.pike.replit.dev:9000/initiate-payment')
-// let data = await startTxn.json()
-// window.open(`upi://pay?pa=${data.result.merchantVpa}&pn=${data.result.merchantName}&tr=${data.metaData.referenceId}&am=${data.result.amount}`,'_blank');
+//  async function onBuyClicked();(){
+//   try{
+// // let startTxn = await fetch('https://8b531e0e-eb1d-4615-a175-1d03aed63513-00-14eudonfdu6o9.pike.replit.dev:9000/initiate-payment')
+// // let data = await startTxn.json()
+// // window.open(`upi://pay?pa=${data.result.merchantVpa}&pn=${data.result.merchantName}&tr=${data.metaData.referenceId}&am=${data.result.amount}`,'_blank');
 
-onBuyClicked();
+// onBuyClicked();
 
-// setTimeout(()=>{
-//   localStorage.setItem('txnId',JSON.stringify('5812ABpwD'))
-//   setP(true)
-//   document.getElementsByTagName('body')[0].style.overflow = 'hidden';
-// },5000)
-console.log(data)
-}
-  catch(err){
-    console.log(err)
-  }
- }
-//initiateTxn()
+// // setTimeout(()=>{
+// //   localStorage.setItem('txnId',JSON.stringify('5812ABpwD'))
+// //   setP(true)
+// //   document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+// // },5000)
+// console.log(data)
+// }
+//   catch(err){
+//     console.log(err)
+//   }
+//  }
+//onBuyClicked();()
 
 async function verifyTxn(){
   try{
@@ -596,7 +596,7 @@ function showPaymentUI(request, canMakePayment) {
   localStorage.removeItem('txnId');
   setP(false)
 }}>rem</button>
-<p onClick={()=>initiateTxn()}>dsds</p>
+<p onClick={()=>onBuyClicked();()}>dsds</p>
 <a href={`upi://pay?pa=kk.payutest@hdfcbank&pn=demo&tr=dacff41d43b36b0242527417947c00f75b161120a930fbc1c42550b01d209a5c&am=1.00`}>
   <Button type='primary' style={{marginTop:'12px'}} >
 pay upi
@@ -866,7 +866,7 @@ className='anchor-box'
   </Button></a> */}
 {/* <a href={`upi://pay?pa=iotronicssystempvtlt.62347918@hdfcbank&pn=VerifiedMerchant&mode=00&orgid=00000&tid=${dyn}&tr=${dyn}&mam=null&tn=trialdemopaytment&am=1&cu=INR&url=https://t.ly/5Tocf`}><Button type="primary" style={{position:'absolute',right:'12px',fontWeight:'bold'}}>pay
   </Button></a> */}
-<Button type="primary" style={{position:'absolute',right:'12px',fontWeight:'bold'}} onClick={()=>initiateTxn()}>pay
+<Button type="primary" style={{position:'absolute',right:'12px',fontWeight:'bold'}} onClick={()=>onBuyClicked()}>pay
   </Button>
   
   
