@@ -574,14 +574,20 @@ function showPaymentUI(request, canMakePayment) {
         //processResponse(instrument); // Handle response from browser.
       })
       .catch(function(err) {
-        console.log(err);
-        setResponseOfPayment({
-          "details": {
-          "tezResponse": {
-            "Status": "EEEEEEEEOOOOOOORRRRR",}
+
+        setTimeout(()=>{
+          setResponseOfPayment({
+            "details": {
+            "tezResponse": {
+              "Status": "EEEEEEEEOOOOOOORRRRR",}
+            }
           }
-        }
-          );
+            );
+          document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+        },1000)
+
+        console.log(err);
+       
       });
  }
 // if(checkCanMakePayment()){
