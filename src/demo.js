@@ -1471,7 +1471,7 @@ style={{position:'fixed',bottom:65,right:30,color:'white',background:'black'}}
         <p />
         <p style={{textAlign: 'justify', textIndent: '2em'}}>
        
-        </p>Annapoorna by Iotronics
+        </p>Annapoorna
         
         <br/>
 Address: 2nd Floor, Block, DERBI Foundation, 1, Hosur Rd, Kudlu Gate, Srinivasa Nagar, Hal Layout, Singasandra, Bengaluru, Karnataka 560068
