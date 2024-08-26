@@ -566,7 +566,9 @@ function showPaymentUI(request, canMakePayment) {
         window.clearTimeout(paymentTimeout);
         //alert(instrument);
         //alert(JSON.stringify(instrument) + 'error showPayment ui show() then');
+        document.getElementsByTagName('body')[0].style.overflow = 'hidden';
         setResponseOfPayment(instrument);
+
         //processResponse(instrument); // Handle response from browser.
       })
       .catch(function(err) {
