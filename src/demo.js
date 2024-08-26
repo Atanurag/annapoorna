@@ -474,7 +474,7 @@ async function checkCanMakePayment (request) {
 }
 
 
-const [paymentState, setPaymentState] = useState({
+const [paymentState, setPaymentState] = React.useState({
   status: '',
   txnRef: '',
 });
@@ -1095,7 +1095,7 @@ className='anchor-box'
                           
 
 
-<div style={{ display: 'flex', alignItems: 'center' }}>
+{/* <div style={{ display: 'flex', alignItems: 'center' }}>
 <Button  type="primary" style={{ fontWeight:'bold'}}>-</Button>
 
       <div style={{ width: '40px',fontWeight:'500', textAlign: 'center', fontSize: '16px', padding: '10px' }}>
@@ -1103,7 +1103,7 @@ className='anchor-box'
       </div>
       <Button  type="primary" style={{ fontWeight:'500'}}>+</Button>
 
-    </div>
+    </div> */}
 
 
 
