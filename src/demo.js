@@ -439,7 +439,7 @@ if (!request) {
 }
 }
 
-//can make payment checking for browser supporting 
+//for checking gpay is installed or not 
 /**
  *
  * @private
@@ -474,10 +474,14 @@ async function checkCanMakePayment (request) {
 }
 
 
+const [responseOfPayment,setResponseOfPayment] = React.useState(null);
+
+
 /** Launches payment request flow when user taps on buy button. */
 function onBuyClicked() {
   if (!window.PaymentRequest) {
     console.log('Web payments are not supported in this browser.');
+    alert('Web payments are not supported in this browser.');
     return;
   }
 
@@ -537,14 +541,6 @@ function onBuyClicked() {
 }
 
 
-
-/**
-* Show the payment request UI.
-*
-* @private
-* @param {PaymentRequest} request The payment request object.
-* @param {Promise} canMakePayment The promise for whether can make payment.
-*/
 function showPaymentUI(request, canMakePayment) {
   if (!canMakePayment) {
     alert('not ready to pay');
@@ -568,11 +564,20 @@ function showPaymentUI(request, canMakePayment) {
       .then(function(instrument) {
  
         window.clearTimeout(paymentTimeout);
-        alert(instrument);
+        //alert(instrument);
+        //alert(JSON.stringify(instrument) + 'error showPayment ui show() then');
+        setResponseOfPayment(instrument);
         //processResponse(instrument); // Handle response from browser.
       })
       .catch(function(err) {
         console.log(err);
+        setResponseOfPayment({
+          "details": {
+          "tezResponse": {
+            "Status": "EEEEEEEEOOOOOOORRRRR",}
+          }
+        }
+          );
       });
  }
 // if(checkCanMakePayment()){
@@ -721,7 +726,7 @@ overlays
 
 
 {/* overlay */}
-{p &&
+{responseOfPayment!=null &&
     <div style={{ 
     position: 'fixed',
     display: 'flex',
@@ -738,7 +743,7 @@ overlays
     alignItems: 'center',      // Added align-items: center
 }}
 >
-    <Card  bordered={false} style={{position:'relative',width:'90%'}} title={<span style={{fontSize:'14px'}}> Order Id: {JSON.parse(localStorage.getItem('txnId'))} <br/> Order Status: Failed  <span style={{
+    <Card  bordered={false} style={{position:'relative',width:'90%'}} title={<span style={{fontSize:'14px'}}> Order Id: {responseOfPayment?.details['tezResponse']['txnRef']} <br/> Order Status: {responseOfPayment?.details['tezResponse']['Status']}  <span style={{
       backgroundColor:'red',
   height: '10px',
   width: '10px'
@@ -772,9 +777,9 @@ overlays
 
 <Button type="primary" disabled={false}  style={{float:'right',marginTop:'19px'}} onClick={
   ()=>{
-  localStorage.removeItem('txnId');
-  setP(false);
-  document.getElementsByTagName('body')[0].style.overflow = 'auto';
+  //localStorage.removeItem('txnId');
+  // setP(false);
+  //document.getElementsByTagName('body')[0].style.overflow = 'auto';
   setSelFood([]);
 }
 }>
