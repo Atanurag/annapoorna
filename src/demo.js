@@ -294,11 +294,11 @@ const App = () =>{
 
 onBuyClicked();
 
-setTimeout(()=>{
-  localStorage.setItem('txnId',JSON.stringify('5812ABpwD'))
-  setP(true)
-  document.getElementsByTagName('body')[0].style.overflow = 'hidden';
-},5000)
+// setTimeout(()=>{
+//   localStorage.setItem('txnId',JSON.stringify('5812ABpwD'))
+//   setP(true)
+//   document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+// },5000)
 console.log(data)
 }
   catch(err){
@@ -779,7 +779,7 @@ overlays
   ()=>{
   //localStorage.removeItem('txnId');
   // setP(false);
-  //document.getElementsByTagName('body')[0].style.overflow = 'auto';
+  document.getElementsByTagName('body')[0].style.overflow = 'auto';
   setSelFood([]);
 }
 }>
