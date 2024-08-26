@@ -494,9 +494,9 @@ function onBuyClicked() {
       data: {
         pa: '7875853859@pthdfc',
         pn: 'Anurag Tiwari-1',
-        tr: 'h28r3esu54e9rryt8tr7Doeo',// your custom transaction reference ID
+        tr: 'h28r3esu54e9rryt8tr7Doeo',
         url:'https://annapoorna.vercel.app/contact-us',
-        mc: '5812', // your merchant category code
+        mc: '5812',
       },
     }
   ];
@@ -507,7 +507,7 @@ function onBuyClicked() {
       label: 'Total',
       amount: {
         currency: 'INR',
-        value: selFood?.reduce((ac, cu) => ac + cu.price, 0).toFixed(2), // sample amount
+        value: selFood?.reduce((ac, cu) => ac + cu.price, 0).toFixed(2),
       },
     },
     displayItems: [{
@@ -780,7 +780,7 @@ overlays
 >
     <Card  bordered={false} style={{position:'relative',width:'90%'}}
      title={<span style={{fontSize:'14px'}}>Order Id: {paymentState?.txnRef} <br/> Order Status: {paymentState?.status}  <span style={{
-      // backgroundColor:'red',
+  backgroundColor:paymentState?.status === 'SUCCESS'?'green':'orange',
   height: '10px',
   width: '10px'
   ,
