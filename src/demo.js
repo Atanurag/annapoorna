@@ -490,7 +490,7 @@ function onBuyClicked() {
       data: {
         pa: '7875853859@pthdfc',
         pn: 'Anurag Tiwari-1',
-        tr: 'h28r3u54987De',// your custom transaction reference ID
+        tr: 'h28r3u54980De',// your custom transaction reference ID
         url:'https://17174cc3-e036-41c5-82a6-1ce90c624cd6-00-2oq5i07bzmsdh.pike.repslit.dev:5000',
         mc: '5812', // your merchant category code
       },
@@ -563,10 +563,13 @@ function showPaymentUI(request, canMakePayment) {
  
         window.clearTimeout(paymentTimeout);
         //alert(instrument);
+        let dataString = JSON.stringify(instrument);
+        const tezResponse = JSON.parse(response.details.tezResponse);
         //alert(JSON.stringify(instrument) + 'error showPayment ui show() then');
-
+        const status = tezResponse.Status;
+        const txnRef = tezResponse.txnRef;
         setTimeout(()=>{
-             setResponseOfPayment(instrument);
+             setResponseOfPayment({status:status,txnRef:txnRef});
              document.getElementsByTagName('body')[0].style.overflow = 'hidden';
            },1000)
         
@@ -577,10 +580,8 @@ function showPaymentUI(request, canMakePayment) {
 
         setTimeout(()=>{
           setResponseOfPayment({
-            "details": {
-            "tezResponse": {
-              "Status": "EEEEEEEEOOOOOOORRRRR",}
-            }
+          status:'erroror',
+          txnRef:'949494'
           }
             );
           document.getElementsByTagName('body')[0].style.overflow = 'hidden';
@@ -593,6 +594,12 @@ function showPaymentUI(request, canMakePayment) {
 // if(checkCanMakePayment()){
   //paymentRequest()
 // }
+// fetch('https://c0ccd437-87bb-4fd4-b585-6ef2b6165e6e-00-xn5f3f0kqnav.sisko.replit.dev/'
+// , {
+//   method: 'GET',
+//   headers: new Headers({'Content-Type': 'application/json'}),
+//   // body: instrumentString,
+// }).then(e=>e.json()).then(d=>console.log(d));
 
 
   return (
@@ -754,7 +761,7 @@ overlays
 }}
 >
     <Card  bordered={false} style={{position:'relative',width:'90%'}}
-     title={<span style={{fontSize:'14px'}}>Order Id: {responseOfPayment?.details?.tezResponse?.txnRef} <br/> Order Status: {responseOfPayment?.details?.tezResponse?.Status}  <span style={{
+     title={<span style={{fontSize:'14px'}}>Order Id: {responseOfPayment?.txnRef} <br/> Order Status: {responseOfPayment?.status}  <span style={{
       backgroundColor:'red',
   height: '10px',
   width: '10px'
