@@ -566,9 +566,13 @@ function showPaymentUI(request, canMakePayment) {
         window.clearTimeout(paymentTimeout);
         //alert(instrument);
         //alert(JSON.stringify(instrument) + 'error showPayment ui show() then');
-        document.getElementsByTagName('body')[0].style.overflow = 'hidden';
-        setResponseOfPayment(instrument);
+
+        setTimeout(()=>{
+            setResponseOfPayment(instrument);
+             document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+           },1000)
         
+         
         //processResponse(instrument); // Handle response from browser.
       })
       .catch(function(err) {
@@ -747,7 +751,7 @@ overlays
 >
     <Card  bordered={false} style={{position:'relative',width:'90%'}}
      title={<span style={{fontSize:'14px'}}> Order Id:
-      {responseOfPayment?.details.tezResponse.txnRef} <br/> Order Status: {responseOfPayment?.details.tezResponse.Status}  <span style={{
+      {responseOfPayment?.details?.tezResponse?.txnRef} <br/> Order Status: { responseOfPayment?.details?.tezResponse?.Status}  <span style={{
       backgroundColor:'red',
   height: '10px',
   width: '10px'
