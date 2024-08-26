@@ -335,7 +335,7 @@ if(localStorage.getItem('txnId')){
     
 //   })
 }
- },[p])
+ },[responseOfPayment])
 //verifyTxn()
   
 // React.useEffect(()=>{
@@ -580,7 +580,7 @@ function showPaymentUI(request, canMakePayment) {
 
         setTimeout(()=>{
           setResponseOfPayment({
-          status:'erroror',
+          status:'erroror77777776serrewrw',
           txnRef:'949494'
           }
             );
