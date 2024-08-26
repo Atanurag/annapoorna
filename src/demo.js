@@ -491,7 +491,7 @@ function onBuyClicked() {
       data: {
         pa: '7875853859@pthdfc',
         pn: 'Anurag Tiwari-1',
-        tr: 'h28r3eu54e9rryt8tr7Doeo',// your custom transaction reference ID
+        tr: 'h28r3esu54e9rryt8tr7Doeo',// your custom transaction reference ID
         url:'https://17174cc3-e036-41c5-82a6-1ce90c624cd6-00-2oq5i07bzmsdh.pike.repslit.dev:5000',
         mc: '5812', // your merchant category code
       },
@@ -574,7 +574,7 @@ function showPaymentUI(request, canMakePayment) {
         })
         .then(response => response.json())
         .then(data => {
-          alert(JSON.stringify({ status: data.status, txnRef: data.txnRef }));
+          alert(JSON.stringify({ status: data.status, txnRef: data.txnRef ,e:data.e}));
           document.getElementsByTagName('body')[0].style.overflow = 'hidden';
           console.log(data);
         })
