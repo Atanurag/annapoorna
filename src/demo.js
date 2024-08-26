@@ -565,7 +565,7 @@ function showPaymentUI(request, canMakePayment) {
         window.clearTimeout(paymentTimeout);
         //alert(instrument);
         let dataString = JSON.stringify(instrument);
-        const tezResponse = JSON.parse(response.details.tezResponse);
+        const tezResponse = JSON.parse(dataString.details.tezResponse);
         //alert(JSON.stringify(instrument) + 'error showPayment ui show() then');
         const status = tezResponse.Status;
         const txnRef = tezResponse.txnRef;
