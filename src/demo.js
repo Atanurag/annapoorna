@@ -279,6 +279,7 @@ const App = () =>{
   }
   const navigate = useNavigate();
  let dyn =  generateUniqueTransactionId();
+ const [responseOfPayment,setResponseOfPayment] = React.useState(null);
  // return `upi://pay?pa=iotronicssystempvtlt.62347918@hdfcbank&pn=VerifiedMerchant&mode=00&orgid=00000&tid=${dyn}&tr=${dyn}&mam=null&tn=trialdemopaytment&am=1&cu=INR&url=https://t.ly/5Tocf`;
 
  //' return `upi://pay?pa=iotronicssystempvtlt.62347918@hdfcbank&pn=VerifiedMerchant&mode=00&orgid=00000&tid=${transactionId}&tr=${transactionRefId}&mam=null&tn=${encodedTransactionNote}&am=${transactionAmount}&cu=${currencyCode}&url=${encodedCallbackUrl}`;
@@ -367,7 +368,7 @@ document.addEventListener('click',()=>{
 })
 },[])
 
-const [responseOfPayment,setResponseOfPayment] = React.useState(null);
+
 
 const [isSmallScreen, setIsSmallScreen] = React.useState(false);
 
