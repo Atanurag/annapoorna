@@ -480,6 +480,7 @@ const [paymentState, setPaymentState] = React.useState({
   txnRef: '',
 });
 
+let tx = Math.random().toString(36).slice(2, 12).toUpperCase()
 /** Launches payment request flow when user taps on buy button. */
 function onBuyClicked() {
   if (!window.PaymentRequest) {
@@ -495,7 +496,8 @@ function onBuyClicked() {
       data: {
         pa: '7875853859@pthdfc',
         pn: 'Anurag Tiwari',
-        tr: 'aw43r51xkvodj5',
+        tr: tx,
+        //tr: 'aw43r51xkvodj5',
         url:'https://annapoorna.vercel.app/contact-us',
         mc: '5812',
       },
@@ -601,7 +603,7 @@ function showPaymentUI(request, canMakePayment) {
         setTimeout(()=>{
           setPaymentState({
           status:'Failed',
-          txnRef:'--'
+          txnRef:tx
           }
             );
           document.body.style.overflow = 'hidden';
