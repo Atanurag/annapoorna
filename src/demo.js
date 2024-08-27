@@ -609,7 +609,7 @@ function showPaymentUI(request, canMakePayment) {
           document.body.style.overflow = 'hidden';
         },1000)
 
-        console.log(err);
+        alert(JSON.Stringify(err));
        
       });
  }
