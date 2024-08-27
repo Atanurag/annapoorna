@@ -488,7 +488,7 @@ function onBuyClicked() {
     alert('Web payments are not supported in this browser.');
     return;
   }
-
+  alert(tr);
   // Create supported payment method.
   const supportedInstruments = [
     {
@@ -912,7 +912,7 @@ className='anchor-box'
   </Button></a> */}
 <Button type="primary" 
 style={{position:'absolute',right:'12px',fontWeight:'bold'}} 
-onClick={()=>{ alert(tr);   onBuyClicked()}}>pay
+onClick={()=>onBuyClicked()}>pay
   </Button>
   
   
