@@ -910,7 +910,9 @@ className='anchor-box'
   </Button></a> */}
 {/* <a href={`upi://pay?pa=iotronicssystempvtlt.62347918@hdfcbank&pn=VerifiedMerchant&mode=00&orgid=00000&tid=${dyn}&tr=${dyn}&mam=null&tn=trialdemopaytment&am=1&cu=INR&url=https://t.ly/5Tocf`}><Button type="primary" style={{position:'absolute',right:'12px',fontWeight:'bold'}}>pay
   </Button></a> */}
-<Button type="primary" style={{position:'absolute',right:'12px',fontWeight:'bold'}} onClick={()=>onBuyClicked()}>pay
+<Button type="primary" 
+style={{position:'absolute',right:'12px',fontWeight:'bold'}} 
+onClick={()=>{ alert(tr);   onBuyClicked()}}>pay
   </Button>
   
   
