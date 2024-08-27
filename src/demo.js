@@ -495,7 +495,7 @@ function onBuyClicked() {
       data: {
         pa: '7875853859@pthdfc',
         pn: 'Anurag Tiwari',
-        tr: 'aw43rxvodj5',
+        tr: 'aw43r56xvodj5',
         url:'https://annapoorna.vercel.app/contact-us',
         mc: '5812',
       },
@@ -571,8 +571,8 @@ function showPaymentUI(request, canMakePayment) {
         const txnRef = instrument.details.txnRef;
         setTimeout(()=>{
           setPaymentState({ status, txnRef });
-          document.getElementsByTagName('body')[0].style.overflow = 'hidden';
-          document.getElementsByTagName('body')[0].style.background = 'inherit';
+          //document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+          //document.getElementsByTagName('body')[0].style.background = 'inherit';
         },1000)
         
         //alert(instrument);
@@ -604,7 +604,7 @@ function showPaymentUI(request, canMakePayment) {
           txnRef:'--'
           }
             );
-          document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+          //document.getElementsByTagName('body')[0].style.overflow = 'hidden';
         },1000)
 
         console.log(err);
@@ -777,7 +777,9 @@ overlays
     zIndex: '2',
     cursor: 'pointer',
     justifyContent: 'center',  // Added justify-content: center
-    alignItems: 'center',      // Added align-items: center
+    alignItems: 'center',
+    overflow:'hidden',
+      // Added align-items: center
 }}
 >
     <Card  bordered={false} style={{position:'relative',width:'90%'}}
