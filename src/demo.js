@@ -495,7 +495,7 @@ function onBuyClicked() {
       data: {
         pa: '7875853859@pthdfc',
         pn: 'Anurag Tiwari',
-        tr: 'aw43r56xvodj5',
+        tr: 'aw43r56xkvodj5',
         url:'https://annapoorna.vercel.app/contact-us',
         mc: '5812',
       },
@@ -571,7 +571,7 @@ function showPaymentUI(request, canMakePayment) {
         const txnRef = instrument.details.txnRef;
         setTimeout(()=>{
           setPaymentState({ status, txnRef });
-          //document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+          document.body.style.overflow = 'hidden';
           //document.getElementsByTagName('body')[0].style.background = 'inherit';
         },1000)
         
@@ -604,7 +604,7 @@ function showPaymentUI(request, canMakePayment) {
           txnRef:'--'
           }
             );
-          //document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+          document.body.style.overflow = 'hidden';
         },1000)
 
         console.log(err);
@@ -819,7 +819,7 @@ overlays
   ()=>{
   //localStorage.removeItem('txnId');
   // setP(false);
-  document.getElementsByTagName('body')[0].style.overflow = 'auto';
+  document.body.style.overflow = 'auto';
   setSelFood([]);
  setPaymentState({
   status: '',
