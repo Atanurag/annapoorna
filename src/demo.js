@@ -600,16 +600,16 @@ function showPaymentUI(request, canMakePayment) {
       })
       .catch(function(err) {
 
-        setTimeout(()=>{
-          setPaymentState({
-          status:'FAILED',
-          txnRef:'--'
-          }
-            );
-          document.body.style.overflow = 'hidden';
-        },1000)
+        // setTimeout(()=>{
+        //   setPaymentState({
+        //   status:'FAILED',
+        //   txnRef:'--'
+        //   }
+        //     );
+        //   document.body.style.overflow = 'hidden';
+        // },1000)
 
-        alert(JSON.Stringify(err));
+        alert(JSON.stringify(err));
        
       });
  }
