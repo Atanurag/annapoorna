@@ -896,7 +896,7 @@ className='anchor-box'
 
 
 {/* {cart} start*/}
-{(selFood?.length>0 && !p) &&
+{(selFood?.length>0 && paymentState?.status = '' ) &&
 <div className='cart-box'>
 <div style={{podition:'relative',padding:'0 30px'}} >
 <ShoppingOutlined  style={{fontSize:'34px',color:'white'}}onClick={()=>{
