@@ -495,7 +495,7 @@ function onBuyClicked() {
       data: {
         pa: '7875853859@pthdfc',
         pn: 'Anurag Tiwari',
-        tr: 'aw43rxvdj5',
+        tr: 'aw43rxvodj5',
         url:'https://annapoorna.vercel.app/contact-us',
         mc: '5812',
       },
