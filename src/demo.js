@@ -488,7 +488,7 @@ function onBuyClicked() {
     alert('Web payments are not supported in this browser.');
     return;
   }
-  alert(tr);
+  
   // Create supported payment method.
   const supportedInstruments = [
     {
