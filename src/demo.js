@@ -602,7 +602,7 @@ function showPaymentUI(request, canMakePayment) {
 
         setTimeout(()=>{
           setPaymentState({
-          status:'Failed',
+          status:'FAILED',
           txnRef:tx
           }
             );
@@ -912,7 +912,7 @@ className='anchor-box'
   </Button></a> */}
 <Button type="primary" 
 style={{position:'absolute',right:'12px',fontWeight:'bold'}} 
-onClick={()=>onBuyClicked()}>pay
+onClick={()=>{onBuyClicked();  alert(tr)   }}>pay
   </Button>
   
   
