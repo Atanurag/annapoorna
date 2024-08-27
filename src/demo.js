@@ -572,6 +572,7 @@ function showPaymentUI(request, canMakePayment) {
         setTimeout(()=>{
           setPaymentState({ status, txnRef });
           document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+          document.getElementsByTagName('body')[0].style.background = 'inherit';
         },1000)
         
         //alert(instrument);
