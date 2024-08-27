@@ -480,7 +480,7 @@ const [paymentState, setPaymentState] = React.useState({
   txnRef: '',
 });
 
-let tx = Math.random().toString(36).slice(2, 12).toUpperCase()
+let txnRefID = Math.random().toString(36).slice(2, 12).toUpperCase()
 /** Launches payment request flow when user taps on buy button. */
 function onBuyClicked() {
   if (!window.PaymentRequest) {
@@ -496,7 +496,7 @@ function onBuyClicked() {
       data: {
         pa: '7875853859@pthdfc',
         pn: 'Anurag Tiwari',
-        tr: tx,
+        tr: txnRefID,
         //tr: 'aw43r51xkvodj5',
         url:'https://annapoorna.vercel.app/contact-us',
         mc: '5812',
@@ -603,7 +603,7 @@ function showPaymentUI(request, canMakePayment) {
         setTimeout(()=>{
           setPaymentState({
           status:'FAILED',
-          txnRef:tx
+          txnRef:'--'
           }
             );
           document.body.style.overflow = 'hidden';
@@ -626,7 +626,6 @@ function showPaymentUI(request, canMakePayment) {
 
   return (
 <>
-{tx}
 {/* {  p && 'hello baby'}
 
 <button onClick={()=>{
