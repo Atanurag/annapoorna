@@ -88,7 +88,7 @@ import io from 'socket.io-client'
 //import useSWR from "swr";
 
 const { Header, Content, Footer } = Layout;
-
+let tx = Math.random().toString(36).slice(2, 12).toUpperCase()
 const App = () =>{
   const [inp,setInp] =React.useState('')
   const [t,setT]= React.useState(false)
@@ -480,7 +480,7 @@ const [paymentState, setPaymentState] = React.useState({
   txnRef: '',
 });
 
-let txnRefID = Math.random().toString(36).slice(2, 12).toUpperCase()
+
 /** Launches payment request flow when user taps on buy button. */
 function onBuyClicked() {
   if (!window.PaymentRequest) {
@@ -496,7 +496,7 @@ function onBuyClicked() {
       data: {
         pa: '7875853859@pthdfc',
         pn: 'Anurag Tiwari',
-        tr: txnRefID,
+        tr: tx,
         //tr: 'aw43r51xkvodj5',
         url:'https://annapoorna.vercel.app/contact-us',
         mc: '5812',
@@ -600,16 +600,16 @@ function showPaymentUI(request, canMakePayment) {
       })
       .catch(function(err) {
 
-        // setTimeout(()=>{
-        //   setPaymentState({
-        //   status:'FAILED',
-        //   txnRef:'--'
-        //   }
-        //     );
-        //   document.body.style.overflow = 'hidden';
-        // },1000)
+        setTimeout(()=>{
+          setPaymentState({
+          status:'FAILED',
+          txnRef:tx
+          }
+            );
+          document.body.style.overflow = 'hidden';
+        },1000)
 
-        alert(JSON.stringify(err));
+        console.log(err);
        
       });
  }
@@ -626,6 +626,7 @@ function showPaymentUI(request, canMakePayment) {
 
   return (
 <>
+{tx}
 {/* {  p && 'hello baby'}
 
 <button onClick={()=>{
