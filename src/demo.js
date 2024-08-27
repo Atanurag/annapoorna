@@ -88,7 +88,7 @@ import io from 'socket.io-client'
 //import useSWR from "swr";
 
 const { Header, Content, Footer } = Layout;
-let tx = Math.random().toString(36).slice(2, 12).toUpperCase()
+
 const App = () =>{
   const [inp,setInp] =React.useState('')
   const [t,setT]= React.useState(false)
@@ -480,6 +480,7 @@ const [paymentState, setPaymentState] = React.useState({
   txnRef: '',
 });
 
+let tx = Math.random().toString(36).slice(2, 12).toUpperCase()
 
 /** Launches payment request flow when user taps on buy button. */
 function onBuyClicked() {
@@ -603,7 +604,7 @@ function showPaymentUI(request, canMakePayment) {
         setTimeout(()=>{
           setPaymentState({
           status:'FAILED',
-          txnRef:tx
+          txnRef:'-'
           }
             );
           document.body.style.overflow = 'hidden';
@@ -626,7 +627,6 @@ function showPaymentUI(request, canMakePayment) {
 
   return (
 <>
-{tx}
 {/* {  p && 'hello baby'}
 
 <button onClick={()=>{
