@@ -549,7 +549,7 @@ function onBuyClicked() {
 
 function showPaymentUI(request, canMakePayment) {
   if (!canMakePayment) {
-    alert('not ready to pay');
+    alert('GPay is not ready to pay');
     //handleNotReadyToPay();
     return;
   }
