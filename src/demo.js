@@ -523,7 +523,7 @@ function onBuyClicked() {
     }],
   };
 
-  // Create payment request object.
+  // Create payment request object
   let request = null;
   try {
     request = new PaymentRequest(supportedInstruments, details);
