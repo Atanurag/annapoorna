@@ -84,7 +84,32 @@
   border-top-left-radius:23px;
   border-top-right-radius:23px;
   margin:12px;
+  position: relative;
 }
+.main-page .bottom-anchor .phone-verify-box{
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  padding:30px;
+  height:130px;
+  border-top-left-radius:23px;
+  border-top-right-radius:23px;
+  margin:12px;
+ 
+}
+
+.main-page .bottom-anchor .phone-verify-box .custom-otp-input {
+  font-size: 19px;
+  font-weight: 400;
+  width: 38px;
+  height: 40px;
+}
+
+.main-page .bottom-anchor .phone-verify-box  .custom-otp-input:focus {
+  border-color: #4096ff;
+  box-shadow: 0 0 0 1px #4096ff;
+}
+
 .main-page .bottom-anchor .cross{
   float:right;
   margin-right:56px;
