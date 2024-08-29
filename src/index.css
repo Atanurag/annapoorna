@@ -107,8 +107,14 @@
 
 .main-page .bottom-anchor .phone-verify-box  .custom-otp-input:focus {
   border-color: #4096ff;
-  box-shadow: 0 0 0 1px #4096ff;
+  
 }
+
+.main-page .bottom-anchor .phone-verify-box .ant-input-outlined:focus{
+  border-color: #4096ff;
+ 
+}
+
 
 .main-page .bottom-anchor .cross{
   float:right;
