@@ -493,12 +493,14 @@ function onBuyClicked() {
   }
   //checking isVerifed user
   if(!JSON.parse(localStorage.getItem('isVerified'))?.verified){
+    alert('Please Verify Phone Number!');
     setPhoneVerifyBox(true);
     return;
   }
   //checking isVerifed user
-  if(phoneRef.current.input.value == ''){
+  if(phoneNumber == ''){
     alert('Please Verify Phone Number!');
+    setPhoneVerifyBox(true);
     return;
   }
   // Create supported payment method.
@@ -637,13 +639,13 @@ function showPaymentUI(request, canMakePayment) {
 
 
 //verify phone for txn processing
-let phoneRef = React.useRef(null);
-const[otpValue, setOtpValue] = React.useState([]); 
-const[showOtpInput,setShowOtpInput] = React.useState(false);
+const [phoneNumber, setPhoneNumber] = React.useState('');
+const [otpValue, setOtpValue] = React.useState(Array(6).fill('')); 
+const [showOtpInput,setShowOtpInput] = React.useState(false);
 //verify number
 function sendOtp(phone){
-  //setShowOtpInput(true);
-  fetch('https://dev-fuelsense.iotronsys.com/api/v1/mob_app/get-mobile-otp/', {
+  // setShowOtpInput(true);
+  fetch('https://annapoorna.snazzy.live/api/v1/mob_app/get-mobile-otp/', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json'
@@ -665,7 +667,8 @@ else{
 
 
 function verifyOtp(phone,otp){
-  fetch('https://dev-fuelsense.iotronsys.com/api/v1/mob_app/mobile-otp-verification/', {
+  //onBuyClicked();
+  fetch('https://annapoorna.snazzy.live/api/v1/mob_app/mobile-otp-verification/', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json'
@@ -686,6 +689,38 @@ else{
 })
 .catch(error => console.error('Error:', error));
 }
+
+
+//read otp 
+React.useEffect(() => {
+  // Check if the browser supports the Web OTP API
+  if ('OTPCredential' in window) {
+    const ac = new AbortController();
+    const signal = ac.signal;
+
+    // Request OTP automatically
+    navigator.credentials
+      .get({
+        otp: { transport: ['sms'] },
+        signal,
+      })
+      .then((otp) => {
+        if (otp && otp.code) {
+          // Convert OTP string to an array of characters and update state
+          setOtpValue(otp.code.split(''));
+          verifyOtp(phoneNumber,otp.code.split(''))
+        }
+      })
+      .catch((err) => {
+        console.error('OTP retrieval failed', err);
+      });
+
+    // Cleanup function to abort OTP reading if the component unmounts
+    return () => {
+      ac.abort();
+    };
+  }
+}, []);
 
 
 //clearing loalstorage after 30 min 
@@ -866,23 +901,13 @@ showPhoneNo
 
 <div className='phone-verify-box'>
 
-<p style={{textAlign:'center'}}>Please Verify Phone Number</p>
-{showOtpInput ? <>
-   <InputOTP  onChange={setOtpValue} value={otpValue}  autoFocus={true} className="custom-otp-input"
- inputType="numeric"
-/>
-<Button type="primary"  onClick={()=>{
-  //console.log(otpValue);
-  verifyOtp(phoneRef.current.input.value,otpValue)
-}}>
-                          Verify OTP
-                        </Button>
-                         </>
-:
+
+{!showOtpInput ? 
 <>
+<p style={{textAlign:'center'}}>Please Verify Phone Number</p>
 <div style={{height:'25px'}}>
 
-<Input placeholder='Phone Number' ref={phoneRef} style={{textAlign:'center'}}  onKeyDown={(event) => {
+<Input placeholder='Phone Number' style={{textAlign:'center'}}  onKeyDown={(event) => {
     if (!/[0-9]/.test(event.key) &&
      event.key !== "Backspace" && event.key !== "Delete"
      ){
@@ -890,15 +915,28 @@ showPhoneNo
       }
        }} minLength={10} maxLength={10}
        onChange={(e)=>{
-        phoneRef.current = e.target.value
-       }}
+        setPhoneNumber(e.target.value);
+      }}
+      value={phoneNumber}
       /> </div>
 <Button type="primary"  onClick={()=>{
   
-  sendOtp(phoneRef.current.input.value)
+  sendOtp(phoneNumber)
 }}>
                           Confirm
-                        </Button> </>}
+                        </Button> </>
+                        :
+                        <>
+                      
+                        <InputOTP  onChange={setOtpValue} value={otpValue}  autoFocus={true} className="custom-otp-input"
+                      inputType="numeric"
+                     />
+                     <Button type="primary"  onClick={()=>{
+                      
+                       verifyOtp(phoneNumber,otpValue)
+                     }}> Verify OTP</Button></>
+                      
+                      }
        </div> 
        
 </div>
