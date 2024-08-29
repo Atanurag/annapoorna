@@ -375,13 +375,6 @@ document.addEventListener('click',()=>{
 
 const [isSmallScreen, setIsSmallScreen] = React.useState(false);
 const [phoneVerifyBox,setPhoneVerifyBox] = React.useState(false);
-
-
-//auto read otp
-
-
-//auto read
-
   React.useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) { 
