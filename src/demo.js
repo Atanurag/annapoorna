@@ -79,10 +79,10 @@
 
 
 import React from 'react';
-import { Anchor} from 'antd';
+import { Anchor } from 'antd';
 import { InputOTP } from "antd-input-otp";
 import { Routes, Route,Link,useNavigate, json } from 'react-router-dom';
-import { Divider, Flex, Tag,Button ,Layout,Input, Row, Col,Switch,Card,Badge, } from 'antd';
+import { Divider, Flex, Tag,Button ,Layout,Input, Row, Col,Switch,Card,Badge } from 'antd';
 import { CloseOutlined ,MenuUnfoldOutlined,SearchOutlined,ShoppingOutlined } from '@ant-design/icons';
 import './index.css';
 import io from 'socket.io-client'
@@ -364,7 +364,6 @@ if(localStorage.getItem('txnId')){
 //   console.log("Socket connected");
 // });
 // socket.on('payment_response',(e)=>console.log(e))
-const [phoneVerifyBox,setPhoneVerifyBox] = React.useState(false);
 React.useEffect(()=>{
 document.addEventListener('click',()=>{
   setShowLinks(false);
@@ -374,7 +373,7 @@ document.addEventListener('click',()=>{
 
 
 const [isSmallScreen, setIsSmallScreen] = React.useState(false);
-
+const [phoneVerifyBox,setPhoneVerifyBox] = React.useState(false);
   React.useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) { 
@@ -626,6 +625,17 @@ function showPaymentUI(request, canMakePayment) {
 //    body: JSON.stringify({'k':'p'}),
 // }).then(e=>e.json()).then(d=>console.log(d));
 
+let phoneRef = React.useRef('');
+//verify number
+function verifyNumber(phone){
+  fetch('https://dev-fuelsense.iotronsys.com/api/v1/mob_app/get-mobile-otp/',
+  {
+    method:'POST',
+    body:JSON.stringify({mobile_number:phone})
+
+}).then(e=>e.json()).then(data=>console.log(data));
+}
+
   return (
 <>
 {/* {  p && 'hello baby'}
@@ -765,6 +775,67 @@ overlays
 
 
 
+
+{/* 
+phone verification start */}
+ {/* <button onClick={(event)=>{
+  event.stopPropagation()
+  setPhoneVerifyBox(!phoneVerifyBox)
+}}>
+showPhoneNo
+</button> */}
+
+
+<div className={`bottom-anchor ${phoneVerifyBox?'push-to-top':'push-to-bottom'}`}>
+<CloseOutlined onClick={()=>{
+    setPhoneVerifyBox(false);
+  }}  style={{position:'absolute',right:'25px',top:'25px'}}/>
+
+<div className='phone-verify-box'>
+
+
+
+   <InputOTP autoFocus={true} className="custom-otp-input"
+ inputType="numeric"
+/>
+<Button type="primary"  onClick={()=>{
+}}>
+                          Verify OTP
+                        </Button> 
+
+<div style={{height:'20px'}}>
+
+<Input ref={phoneRef} style={{textAlign:'center'}}  onKeyDown={(event) => {
+    if (!/[0-9]/.test(event.key) &&
+     event.key !== "Backspace" && event.key !== "Delete"
+     ){
+       event.preventDefault(); 
+      }
+       }} minLength={10} maxLength={10}
+      /> </div>
+<Button type="primary"  onClick={()=>{
+  //verifyNumber(phoneRef.current.value)
+  console.log(phoneRef.current.target.value)
+}}>
+                          send OTP
+                        </Button> 
+       </div> 
+       
+</div>
+{/* phone verification  end */}
+
+
+
+
+
+
+
+
+
+
+
+
+
 {/* overlay */}
 {paymentState?.status != null && paymentState?.status != '' &&
     <div style={{ 
@@ -838,50 +909,12 @@ overlays
 
 
 
-{/* 
-phone verification start */}
-{/* <button onClick={(event)=>{
-  event.stopPropagation()
-  setPhoneVerifyBox(!phoneVerifyBox)
-}}>
-showPhoneNo
-</button>
-
-
-<div className={`bottom-anchor ${phoneVerifyBox?'push-to-top':'push-to-bottom'}`}>
-<CloseOutlined onClick={()=>{
-    setPhoneVerifyBox(false);
-  }}  style={{position:'absolute',right:'25px',top:'25px'}}/>
-<div className='phone-verify-box'>
 
 
 
-   <InputOTP autoFocus={true} className="custom-otp-input"
- inputType="numeric"
-/>
-<Button type="primary"  onClick={()=>{
-}}>
-                          Verify OTP
-                        </Button> */}
-{/* 
-<div style={{height:'20px'}}>
 
-<Input style={{textAlign:'center'}}  onKeyDown={(event) => {
-    if (!/[0-9]/.test(event.key) &&
-     event.key !== "Backspace" && event.key !== "Delete"
-     ){
-       event.preventDefault(); 
-      }
-       }} minLength={10} maxLength={10}
-      /> </div>
-<Button type="primary"  onClick={()=>{
-}}>
-                          send OTP
-                        </Button> 
-       </div> 
-       
-</div>*/}
-{/* phone verification  end */}
+
+
 
 
 
