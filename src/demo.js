@@ -375,6 +375,9 @@ document.addEventListener('click',()=>{
 
 const [isSmallScreen, setIsSmallScreen] = React.useState(false);
 const [phoneVerifyBox,setPhoneVerifyBox] = React.useState(false);
+
+
+
   React.useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) { 
@@ -686,6 +689,39 @@ else{
 })
 .catch(error => console.error('Error:', error));
 }
+
+
+
+
+//auto read otp start
+const [hasPermission, setHasPermission] = React.useState(false);
+React.useEffect(() => {
+  navigator.permissions.query({ name: 'sms' })
+    .then(permission => {
+      if (permission.state === 'granted') {
+        setHasPermission(true);
+      }
+    });
+}, []);
+
+
+
+React.useEffect(() => {
+  if (hasPermission) {
+    navigator.sms.receive()
+      .then(message => {
+        const otpRegex = /\b\d{4,6}\b/g;
+        const otpMatch = message.body.match(otpRegex);
+        if (otpMatch) {
+          const otpArray = otpMatch[0].split(''); 
+          setOtpValue(otpArray); 
+        }
+      });
+  }
+}, [hasPermission]);
+
+//auto read otp end
+
 
 
 //clearing loalstorage after 30 min 
