@@ -1253,7 +1253,7 @@ onClick={()=>{onBuyClicked();}}>pay
 
 
 
-  <Row style={{marginTop:'40px'}}>
+  <Row style={{marginTop:'4px'}}>
 
     <Col xs={0} sm={0} md={5} lg={5} >
       <div style={{position:'sticky',top:'135px'}}>
