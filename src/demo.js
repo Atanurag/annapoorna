@@ -651,6 +651,7 @@ function showPaymentUI(request, canMakePayment) {
 //verify phone for txn processing
 const [phoneNumber, setPhoneNumber] = React.useState('');
 const [otpValue, setOtpValue] = React.useState([]); 
+const otpFocusRef = React.createRef();
 const [showOtpInput,setShowOtpInput] = React.useState(false);
 //verify number
 function sendOtp(phone){
@@ -727,6 +728,7 @@ if(data.status === 'success')
 }
 else{
   setOtpValue([]);
+  otpFocusRef.current[0].focus()
   toast.error(data.message, {
     position: "top-center",
     autoClose: 2000,
@@ -747,6 +749,7 @@ else{
 })
 .catch(error => {
   setOtpValue([]);
+  otpFocusRef.current[0].focus()
   toast.error('something went wrong!', {
     position: "top-center",
     autoClose: 2000,
@@ -1006,7 +1009,7 @@ showPhoneNo
                         :
                         <>
                       <p style={{textAlign:'center',marginBottom:'22px'}}>Please Enter OTP</p>
-                        <InputOTP  onChange={setOtpValue} value={otpValue}  autoFocus={true} className="custom-otp-input"
+                        <InputOTP  inputRef={otpFocusRef} onChange={setOtpValue} value={otpValue}  autoFocus={true} className="custom-otp-input"
                       inputMode="numeric" inputRegex={/^\d+$/}
                      />
                      <Button style={{margin:'12px 0'}} type="primary"  onClick={()=>{
@@ -1016,6 +1019,7 @@ showPhoneNo
                      
                      <Button  onClick={()=>{
                       setOtpValue([]);
+                      otpFocusRef.current[0].focus()
                       sendOtp(phoneNumber)
                     }}> Resend OTP</Button>
                      </>
