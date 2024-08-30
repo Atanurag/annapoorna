@@ -50,7 +50,7 @@
 }
 .main-page .header .input-box{
   display:flex;
-  margin-top: 12px;
+  /* //margin-top: 12px; */
   align-items:center;
   justify-content:space-between;
 }
@@ -178,12 +178,22 @@ transition: all 0.3s;
    /* Adjust width for your logo */
   }
   
-  .main-page .header .input-box{
+  .main-page .header .input-box {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    /* margin-top: 13px; */
+    position: absolute;
+    width: 96%;
+    bottom: -7px;
+}
+
+  /* .main-page .header .input-box{
     display:flex;
     margin-top: -20px;
     align-items:center;
     justify-content:space-between;
-  }
+  } */
   .main-page .header .logo-container img {
     height: 36px;
     width: 90px;
