@@ -650,7 +650,7 @@ function showPaymentUI(request, canMakePayment) {
 
 //verify phone for txn processing
 const [phoneNumber, setPhoneNumber] = React.useState('');
-const [otpValue, setOtpValue] = React.useState(Array(6).fill('')); 
+const [otpValue, setOtpValue] = React.useState([]); 
 const [showOtpInput,setShowOtpInput] = React.useState(false);
 //verify number
 function sendOtp(phone){
@@ -666,7 +666,6 @@ function sendOtp(phone){
 .then(data => {
 if(data.status === 'success')
 {
-setOtpValue([]);
 setShowOtpInput(true);
 }
 else{
@@ -1014,6 +1013,7 @@ showPhoneNo
                      }}> Verify OTP</Button>
                      
                      <Button  onClick={()=>{
+                      setOtpValue([]);
                       sendOtp(phoneNumber)
                     }}> Resend OTP</Button>
                      </>
