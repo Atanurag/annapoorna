@@ -500,25 +500,6 @@ function onBuyClicked() {
     setPhoneVerifyBox(true);
     return;
   }
-  //checking isVerifed user
-  if(phoneNumber == ''){
-    toast.error('Please Verify Phone Number!', {
-      position: "top-center",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: false,
-      progress: undefined,
-      theme: "light",
-      transition: Bounce,
-      style: {
-        height: '40px'
-      },
-      });
-    setPhoneVerifyBox(true);
-    return;
-  }
   // Create supported payment method.
   const supportedInstruments = [
     {
