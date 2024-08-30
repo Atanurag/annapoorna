@@ -489,7 +489,6 @@ let tx = Math.random().toString(36).slice(2, 12).toUpperCase()
 
 /** Launches payment request flow when user taps on buy button. */
 function onBuyClicked() {
-  
   if (!window.PaymentRequest) {
     console.log('Web payments are not supported in this browser.');
     alert('Web payments are not supported in this browser.');
@@ -667,6 +666,7 @@ function sendOtp(phone){
 .then(data => {
 if(data.status === 'success')
 {
+setOtpValue([]);
 setShowOtpInput(true);
 }
 else{
@@ -984,7 +984,7 @@ showPhoneNo
 <p style={{textAlign:'center'}}>Please Verify Phone Number</p>
 <div style={{height:'25px'}}>
 
-<Input placeholder='Phone Number' style={{textAlign:'center'}}  onKeyDown={(event) => {
+<Input inputMode="numeric"  placeholder='Phone Number' style={{textAlign:'center'}}  onKeyDown={(event) => {
     if (!/[0-9]/.test(event.key) &&
      event.key !== "Backspace" && event.key !== "Delete"
      ){
@@ -1004,14 +1004,19 @@ showPhoneNo
                         </Button> </>
                         :
                         <>
-                      
+                      <p style={{textAlign:'center',marginBottom:'22px'}}>Please Enter OTP</p>
                         <InputOTP  onChange={setOtpValue} value={otpValue}  autoFocus={true} className="custom-otp-input"
-                      inputType="numeric"
+                      inputType="numeric" inputRegex={/^\d+$/}
                      />
-                     <Button type="primary"  onClick={()=>{
+                     <Button style={{margin:'12px 0'}} type="primary"  onClick={()=>{
                       
                        verifyOtp(phoneNumber,otpValue)
-                     }}> Verify OTP</Button></>
+                     }}> Verify OTP</Button>
+                     
+                     <Button  onClick={()=>{
+                      sendOtp(phoneNumber)
+                    }}> Resend OTP</Button>
+                     </>
                       
                       }
        </div> 
