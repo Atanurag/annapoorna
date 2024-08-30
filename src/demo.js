@@ -86,6 +86,8 @@ import { Divider, Flex, Tag,Button ,Layout,Input, Row, Col,Switch,Card,Badge } f
 import { CloseOutlined ,MenuUnfoldOutlined,SearchOutlined,ShoppingOutlined } from '@ant-design/icons';
 import './index.css';
 import io from 'socket.io-client'
+import toast, { Toaster } from 'react-hot-toast';
+
 //import useSWR from "swr";
 
 const { Header, Content, Footer } = Layout;
@@ -486,6 +488,7 @@ let tx = Math.random().toString(36).slice(2, 12).toUpperCase()
 
 /** Launches payment request flow when user taps on buy button. */
 function onBuyClicked() {
+  toast('Here is your toast.');
   if (!window.PaymentRequest) {
     console.log('Web payments are not supported in this browser.');
     alert('Web payments are not supported in this browser.');
