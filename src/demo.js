@@ -985,7 +985,7 @@ showPhoneNo
 <div className='phone-verify-box'>
 
 
-{showOtpInput ? 
+{!showOtpInput ? 
 <>
 <p style={{textAlign:'center'}}>Please Verify Phone Number</p>
 <div style={{height:'25px'}}>
