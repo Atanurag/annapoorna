@@ -528,7 +528,7 @@ function onBuyClicked() {
         pn: 'Anurag Tiwari',
         tr: tx,
         //tr: 'aw43r51xkvodj5',
-        url:'https://annapoorna.vercel.app/contact-us',
+        url:'https://annapoorna.snazzy.live/contact-us',
         mc: '5812',
       },
     }
