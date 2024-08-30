@@ -726,6 +726,7 @@ if(data.status === 'success')
   onBuyClicked();
 }
 else{
+  setOtpValue([]);
   toast.error(data.message, {
     position: "top-center",
     autoClose: 2000,
@@ -745,6 +746,7 @@ else{
 }
 })
 .catch(error => {
+  setOtpValue([]);
   toast.error('something went wrong!', {
     position: "top-center",
     autoClose: 2000,
