@@ -86,7 +86,8 @@ import { Divider, Flex, Tag,Button ,Layout,Input, Row, Col,Switch,Card,Badge } f
 import { CloseOutlined ,MenuUnfoldOutlined,SearchOutlined,ShoppingOutlined } from '@ant-design/icons';
 import './index.css';
 import io from 'socket.io-client'
-import toast, { Toaster } from 'react-hot-toast';
+import { ToastContainer, toast,Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 //import useSWR from "swr";
 
@@ -488,7 +489,7 @@ let tx = Math.random().toString(36).slice(2, 12).toUpperCase()
 
 /** Launches payment request flow when user taps on buy button. */
 function onBuyClicked() {
-  toast('Here is your toast.');
+  
   if (!window.PaymentRequest) {
     console.log('Web payments are not supported in this browser.');
     alert('Web payments are not supported in this browser.');
@@ -501,7 +502,20 @@ function onBuyClicked() {
   }
   //checking isVerifed user
   if(phoneNumber == ''){
-    alert('Please Verify Phone Number!');
+    toast.error('Please Verify Phone Number!', {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+      style: {
+        height: '40px'
+      },
+      });
     setPhoneVerifyBox(true);
     return;
   }
@@ -564,7 +578,21 @@ function onBuyClicked() {
 
 function showPaymentUI(request, canMakePayment) {
   if (!canMakePayment) {
-    alert('GPay is not ready to pay');
+    toast.error('GPay is not ready to pay!', {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+      style: {
+        height: '40px'
+      },
+      });
+    // alert('GPay is not ready to pay');
     //handleNotReadyToPay();
     return;
   }
@@ -661,10 +689,42 @@ if(data.status === 'success')
 setShowOtpInput(true);
 }
 else{
-
+  toast.error(data.message, {
+    position: "top-center",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: false,
+    progress: undefined,
+    theme: "light",
+    transition: Bounce,
+    style: {
+      
+      height: '40px'
+     
+    },
+    });
 }
 })
-.catch(error => console.error('Error:', error));
+.catch(error => {
+  toast.error('something went wrong!', {
+    position: "top-center",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: false,
+    progress: undefined,
+    theme: "light",
+    transition: Bounce,
+    style: {
+      
+      height: '40px'
+     
+    },
+    });
+});
 }
 
 
@@ -686,10 +746,42 @@ if(data.status === 'success')
   onBuyClicked();
 }
 else{
-
+  toast.error(data.message, {
+    position: "top-center",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: false,
+    progress: undefined,
+    theme: "light",
+    transition: Bounce,
+    style: {
+      
+      height: '40px'
+     
+    },
+    });
 }
 })
-.catch(error => console.error('Error:', error));
+.catch(error => {
+  toast.error('something went wrong!', {
+    position: "top-center",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: false,
+    progress: undefined,
+    theme: "light",
+    transition: Bounce,
+    style: {
+      
+      height: '40px'
+     
+    },
+    });
+});
 }
 
 
@@ -748,6 +840,8 @@ React.useEffect(() => {
 
   return (
 <>
+
+<ToastContainer />
 {/* {  p && 'hello baby'}
 
 <button onClick={()=>{
