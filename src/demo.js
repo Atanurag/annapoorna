@@ -1005,7 +1005,7 @@ showPhoneNo
                         <>
                       <p style={{textAlign:'center',marginBottom:'22px'}}>Please Enter OTP</p>
                         <InputOTP  onChange={setOtpValue} value={otpValue}  autoFocus={true} className="custom-otp-input"
-                      inputType="numeric" inputRegex={/^\d+$/}
+                      inputMode="numeric" inputRegex={/^\d+$/}
                      />
                      <Button style={{margin:'12px 0'}} type="primary"  onClick={()=>{
                       
