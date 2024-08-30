@@ -86,8 +86,6 @@ import { Divider, Flex, Tag,Button ,Layout,Input, Row, Col,Switch,Card,Badge } f
 import { CloseOutlined ,MenuUnfoldOutlined,SearchOutlined,ShoppingOutlined } from '@ant-design/icons';
 import './index.css';
 import io from 'socket.io-client'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 //import useSWR from "swr";
 
 const { Header, Content, Footer } = Layout;
@@ -495,17 +493,6 @@ function onBuyClicked() {
   }
   //checking isVerifed user
   if(!JSON.parse(localStorage.getItem('isVerified'))?.verified){
-    toast.success('🦄 Wow so easy!', {
-      position: "top-center",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: false,
-      progress: undefined,
-      theme: "light",
-      transition: Bounce,
-      });
     setPhoneVerifyBox(true);
     return;
   }
