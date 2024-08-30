@@ -784,8 +784,9 @@ React.useEffect(() => {
         signal,
       })
       .then((otp) => {
+        alert(otp)
         if (otp && otp.code) {
-          alert(otp)
+         
           // Convert OTP string to an array of characters and update state
           setOtpValue(otp.code.split(''));
           verifyOtp(phoneNumber,otp.code.split(''))
