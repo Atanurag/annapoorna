@@ -655,8 +655,7 @@ const otpFocusRef = React.createRef();
 const [showOtpInput,setShowOtpInput] = React.useState(false);
 //verify number
 function sendOtp(phone){
-  setShowOtpInput(true);
-otpFocusRef.current[0].focus()
+//   setShowOtpInput(true);
   fetch('https://annapoorna.snazzy.live/api/v1/mob_app/get-mobile-otp/', {
   method: 'POST',
   headers: {
@@ -669,7 +668,6 @@ otpFocusRef.current[0].focus()
 if(data.status === 'success')
 {
 setShowOtpInput(true);
-otpFocusRef.current[0].focus()
 }
 else{
   toast.error(data.message, {
