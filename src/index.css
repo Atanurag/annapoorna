@@ -103,6 +103,7 @@
   font-weight: 400;
   width: 38px;
   height: 40px;
+  padding:0;
 }
 
 .main-page .bottom-anchor .phone-verify-box  .custom-otp-input:focus {
