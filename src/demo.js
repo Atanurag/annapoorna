@@ -560,7 +560,6 @@ const App = () => {
       });
   }
 
-
   function showPaymentUI(request, canMakePayment) {
     if (!canMakePayment) {
       toast.error('Gpay is not ready to pay!', {
@@ -594,13 +593,12 @@ const App = () => {
         window.clearTimeout(paymentTimeout);
         const status = instrument.details.Status;
         const txnRef = instrument.details.txnRef;
-        
-          
+        setTimeout(() => {
+          setPaymentState({ status, txnRef });
            
           document.body.style.overflow = 'hidden';
-          setPaymentState({ status, txnRef });
           //document.getElementsByTagName('body')[0].style.background = 'inherit';
-        
+        }, 1000)
 
         //alert(instrument);
         // let dataString = JSON.stringify({k: instrument});
@@ -799,6 +797,27 @@ const App = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const handleFocus = () => {
+      document.body.style.overflow = 'hidden'; // Prevent scrolling
+      document.body.style.backgroundColor = 'inherit'; // Reset any dull effects
+      document.body.style.opacity = '1'; // Ensure full opacity
+    };
+  
+    const handleBlur = () => {
+      // Handle if needed when the app loses focus, if relevant.
+    };
+  
+    // Add focus and blur event listeners
+    window.addEventListener('focus', handleFocus);
+    window.addEventListener('blur', handleBlur);
+  
+    // Cleanup event listeners on component unmount
+    return () => {
+      window.removeEventListener('focus', handleFocus);
+      window.removeEventListener('blur', handleBlur);
+    };
+  }, []);
   
   return (
     <>
@@ -1078,7 +1097,7 @@ showPhoneNo
                     <Button type="primary" disabled={false} style={{ float: 'right', marginTop: '19px' }} onClick={
                       () => {
                         
-                        //closeOverlay()
+                        
                         document.body.style.overflow = 'auto';
                         setSelFood([]);
                         setPaymentState({
