@@ -591,15 +591,15 @@ const App = () => {
       .then(function (instrument) {
 
         window.clearTimeout(paymentTimeout);
-        const status = instrument.details.Status;
-        const txnRef = instrument.details.txnRef;
-        setTimeout(() => {
-          setPaymentState({ status, txnRef });
+        // const status = instrument.details.Status;
+        // const txnRef = instrument.details.txnRef;
+        // setTimeout(() => {
+        //   setPaymentState({ status, txnRef });
            
-          document.body.style.overflow = 'hidden';
-          //document.getElementsByTagName('body')[0].style.background = 'inherit';
-        }, 1000)
-
+        //   document.body.style.overflow = 'hidden';
+        //   //document.getElementsByTagName('body')[0].style.background = 'inherit';
+        // }, 1000)
+        processResponse(instrument); // Handle response from browser.
         //alert(instrument);
         // let dataString = JSON.stringify({k: instrument});
         // fetch('https://c0ccd437-87bb-4fd4-b585-6ef2b6165e6e-00-xn5f3f0kqnav.sisko.replit.dev/', {
@@ -797,27 +797,6 @@ const App = () => {
     }
   }, []);
 
-  React.useEffect(() => {
-    const handleFocus = () => {
-      document.body.style.overflow = 'hidden'; // Prevent scrolling
-      document.body.style.backgroundColor = 'inherit'; // Reset any dull effects
-      document.body.style.opacity = '1'; // Ensure full opacity
-    };
-  
-    const handleBlur = () => {
-      // Handle if needed when the app loses focus, if relevant.
-    };
-  
-    // Add focus and blur event listeners
-    window.addEventListener('focus', handleFocus);
-    window.addEventListener('blur', handleBlur);
-  
-    // Cleanup event listeners on component unmount
-    return () => {
-      window.removeEventListener('focus', handleFocus);
-      window.removeEventListener('blur', handleBlur);
-    };
-  }, []);
   
   return (
     <>
