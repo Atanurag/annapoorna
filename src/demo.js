@@ -560,18 +560,6 @@ const App = () => {
       });
   }
 
-  const resetBodyStyles = () => {
-    document.body.style.overflow = 'hidden'; // Prevent scrolling
-    document.body.style.backgroundColor = 'inherit'; // Reset to ensure no unintended dullness
-    document.body.style.opacity = '1'; // Make sure opacity is fully set
-  };
-
-  const closeOverlay = () => {
-    setPaymentState(null);
-    document.body.style.overflow = 'auto'; // Re-enable scrolling when overlay is closed
-    document.body.style.backgroundColor = ''; // Clear any background color
-    document.body.style.opacity = ''; // Reset any opacity changes
-  };
 
   function showPaymentUI(request, canMakePayment) {
     if (!canMakePayment) {
@@ -606,12 +594,13 @@ const App = () => {
         window.clearTimeout(paymentTimeout);
         const status = instrument.details.Status;
         const txnRef = instrument.details.txnRef;
-        setTimeout(() => {
+        
+          
+           
+          document.body.style.overflow = 'hidden';
           setPaymentState({ status, txnRef });
-           resetBodyStyles();
-          //document.body.style.overflow = 'hidden';
           //document.getElementsByTagName('body')[0].style.background = 'inherit';
-        }, 1000)
+        
 
         //alert(instrument);
         // let dataString = JSON.stringify({k: instrument});
@@ -642,8 +631,8 @@ const App = () => {
             txnRef: '-'
           }
           );
-          resetBodyStyles();
-          //document.body.style.overflow = 'hidden';
+          
+          document.body.style.overflow = 'hidden';
         }, 1000)
 
         console.log(err);
@@ -1089,13 +1078,13 @@ showPhoneNo
                     <Button type="primary" disabled={false} style={{ float: 'right', marginTop: '19px' }} onClick={
                       () => {
                         
-                        closeOverlay()
-                        // document.body.style.overflow = 'auto';
-                        // setSelFood([]);
-                        // setPaymentState({
-                        //   status: '',
-                        //   txnRef: '',
-                        // });
+                        //closeOverlay()
+                        document.body.style.overflow = 'auto';
+                        setSelFood([]);
+                        setPaymentState({
+                          status: '',
+                          txnRef: '',
+                        });
                       }
                     }>
                       OK
