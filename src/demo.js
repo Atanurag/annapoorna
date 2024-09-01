@@ -797,7 +797,7 @@ const App = () => {
     }
   }, []);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const handleFocus = () => {
       document.body.style.overflow = 'hidden'; // Prevent scrolling
       document.body.style.backgroundColor = 'inherit'; // Reset any dull effects
