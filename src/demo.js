@@ -500,10 +500,10 @@ const App = () => {
       return;
     }
     //checking isVerifed user
-    if (!JSON.parse(localStorage.getItem('isVerified'))?.verified) {
-      setPhoneVerifyBox(true);
-      return;
-    }
+    // if (!JSON.parse(localStorage.getItem('isVerified'))?.verified) {
+    //   setPhoneVerifyBox(true);
+    //   return;
+    // }
     // Create supported payment method.
     const supportedInstruments = [
       {
@@ -596,6 +596,7 @@ const App = () => {
         const txnRef = instrument.details.txnRef;
         setTimeout(() => {
           setPaymentState({ status, txnRef });
+          document.body.style.overflow = 'hidden';
           //document.body.style.overflow = 'hidden';
           //document.getElementsByTagName('body')[0].style.background = 'inherit';
         }, 1000)
@@ -796,7 +797,14 @@ const App = () => {
     }
   }, []);
 
-
+  const closeOverlay = () => {
+    setSelFood([]);
+     setPaymentState({
+        status: '',
+        txnRef: '',
+      }); 
+    document.body.style.overflow = 'auto';
+  };
   return (
     <>
       <Toaster />
@@ -1034,7 +1042,7 @@ showPhoneNo
                   cursor: 'pointer',
                   justifyContent: 'center',  // Added justify-content: center
                   alignItems: 'center',
-                  overflow: 'hidden',
+                  //overflow: 'hidden',
                   // Added align-items: center
                 }}
                 >
@@ -1074,14 +1082,14 @@ showPhoneNo
 
                     <Button type="primary" disabled={false} style={{ float: 'right', marginTop: '19px' }} onClick={
                       () => {
-                        //localStorage.removeItem('txnId');
-                        // setP(false);
-                        document.body.style.overflow = 'auto';
-                        setSelFood([]);
-                        setPaymentState({
-                          status: '',
-                          txnRef: '',
-                        });
+                        
+                        closeOverlay()
+                        // document.body.style.overflow = 'auto';
+                        // setSelFood([]);
+                        // setPaymentState({
+                        //   status: '',
+                        //   txnRef: '',
+                        // });
                       }
                     }>
                       OK
