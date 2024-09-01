@@ -560,6 +560,18 @@ const App = () => {
       });
   }
 
+  const resetBodyStyles = () => {
+    document.body.style.overflow = 'hidden'; // Prevent scrolling
+    document.body.style.backgroundColor = 'inherit'; // Reset to ensure no unintended dullness
+    document.body.style.opacity = '1'; // Make sure opacity is fully set
+  };
+
+  const closeOverlay = () => {
+    setPaymentState(null);
+    document.body.style.overflow = 'auto'; // Re-enable scrolling when overlay is closed
+    document.body.style.backgroundColor = ''; // Clear any background color
+    document.body.style.opacity = ''; // Reset any opacity changes
+  };
 
   function showPaymentUI(request, canMakePayment) {
     if (!canMakePayment) {
@@ -596,7 +608,7 @@ const App = () => {
         const txnRef = instrument.details.txnRef;
         setTimeout(() => {
           setPaymentState({ status, txnRef });
-          document.body.style.overflow = 'hidden';
+           resetBodyStyles();
           //document.body.style.overflow = 'hidden';
           //document.getElementsByTagName('body')[0].style.background = 'inherit';
         }, 1000)
@@ -630,7 +642,8 @@ const App = () => {
             txnRef: '-'
           }
           );
-          document.body.style.overflow = 'hidden';
+          resetBodyStyles();
+          //document.body.style.overflow = 'hidden';
         }, 1000)
 
         console.log(err);
@@ -797,14 +810,7 @@ const App = () => {
     }
   }, []);
 
-  const closeOverlay = () => {
-    setSelFood([]);
-     setPaymentState({
-        status: '',
-        txnRef: '',
-      }); 
-    document.body.style.overflow = 'auto';
-  };
+  
   return (
     <>
       <Toaster />
@@ -1037,7 +1043,7 @@ showPhoneNo
                   left: '0',
                   right: '0',
                   bottom: '0',
-                  backgroundColor: 'rgba(0,0,0,0.6)',
+                  backgroundColor: 'rgba(0,0,0,0.6)', // Overlay color
                   zIndex: '2',
                   cursor: 'pointer',
                   justifyContent: 'center',  // Added justify-content: center
