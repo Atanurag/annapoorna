@@ -623,15 +623,15 @@ const App = () => {
       })
       .catch(function (err) {
 
-        setTimeout(() => {
-          setPaymentState({
-            status: 'FAILED',
-            txnRef: '-'
-          }
-          );
+        // setTimeout(() => {
+        //   setPaymentState({
+        //     status: 'FAILED',
+        //     txnRef: '-'
+        //   }
+        //   );
           
-          document.body.style.overflow = 'hidden';
-        }, 1000)
+        //   document.body.style.overflow = 'hidden';
+        // }, 1000)
 
         console.log(err);
 
