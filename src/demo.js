@@ -503,10 +503,10 @@ const App = () => {
       return;
     }
     //checking isVerifed user
-    // if (!JSON.parse(localStorage.getItem('isVerified'))?.verified) {
-    //   setPhoneVerifyBox(true);
-    //   return;
-    // }
+    if (!JSON.parse(localStorage.getItem('isVerified'))?.verified) {
+      setPhoneVerifyBox(true);
+      return;
+    }
     // Create supported payment method.
     const supportedInstruments = [
       {
@@ -598,6 +598,7 @@ const App = () => {
         window.clearTimeout(paymentTimeout);
         const status = instrument.details.Status;
         const txnRef = instrument.details.txnRef;
+
        instrument.complete('success').then(function(){
         
           setPaymentState({ status, txnRef });
@@ -757,6 +758,7 @@ const App = () => {
   //read otp 
   React.useEffect(() => {
     // Check if the browser supports the Web OTP API
+    if(phoneVerifyBox && showOtpInput){
     if ('OTPCredential' in window) {
       const ac = new AbortController();
       const signal = ac.signal;
@@ -784,6 +786,7 @@ const App = () => {
         ac.abort();
       };
     }
+  }
   }, []);
 
 
