@@ -455,6 +455,7 @@ const App = () => {
   async function checkCanMakePayment(request) {
     // Check canMakePayment cache, use cache result directly if it exists.
     if (sessionStorage.hasOwnProperty(canMakePaymentCache)) {
+      console.log('checking can make 1')
       return Promise.resolve(JSON.parse(sessionStorage[canMakePaymentCache]));
     }
     // If canMakePayment() isn't available, default to assume the method is
@@ -463,12 +464,14 @@ const App = () => {
 
     // Feature detect canMakePayment().
     if (request.canMakePayment) {
+      console.log('checking can make 2')
       canMakePaymentPromise = request.canMakePayment();
     }
 
     return canMakePaymentPromise
       .then((result) => {
         // Store the result in cache for future usage.
+        console.log('checking can make 3')
         sessionStorage[canMakePaymentCache] = result;
         return result;
       })
@@ -541,6 +544,7 @@ const App = () => {
     let request = null;
     try {
       request = new PaymentRequest(supportedInstruments, details);
+      console.log('payment request creation check')
     } catch (e) {
       console.log('Payment Request Error: ' + e.message);
       return;
@@ -553,6 +557,7 @@ const App = () => {
     var canMakePaymentPromise = checkCanMakePayment(request);
     canMakePaymentPromise
       .then((result) => {
+        console.log('showPayment ui then')
         showPaymentUI(request, result);
       })
       .catch((err) => {
@@ -593,6 +598,7 @@ const App = () => {
         window.clearTimeout(paymentTimeout);
         const status = instrument.details.Status;
         const txnRef = instrument.details.txnRef;
+        console.log('on then from gpay back')
         navigate('/contact-us')
         // setTimeout(() => {
         //   setPaymentState({ status, txnRef });
@@ -623,6 +629,8 @@ const App = () => {
         //processResponse(instrument); // Handle response from browser.
       })
       .catch(function (err) {
+        console.log('on catch from gpay')
+
         navigate('/contact-us')
         // setTimeout(() => {
         //   setPaymentState({
