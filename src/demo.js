@@ -1031,7 +1031,7 @@ showPhoneNo
                   right: '0',
                   bottom: '0',
                   backgroundColor: 'rgba(0,0,0,0.6)', // Overlay color
-                  zIndex: '2',
+                  zIndex: 99999,
                   cursor: 'pointer',
                   justifyContent: 'center',  // Added justify-content: center
                   alignItems: 'center',
