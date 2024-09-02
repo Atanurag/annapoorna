@@ -634,7 +634,7 @@ const App = () => {
         console.log('on catch from gpay')
 
         //navigate('/contact-us')
-        setTimeout(() => {
+      
           setPaymentState({
             status: 'FAILED',
             txnRef: '-'
@@ -642,7 +642,7 @@ const App = () => {
           );
           
            document.body.style.overflow = 'hidden';
-         }, 1000)
+         
 
         console.log(err);
 
