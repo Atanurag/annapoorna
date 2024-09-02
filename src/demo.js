@@ -998,7 +998,7 @@ showPhoneNo
                     :
                     <>
                       <p style={{ textAlign: 'center', marginBottom: '22px' }}>Please Enter OTP</p>
-                      <InputOTP autoComplete="one-time-code" inputRef={otpFocusRef} onChange={setOtpValue} value={otpValue} autoFocus={true} className="custom-otp-input"
+                      <InputOTP autoComplete="one-time-code" inputRef={otpFocusRef} onChange={setOtpValue} value={otpValue} className="custom-otp-input"
                         inputMode="numeric" inputRegex={/^\d+$/}
                       />
                       <Button style={{ margin: '12px 0' }} type="primary" onClick={() => {
