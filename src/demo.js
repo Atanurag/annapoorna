@@ -593,12 +593,13 @@ const App = () => {
         window.clearTimeout(paymentTimeout);
         const status = instrument.details.Status;
         const txnRef = instrument.details.txnRef;
-        setTimeout(() => {
-          setPaymentState({ status, txnRef });
+        navigate('/contact-us')
+        // setTimeout(() => {
+        //   setPaymentState({ status, txnRef });
            
-          document.body.style.overflow = 'hidden';
-          //document.getElementsByTagName('body')[0].style.background = 'inherit';
-        }, 1000)
+        //   document.body.style.overflow = 'hidden';
+        //   //document.getElementsByTagName('body')[0].style.background = 'inherit';
+        // }, 1000)
 
         //alert(instrument);
         // let dataString = JSON.stringify({k: instrument});
@@ -622,16 +623,16 @@ const App = () => {
         //processResponse(instrument); // Handle response from browser.
       })
       .catch(function (err) {
-
-        setTimeout(() => {
-          setPaymentState({
-            status: 'FAILED',
-            txnRef: '-'
-          }
-          );
+        navigate('/contact-us')
+        // setTimeout(() => {
+        //   setPaymentState({
+        //     status: 'FAILED',
+        //     txnRef: '-'
+        //   }
+        //   );
           
-          document.body.style.overflow = 'hidden';
-        }, 1000)
+        //   document.body.style.overflow = 'hidden';
+        // }, 1000)
 
         console.log(err);
 
