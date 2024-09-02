@@ -635,13 +635,12 @@ const App = () => {
 
         //navigate('/contact-us')
       
-          setPaymentState({
-            status: 'FAILED',
-            txnRef: '-'
-          }
-          );
-          
-           document.body.style.overflow = 'hidden';
+        setPaymentState({
+          status: 'FAILED',
+          txnRef: '-'
+        }
+        );
+         document.body.style.overflow = 'hidden';
          
 
         console.log(err);
@@ -973,7 +972,7 @@ showPhoneNo
                 <div className='phone-verify-box'>
 
 
-                  {!showOtpInput ?
+                  {showOtpInput ?
                     <>
                       <p style={{ textAlign: 'center' }}>Please Verify Phone Number</p>
                       <div style={{ height: '25px' }}>
