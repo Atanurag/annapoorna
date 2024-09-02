@@ -599,12 +599,12 @@ const App = () => {
         const status = instrument.details.Status;
         const txnRef = instrument.details.txnRef;
        instrument.complete('success').then(function(){
-        setTimeout(() => {
+        
           setPaymentState({ status, txnRef });
            
           document.body.style.overflow = 'hidden';
           //document.getElementsByTagName('body')[0].style.background = 'inherit';
-        }, 1000)
+        
        })
         
 
