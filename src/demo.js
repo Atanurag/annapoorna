@@ -503,10 +503,10 @@ const App = () => {
       return;
     }
     //checking isVerifed user
-    if (!JSON.parse(localStorage.getItem('isVerified'))?.verified) {
-      setPhoneVerifyBox(true);
-      return;
-    }
+    // if (!JSON.parse(localStorage.getItem('isVerified'))?.verified) {
+    //   setPhoneVerifyBox(true);
+    //   return;
+    // }
     // Create supported payment method.
     const supportedInstruments = [
       {
