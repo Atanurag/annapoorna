@@ -834,6 +834,42 @@ const App = () => {
   };
   return (
     <>
+
+
+{/* {food.map((category,i)=>{
+  return (<>
+
+  <h1>{category.heading}</h1>
+
+  {category.content.filter(obj =>obj.name.toLowerCase().includes(inp.toLowerCase()) && obj.isVeg === isVeg).length >0 ? 
+  category.content.filter(obj =>obj.name.toLowerCase().includes(inp.toLowerCase()) && obj.isVeg === isVeg).map((da)=>{
+
+    return(<>
+    <p>{da.name}</p>
+    </>)
+  }):'No items'}
+    
+  </>)
+})} */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <Toaster />
       <Routes >
         <Route path="/"
@@ -939,7 +975,7 @@ showPhoneNo
                 <div className='phone-verify-box'>
 
 
-                  {showOtpInput ?
+                  {!showOtpInput ?
                     <>
                       <p style={{ textAlign: 'center' }}>Please Verify Phone Number</p>
                       <div style={{ height: '25px' }}>
