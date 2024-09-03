@@ -509,6 +509,7 @@ const App = () => {
     //checking isVerifed user
     if (!JSON.parse(localStorage.getItem('isVerified'))?.verified) {
       setPhoneVerifyBox(true);
+      otpFocusRef?.current[0]?.focus()
       return;
     }
     // Create supported payment method.
@@ -665,7 +666,7 @@ const App = () => {
   //verify phone for txn processing
   const [phoneNumber, setPhoneNumber] = React.useState('');
   const [otpValue, setOtpValue] = React.useState([]);
-  const [currentIndex, setCurrentIndex] = React.useState(0);
+  // const [currentIndex, setCurrentIndex] = React.useState(0);
   const otpFocusRef = React.useRef();
   const [showOtpInput, setShowOtpInput] = React.useState(false);
   //verify number
@@ -864,17 +865,8 @@ const App = () => {
 
   // const handleChange = (otp) => setOtp(otp);
 
-  const [hasFocus, setHasFocus] = React.useState(false);
 
-  React.useEffect(() => {
-    if (hasFocus) {
-      setTimeout(() => {
-        otpFocusRef.current.blur();
-        setHasFocus(false);
-        console.log('removed');
-      }, 2000); // 2 seconds
-    }
-  }, [hasFocus, otpValue]);
+
   return (
     <>
 
@@ -1044,7 +1036,7 @@ showPhoneNo
                     :
                     <>
                       <p style={{ textAlign: 'center', marginBottom: '22px' }}>Please Enter OTP</p>
-                      <InputOTP  onClick={() => setHasFocus(true)} ref={otpFocusRef} inputType="custom" autoComplete="one-time-code"  onChange={setOtpValue} value={otpValue} className="custom-otp-input"
+                      <InputOTP ref={otpFocusRef} inputType="custom" autoComplete="one-time-code"  onChange={setOtpValue} value={otpValue} className="custom-otp-input"
                         inputMode="numeric" inputRegex={/^\d+$/}
                       />
                        {/* <InputOTP
