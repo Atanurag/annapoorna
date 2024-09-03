@@ -106,15 +106,15 @@
   padding:0;
 }
 
-.main-page .bottom-anchor .phone-verify-box  .custom-otp-input:focus {
+/* .main-page .bottom-anchor .phone-verify-box  .custom-otp-input:focus {
   border-color: #4096ff;
   
-}
+} */
 
-.main-page .bottom-anchor .phone-verify-box .ant-input-outlined:focus{
+/* .main-page .bottom-anchor .phone-verify-box .ant-input-outlined:focus{
   border-color: #4096ff;
  
-}
+} */
 
 
 .main-page .bottom-anchor .cross{
@@ -141,12 +141,11 @@
    /* Add spacing between buttons */
 }
 .ant-input:focus {
-  border-color: red;
+  border-color:#4096ff;;
   outline: 0;
   -webkit-box-shadow: 0 0 0 2px rgba(87,168,233, .2);
   box-shadow: 0 0 0 2px rgba(87,168,233, .2);
 }
-
 
 
 .main-page .ant-anchor-wrapper .ant-anchor .ant-anchor-link-title{

@@ -503,10 +503,10 @@ const App = () => {
       return;
     }
     //checking isVerifed user
-    if (!JSON.parse(localStorage.getItem('isVerified'))?.verified) {
-      setPhoneVerifyBox(true);
-      return;
-    }
+    // if (!JSON.parse(localStorage.getItem('isVerified'))?.verified) {
+    //   setPhoneVerifyBox(true);
+    //   return;
+    // }
     // Create supported payment method.
     const supportedInstruments = [
       {
@@ -661,6 +661,7 @@ const App = () => {
   //verify phone for txn processing
   const [phoneNumber, setPhoneNumber] = React.useState('');
   const [otpValue, setOtpValue] = React.useState([]);
+  const [currentIndex, setCurrentIndex] = React.useState(0);
   const otpFocusRef = React.createRef();
   const [showOtpInput, setShowOtpInput] = React.useState(false);
   //verify number
@@ -810,64 +811,30 @@ const App = () => {
   }, []);
 
   
+  const handleInputChange = (value) => {
+    setOtpValue(value);
+    if (value.length > currentIndex) {
+      setCurrentIndex(currentIndex + 1);
+    }
+  };
+
+  const handleFocus = (index) => {
+    const otpInputs = document.querySelectorAll('.custom-otp-input');
+    otpInputs[currentIndex - 1]?.blur();
+    otpInputs[index]?.focus();
+    setCurrentIndex(index);
+  };
+
+  const handleBlur = () => {
+    const otpInputs = document.querySelectorAll('.custom-otp-input');
+    if (currentIndex > 0) {
+      otpInputs[currentIndex - 1].blur();
+    }
+    document.activeElement.blur(); // Add this line
+  };
   return (
     <>
       <Toaster />
-      {/* {  p && 'hello'}
-
-<button onClick={()=>{
-  localStorage.removeItem('txnId');
-  setP(false)
-}}>rem</button>
-<p onClick={()=>onBuyClicked();()}>dsds</p>
-<a href={`upi://pay?pa=kk.payutest@hdfcbank&pn=demo&tr=dacff41d43b36b0242527417947c00f75b161120a930fbc1c42550b01d209a5c&am=1.00`}>
-  <Button type='primary' style={{marginTop:'12px'}} >
-pay upi
-  </Button> </a>  */}
-      {/* <a href={`upi://pay?pa=iotronicssystempvtlt.62347918@hdfcbank&pn=VerifiedMerchant&mode=00&orgid=00000&tid=${dyn}&tr=${dyn}&mam=null&tn=trialdemopayment&am=1&cu=INR&url=https://t.ly/5Tocf`}>
-  <Button type='primary' style={{marginTop:'12px'}} >
-pay upi
-  </Button> </a> */}
-      {/* <button><a href={`upi://pay?pa=iotronicssystempvtlt.62347918@hdfcbank&pn=VerifiedMerchant&mode=00&orgid=00000&tid=${dyn}&tr=${dyn}&mam=null&tn=trialdemopayment&am=1&cu=INR&url=https://t.ly/5Tocf`}>
-    <Button type="primary" style={{position:'absolute',right:'12px',fontWeight:'bold'}}>pay
-  </Button></button> */}
-      {/* <button onClick={()=>{handlePayment()}} style={{marginTop:'50px',padding:'12px',float:'right',color:''}}>Pay with UPi</button> */}
-      {/* <p>{wy}</p> */}
-      {/* 
-overlays
-<div style={{position: 'fixed',
-  display: 'block',
-  width: '100%',
-  height: '100%',
-  top: '0',
-  left: '0',
-  right: '0',
-  bottom: '0',
-  backgroundColor:'rgba(0,0,0,0.5)',
-  zIndex: '2',
-  cursor: 'pointer'}}>
-    
-  </div> */}
-
-      {/* <a href="paytmmp://pay?pa=7875853859@paytm&pn=anurag&tn=Test UPI&am=1&cu=INR&mc=1234&tr=01234">kkkkkkkkkkkk</a> */}
-
-      {/* <a href={`tez://upi/pay?pa=7875853859@paytm&pn=anurag&tn=Test%20UPI&am=1&cu=INR&mc=8989&tr=89098`}><Button type="primary" text={"pp"} style={{fontWeight:'bold'}}>gpay1
-  </Button></a>
-  
-  <a href={`tez://pay?pa=7875853859@paytm&pn=anurag&tn=Test%20UPI&am=1&cu=INR&mc=5653&tr=34343`}><Button type="primary" text={"pp"} style={{fontWeight:'bold'}}>gpay2
-  </Button></a>
-
-
-    <a href={`phonepe://pay?pa=7875853859@paytm&pn=anurag&tn=Test%20UPI&am=1&cu=INR&mc=8987&tr=67676&url=https%3A%2F%2Freact-2pur3b.stackblitz.io%2Fpayment-status`}><Button type="primary" text={"pp"} style={{fontWeight:'bold'}}>phonepay
-  </Button></a>  */}
-
-
-      {/* <a style={{marginTop:'12px'}} onClick={()=>{
-  onBuyClicked();
-}}>pay</a> */}
-
-      {/*  */}
-
       <Routes >
         <Route path="/"
           element={<>
@@ -998,9 +965,20 @@ showPhoneNo
                     :
                     <>
                       <p style={{ textAlign: 'center', marginBottom: '22px' }}>Please Enter OTP</p>
-                      <InputOTP autoComplete="one-time-code" inputRef={otpFocusRef} onChange={setOtpValue} value={otpValue} className="custom-otp-input"
+                      {/* <InputOTP inputType="custom" autoComplete="one-time-code"  onChange={setOtpValue} value={otpValue} className="custom-otp-input"
                         inputMode="numeric" inputRegex={/^\d+$/}
-                      />
+                      /> */}
+                       <InputOTP
+                            inputType="custom"
+                            autoComplete="one-time-code"
+                            onChange={handleInputChange}
+                            value={otpValue}
+                            className="custom-otp-input"
+                            inputMode="numeric"
+                            inputRegex={/^\d+$/}
+                            onFocus={(index) => handleFocus(index)}
+                            onBlur={handleBlur}
+                          />
                       <Button style={{ margin: '12px 0' }} type="primary" onClick={() => {
 
                         verifyOtp(phoneNumber, otpValue)
@@ -1178,10 +1156,16 @@ showPhoneNo
   </Button></a> */}
                     {/* <a href={`upi://pay?pa=iotronicssystempvtlt.62347918@hdfcbank&pn=VerifiedMerchant&mode=00&orgid=00000&tid=${dyn}&tr=${dyn}&mam=null&tn=trialdemopaytment&am=1&cu=INR&url=https://t.ly/5Tocf`}><Button type="primary" style={{position:'absolute',right:'12px',fontWeight:'bold'}}>pay
   </Button></a> */}
-                    <Button type="primary"
+
+<Button type="primary"
+                      style={{ position: 'absolute', right: '12px', fontWeight: 'bold' }}
+                      >
+< a href={`upi://pay?pa=7875853859@pthdfc&pn=demo&tr=403993715531809596&tid=PPPL403993715531809596240624231049&am=${selFood?.reduce((ac, cu) => ac + cu.price, 0).toFixed(2)}&cu=INR&tn=UPIIntent`} >Pay</a>
+</Button> 
+                    {/* <Button type="primary"
                       style={{ position: 'absolute', right: '12px', fontWeight: 'bold' }}
                       onClick={() => { onBuyClicked(); }}>pay
-                    </Button>
+                    </Button> */}
 
 
                   </div>
