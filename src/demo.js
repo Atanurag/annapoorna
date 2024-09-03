@@ -1159,7 +1159,7 @@ showPhoneNo
 <Button type="primary"
                       style={{ position: 'absolute', right: '12px', fontWeight: 'bold' }}
                       >
-< a href={`upi://pay?pa=7875853859@pthdfc&pn=demo&tr=403993715531809596&tid=PPPL403993715531809596240624231049&am=${selFood?.reduce((ac, cu) => ac + cu.price, 0).toFixed(2)}&cu=INR&tn=UPIIntent`} >Pay</a>
+< a href={`upi://pay?pa=BHARATPE.90070065432@fbpe&pn=demo&tr=403993715531809596&tid=PPPL403993715531809596240624231049&am=${selFood?.reduce((ac, cu) => ac + cu.price, 0).toFixed(2)}&cu=INR&tn=UPIIntent`} >Pay</a>
 </Button> 
                     {/* <Button type="primary"
                       style={{ position: 'absolute', right: '12px', fontWeight: 'bold' }}
