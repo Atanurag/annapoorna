@@ -89,6 +89,10 @@ import io from 'socket.io-client'
 import toast, { Toaster } from 'react-hot-toast';
 //import useSWR from "swr";
 
+
+import { OtpInput } from 'reactjs-otp-input';
+
+
 const { Header, Content, Footer } = Layout;
 
 const expireTime = 30 * 60 * 1000;
@@ -503,10 +507,10 @@ const App = () => {
       return;
     }
     //checking isVerifed user
-    // if (!JSON.parse(localStorage.getItem('isVerified'))?.verified) {
-    //   setPhoneVerifyBox(true);
-    //   return;
-    // }
+    if (!JSON.parse(localStorage.getItem('isVerified'))?.verified) {
+      setPhoneVerifyBox(true);
+      return;
+    }
     // Create supported payment method.
     const supportedInstruments = [
       {
@@ -662,7 +666,7 @@ const App = () => {
   const [phoneNumber, setPhoneNumber] = React.useState('');
   const [otpValue, setOtpValue] = React.useState([]);
   const [currentIndex, setCurrentIndex] = React.useState(0);
-  const otpFocusRef = React.createRef();
+  const otpFocusRef = React.useRef();
   const [showOtpInput, setShowOtpInput] = React.useState(false);
   //verify number
   function sendOtp(phone) {
@@ -811,31 +815,70 @@ const App = () => {
   }, []);
 
   
-  const handleInputChange = (value) => {
-    setOtpValue(value);
-    if (value.length > currentIndex) {
-      setCurrentIndex(currentIndex + 1);
-    }
-  };
+  // const handleInputChange = (value) => {
+  //   setOtpValue(value);
+  //   if (value.length > currentIndex) {
+  //     setCurrentIndex(currentIndex + 1);
+  //   }
+  // };
 
-  const handleFocus = (index) => {
-    const otpInputs = document.querySelectorAll('.custom-otp-input');
-    otpInputs[currentIndex - 1]?.blur();
-    otpInputs[index]?.focus();
-    setCurrentIndex(index);
-  };
+  // const handleFocus = (index) => {
+  //   const otpInputs = document.querySelectorAll('.custom-otp-input');
+  //   otpInputs[currentIndex - 1]?.blur();
+  //   otpInputs[index]?.focus();
+  //   setCurrentIndex(index);
+  // };
 
-  const handleBlur = () => {
-    const otpInputs = document.querySelectorAll('.custom-otp-input');
-    if (currentIndex > 0) {
-      otpInputs[currentIndex - 1].blur();
+  // const handleBlur = () => {
+  //   const otpInputs = document.querySelectorAll('.custom-otp-input');
+  //   if (currentIndex > 0) {
+  //     otpInputs[currentIndex - 1].blur();
+  //   }
+  //   document.activeElement.blur(); // Add this line
+  // };
+
+  // const inputRefs = React.useRef([...Array(6)].map(() => React.createRef()));  // Creates an array of refs
+
+  // const handleOtpChange = (values) => {
+  //   console.log('OTP values:', values); // Handle OTP value change
+  // };
+
+  // const handleInputFocus = (index) => {
+  //   // Check if the ref exists and focus on it
+  //   if (inputRefs.current[index] && inputRefs.current[index].current) {
+  //     inputRefs.current[index].current.focus();
+  //   }
+  // };
+  // const handleKeyDown = (event, index) => {
+  //   const key = event.key;
+
+  //   if (key === 'Backspace' && !event.target.value && index > 0) {
+  //     // Move focus to the previous field on Backspace if it's empty
+  //     inputRefs.current[index - 1]?.current?.focus();
+  //   } else if (/\d/.test(key) && index < inputRefs.current.length - 1) {
+  //     // Move focus to the next field if a digit is entered
+  //     inputRefs.current[index + 1]?.current?.focus();
+  //   }
+  // };
+  // const [otp, setOtp] = React.useState('');
+
+  // const handleChange = (otp) => setOtp(otp);
+
+  const [hasFocus, setHasFocus] = React.useState(false);
+
+  React.useEffect(() => {
+    if (hasFocus) {
+      setTimeout(() => {
+        otpFocusRef.current.blur();
+        setHasFocus(false);
+        console.log('removed');
+      }, 2000); // 2 seconds
     }
-    document.activeElement.blur(); // Add this line
-  };
+  }, [hasFocus, otpValue]);
   return (
     <>
 
-
+{/* <OtpInput value={otp} onChange={handleChange} numInputs={6} separator={<span style={{marginRight:'12px'}}></span>} />; */}
 {/* {food.map((category,i)=>{
   return (<>
 
@@ -975,7 +1018,7 @@ showPhoneNo
                 <div className='phone-verify-box'>
 
 
-                  {!showOtpInput ?
+                  {showOtpInput ?
                     <>
                       <p style={{ textAlign: 'center' }}>Please Verify Phone Number</p>
                       <div style={{ height: '25px' }}>
@@ -1001,20 +1044,20 @@ showPhoneNo
                     :
                     <>
                       <p style={{ textAlign: 'center', marginBottom: '22px' }}>Please Enter OTP</p>
-                      {/* <InputOTP inputType="custom" autoComplete="one-time-code"  onChange={setOtpValue} value={otpValue} className="custom-otp-input"
+                      <InputOTP  onClick={() => setHasFocus(true)} ref={otpFocusRef} inputType="custom" autoComplete="one-time-code"  onChange={setOtpValue} value={otpValue} className="custom-otp-input"
                         inputMode="numeric" inputRegex={/^\d+$/}
-                      /> */}
-                       <InputOTP
+                      />
+                       {/* <InputOTP
                             inputType="custom"
                             autoComplete="one-time-code"
-                            onChange={handleInputChange}
+                            onChange={setOtpValue}
                             value={otpValue}
                             className="custom-otp-input"
                             inputMode="numeric"
                             inputRegex={/^\d+$/}
-                            onFocus={(index) => handleFocus(index)}
-                            onBlur={handleBlur}
-                          />
+                            inputRef={otpRefs}
+                          /> */}
+
                       <Button style={{ margin: '12px 0' }} type="primary" onClick={() => {
 
                         verifyOtp(phoneNumber, otpValue)
@@ -1192,15 +1235,15 @@ showPhoneNo
                     {/* <a href={`upi://pay?pa=iotronicssystempvtlt.62347918@hdfcbank&pn=VerifiedMerchant&mode=00&orgid=00000&tid=${dyn}&tr=${dyn}&mam=null&tn=trialdemopaytment&am=1&cu=INR&url=https://t.ly/5Tocf`}><Button type="primary" style={{position:'absolute',right:'12px',fontWeight:'bold'}}>pay
   </Button></a> */}
 
-<Button type="primary"
+{/* <Button type="primary"
                       style={{ position: 'absolute', right: '12px', fontWeight: 'bold' }}
                       >
 < a href={`upi://pay?pa=BHARATPE.90070065432@fbpe&pn=demo&tr=403993715531809596&tid=PPPL403993715531809596240624231049&am=${selFood?.reduce((ac, cu) => ac + cu.price, 0).toFixed(2)}&cu=INR&tn=UPIIntent`} >Pay</a>
-</Button> 
-                    {/* <Button type="primary"
+</Button>  */}
+                     <Button type="primary"
                       style={{ position: 'absolute', right: '12px', fontWeight: 'bold' }}
                       onClick={() => { onBuyClicked(); }}>pay
-                    </Button> */}
+                    </Button> 
 
 
                   </div>

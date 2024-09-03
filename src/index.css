@@ -141,13 +141,17 @@
    /* Add spacing between buttons */
 }
 .ant-input:focus {
-  border-color:#4096ff;;
+  border-color:#4096ff;
   outline: 0;
   -webkit-box-shadow: 0 0 0 2px rgba(87,168,233, .2);
   box-shadow: 0 0 0 2px rgba(87,168,233, .2);
 }
 
-
+.ant-input:not(:focus) {
+  border-color:  #d9d9d9;
+  outline: none;
+  box-shadow: none;
+}
 .main-page .ant-anchor-wrapper .ant-anchor .ant-anchor-link-title{
   margin: 5px;
   background: #f7f7b6;
