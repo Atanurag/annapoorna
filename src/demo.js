@@ -509,7 +509,7 @@ const App = () => {
     //checking isVerifed user
     if (!JSON.parse(localStorage.getItem('isVerified'))?.verified) {
       setPhoneVerifyBox(true);
-      otpFocusRef?.current[0]?.focus()
+      otpFocusRef.current[0].focus()
       return;
     }
     // Create supported payment method.
@@ -667,7 +667,7 @@ const App = () => {
   const [phoneNumber, setPhoneNumber] = React.useState('');
   const [otpValue, setOtpValue] = React.useState([]);
   // const [currentIndex, setCurrentIndex] = React.useState(0);
-  const otpFocusRef = React.useRef();
+  const otpFocusRef = React.createRef();
   const [showOtpInput, setShowOtpInput] = React.useState(false);
   //verify number
   function sendOtp(phone) {
@@ -815,63 +815,12 @@ const App = () => {
     }
   }, []);
 
-  
-  // const handleInputChange = (value) => {
-  //   setOtpValue(value);
-  //   if (value.length > currentIndex) {
-  //     setCurrentIndex(currentIndex + 1);
-  //   }
-  // };
-
-  // const handleFocus = (index) => {
-  //   const otpInputs = document.querySelectorAll('.custom-otp-input');
-  //   otpInputs[currentIndex - 1]?.blur();
-  //   otpInputs[index]?.focus();
-  //   setCurrentIndex(index);
-  // };
-
-  // const handleBlur = () => {
-  //   const otpInputs = document.querySelectorAll('.custom-otp-input');
-  //   if (currentIndex > 0) {
-  //     otpInputs[currentIndex - 1].blur();
-  //   }
-  //   document.activeElement.blur(); // Add this line
-  // };
-
-  // const inputRefs = React.useRef([...Array(6)].map(() => React.createRef()));  // Creates an array of refs
-
-  // const handleOtpChange = (values) => {
-  //   console.log('OTP values:', values); // Handle OTP value change
-  // };
-
-  // const handleInputFocus = (index) => {
-  //   // Check if the ref exists and focus on it
-  //   if (inputRefs.current[index] && inputRefs.current[index].current) {
-  //     inputRefs.current[index].current.focus();
-  //   }
-  // };
-  // const handleKeyDown = (event, index) => {
-  //   const key = event.key;
-
-  //   if (key === 'Backspace' && !event.target.value && index > 0) {
-  //     // Move focus to the previous field on Backspace if it's empty
-  //     inputRefs.current[index - 1]?.current?.focus();
-  //   } else if (/\d/.test(key) && index < inputRefs.current.length - 1) {
-  //     // Move focus to the next field if a digit is entered
-  //     inputRefs.current[index + 1]?.current?.focus();
-  //   }
-  // };
-  // const [otp, setOtp] = React.useState('');
-
-  // const handleChange = (otp) => setOtp(otp);
-
-
-
   return (
     <>
 
-{/* <OtpInput value={otp} onChange={handleChange} numInputs={6} separator={<span style={{marginRight:'12px'}}></span>} />; */}
-{/* {food.map((category,i)=>{
+{/* <OtpInput value={otp} onChange={handleChange} numInputs={6} separator={<span style={{marginRight:'12px'}}></span>} />; */} 
+ 
+ {food.map((category,i)=>{
   return (<>
 
   <h1>{category.heading}</h1>
@@ -880,12 +829,30 @@ const App = () => {
   category.content.filter(obj =>obj.name.toLowerCase().includes(inp.toLowerCase()) && obj.isVeg === isVeg).map((da)=>{
 
     return(<>
-    <p>{da.name}</p>
+    <p  onClick={()=>{
+      let newCont = category.content.map((p)=>{
+        if(p.name  === da.name){
+          return {...p,
+          quantity:p.quantity+=1}
+        }
+        return p;
+      })
+setFood((pr)=>pr.map((data)=>{
+ if(data.heading === category.heading){
+  return {
+    ...data,
+    content:newCont
+  }
+ }
+ return data;
+}))
+      console.log(da)
+    }} >{da.name}  {da.quantity} </p>
     </>)
   }):'No items'}
     
   </>)
-})} */}
+})}
 
 
 
@@ -1036,9 +1003,14 @@ showPhoneNo
                     :
                     <>
                       <p style={{ textAlign: 'center', marginBottom: '22px' }}>Please Enter OTP</p>
-                      <InputOTP ref={otpFocusRef} inputType="custom" autoComplete="one-time-code"  onChange={setOtpValue} value={otpValue} className="custom-otp-input"
+                      <InputOTP inputRef={otpFocusRef} autoComplete="one-time-code"   autoFocus={true}   onChange={setOtpValue} value={otpValue} className="custom-otp-input"
                         inputMode="numeric" inputRegex={/^\d+$/}
                       />
+
+{/* <InputOTP autoComplete="one-time-code" inputRef={otpFocusRef} onChange={setOtpValue} value={otpValue} autoFocus={true} className="custom-otp-input"
+                        inputMode="numeric" inputRegex={/^\d+$/}
+                      /> */}
+
                        {/* <InputOTP
                             inputType="custom"
                             autoComplete="one-time-code"
@@ -1414,7 +1386,8 @@ showPhoneNo
                               <div style={{ marginBottom: '8px' }}>
                                 <Tag color="geekblue">{e.tag}</Tag>
                               </div>
-                              <Button type="primary" onClick={() => {
+
+                              {/* {e.quantity < 1 ? <Button type="primary" onClick={() => {
 
 
                                 setSelFood([...selFood, e])
@@ -1423,10 +1396,10 @@ showPhoneNo
                                 Add
                               </Button>
 
+:
 
 
-
-                              {/* <div style={{ display: 'flex', alignItems: 'center' }}>
+                              <div style={{ display: 'flex', alignItems: 'center' }}>
 <Button  type="primary" style={{ fontWeight:'bold'}}>-</Button>
 
       <div style={{ width: '40px',fontWeight:'500', textAlign: 'center', fontSize: '16px', padding: '10px' }}>
@@ -1434,8 +1407,8 @@ showPhoneNo
       </div>
       <Button  type="primary" style={{ fontWeight:'500'}}>+</Button>
 
-    </div> */}
-
+    </div>
+} */}
 
 
                             </div>
