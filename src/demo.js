@@ -821,8 +821,8 @@ const App = () => {
 
 
 React.useEffect(()=>{
-console.log(selFood)
-},[selFood])
+console.log(selFood,food,'p')
+},[selFood,food])
 
   return (
     <>
@@ -1406,8 +1406,10 @@ showPhoneNo
                           onClick={()=>{
                             let newCont = category.content.map((p)=>{
                               if(p.name  === da.name){
+                                setSelFood([...selFood, {...p,quantity:1}])
                                 return {...p,
-                                quantity:1 }
+                                quantity:1
+                              }
                               }
                               return p;
                             })
@@ -1421,8 +1423,8 @@ showPhoneNo
                           return data;
                           }))
                             //console.log(da)
-                            //here problem
-                            setSelFood([...selFood, newCont])
+                            
+                            
                           }}
 
                               >
