@@ -107,6 +107,7 @@ const App = () => {
     // Breakfast Items (Heading)
     {
       heading: 'Breakfast Items',
+      
       content: [
         {
           name: 'Dosa',
@@ -119,13 +120,13 @@ const App = () => {
           img: 'https://t3.ftcdn.net/jpg/02/72/47/94/360_F_272479453_Kl30iWCD9WWhlU8BNORRtNUR1ADxXTCh.jpg',
         },
         {
-          name: 'Idli',
-          description: 'Steamed savory rice cakes',
-          price: 30,
+          name: 'Pav Bhaji',
+          description: 'Spiced mixture of mashed vegetables in a thick gravy served with pav',
+          price: 40,
           isVeg: true,
           tag: 'Classic',
           quantity: 0,
-          img: 'https://media.istockphoto.com/id/1087685244/photo/delicious-homemade-iddli-iddly-sambar-chutny.jpg?s=612x612&w=0&k=20&c=iVeZOTmOf0ZmAOtq1QELwlWnhumQL7wcZ-RBmdNiBBw=',
+          img: 'https://w0.peakpx.com/wallpaper/805/956/HD-wallpaper-food-delicious-food-food-holidays-indian-indian-food-pav-bhaji-spicy-food-street-food.jpg',
         },
         {
           name: 'Vada',
@@ -159,7 +160,8 @@ const App = () => {
 
     // Main Course Items (Heading)
     {
-      heading: 'Main Course Items',
+      heading:'Main Course Items',
+     
       content: [
         {
           name: 'Sambar',
@@ -248,7 +250,8 @@ const App = () => {
 
     // Snacks & Beverages (Heading)
     {
-      heading: 'Snacks & Beverages',
+      heading:'Snacks & Beverages',
+      
       content: [
         {
           name: 'Payasam',
@@ -815,6 +818,12 @@ const App = () => {
     }
   }, []);
 
+
+
+React.useEffect(()=>{
+console.log(selFood)
+},[selFood])
+
   return (
     <>
 
@@ -1137,31 +1146,34 @@ showPhoneNo
 
               <div className={`bottom-anchor ${t ? 'push-to-top' : 'push-to-bottom'}`}>
 
-                <Anchor
-                  onClick={() => setT(!t)}
-                  className='anchor-box'
-                  items={[
-                    {
-                      key: 'part-1',
-                      href: '#part-1',
-                      title: 'Breakfast Items',
-
-                    },
-                    {
-                      key: 'part-2',
-                      href: '#part-2',
-                      title: 'Main Course Items',
-
-                    },
-                    {
-                      key: 'part-3',
-                      href: '#part-3',
-                      title: 'Snacks & Beverages',
-                    },
 
 
-                  ]}
-                />
+
+
+
+
+              <Anchor 
+                     onClick={() => setT(!t)}
+                     className='anchor-box'
+                      items={[
+                          {
+                            key: 'Breakfast Items',
+                            href: '#Breakfast Items',
+                            title: 'Breakfast Items',
+                          },
+                          {
+                            key: 'Main Course Items',
+                            href: '#Main Course Items',
+                            title: 'Main Course Items',
+                          },
+                          {
+                            key: 'Snacks & Beverages',
+                            href: '#Snacks & Beverages',
+                            title: 'Snacks & Beverages',
+                          },
+                        ]}
+                    />
+
                 <CloseOutlined onClick={() => {
                   setT(!t)
                 }} className='cross' />
@@ -1267,50 +1279,56 @@ showPhoneNo
 
 
 
-
-              <Row style={{ marginTop: '4px' }}>
-
+{/* dynamic items start */}
+<Row style={{ marginTop: '4px' }}>
                 <Col xs={0} sm={0} md={5} lg={5} >
                   <div style={{ position: 'sticky', top: '135px' }}>
-                    <Anchor
-                      style={{
+                    <Anchor 
+                    style={{
                         maxHeight: "100vh",
                         marginLeft: "24px"
                       }}
                       items={[
-                        {
-                          key: 'part-1',
-                          href: '#part-1',
-                          title: 'Breakfast Items',
-                        },
-                        {
-                          key: 'part-2',
-                          href: '#part-2',
-                          title: 'Main Course Items',
-                        },
-                        {
-                          key: 'part-3',
-                          href: '#part-3',
-                          title: 'Snacks & Beverages',
-                        },
-                      ]}
+                          {
+                            key: 'Breakfast Items',
+                            href: '#Breakfast Items',
+                            title: 'Breakfast Items',
+                          },
+                          {
+                            key: 'Main Course Items',
+                            href: '#Main Course Items',
+                            title: 'Main Course Items',
+                          },
+                          {
+                            key: 'Snacks & Beverages',
+                            href: '#Snacks & Beverages',
+                            title: 'Snacks & Beverages',
+                          },
+                        ]}
                     />
                   </div>
                 </Col>
-                <Col xs={24} sm={24} md={19} lg={19} style={{ marginBottom: '39px' }}>
-                  <div
-                    id="part-1"
-                    style={{
 
-                      background: 'rgba(255,0,0,0.02)',
-                    }}
-                  >
-                    <h3 style={{ marginLeft: '16px' }}>{food[0].heading}</h3>
-                    <div style={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap', gap: '12px', alignItems: 'center', }}>
-                      {food[0].content.filter(e => e.name.toLowerCase().includes(inp.toLowerCase()) && e.isVeg === isVeg).length > 0 ? food[0].content.filter(e => e.name.toLowerCase().includes(inp.toLowerCase()) && e.isVeg === isVeg).map((e, i) => {
-                        return (<>
+                <Col xs={24} sm={24} md={19} lg={19} style={{ marginBottom: '39px'}}>
+                    {food.map((category,j)=>{
+                      return (<>
+                    <div
+                      key={j}
+                      id={category.heading}
+                      style={{
+                        background: 'rgba(255,0,0,0.02)',
+                      }}
+                    >
 
-                          <div
+                    <h3 style={{ marginLeft: '16px' }}>{category.heading}</h3>
+                    <div style={{ display: 'flex', justifyContent:'space-around', flexWrap: 'wrap', gap: '12px', alignItems: 'center' }}>
+                      {
+                      category.content.filter(obj =>obj.name.toLowerCase().includes(inp.toLowerCase()) && obj.isVeg === isVeg).length > 0 
+                      ? 
+                      category.content.filter(obj =>obj.name.toLowerCase().includes(inp.toLowerCase()) && obj.isVeg === isVeg).map((da,i)=>{
+
+                        return(<>
+                       <div
                             key={i}
                             style={{
                               display: 'flex',
@@ -1340,7 +1358,7 @@ showPhoneNo
                                   borderRadius: '10px',
                                 }}
                                 src={
-                                  e.img ||
+                                  da.img ||
                                   'https://img.freepik.com/premium-photo/vada-pav-wada-pao-is-indian-desi-burger-is-roadside-fast-food-dish-from-maharashtra-selective-focus_466689-67470.jpg'
                                 }
                                 alt="Vada Pav - Indian Street Food"
@@ -1356,14 +1374,11 @@ showPhoneNo
                                 padding: '12px 0 0 0',
                               }}
                             >
-                              <h3
-                                style={{
+                              <h3 style={{
                                   marginBottom: '8px',
                                   wordBreak: 'break-word',
                                 }}
-                              >
-                                {e.name}
-                              </h3>
+                              >{da.name}</h3>
                               <p
                                 style={{
                                   marginBottom: '8px',
@@ -1371,7 +1386,7 @@ showPhoneNo
                                   fontWeight: 'bold',
                                 }}
                               >
-                                ₹ {e.price}
+                                ₹ {da.price}
                               </p>
                               <p
                                 style={{
@@ -1380,252 +1395,138 @@ showPhoneNo
                                   wordBreak: 'break-word',
                                   lineHeight: '14px',
                                 }}
-                              >
-                                {e.description}
+                              >{da.description}
                               </p>
                               <div style={{ marginBottom: '8px' }}>
-                                <Tag color="geekblue">{e.tag}</Tag>
+                                <Tag color="geekblue">{da.tag}</Tag>
                               </div>
 
-                              {/* {e.quantity < 1 ? <Button type="primary" onClick={() => {
+                              {da.quantity < 1 ? <Button type="primary" 
+// setSelFood([...selFood, da])
+                          onClick={()=>{
+                            let newCont = category.content.map((p)=>{
+                              if(p.name  === da.name){
+                                return {...p,
+                                quantity:1 }
+                              }
+                              return p;
+                            })
+                          setFood((pr)=>pr.map((data)=>{
+                          if(data.heading === category.heading){
+                          return {
+                          ...data,
+                          content:newCont
+                          }
+                          }
+                          return data;
+                          }))
+                            //console.log(da)
+                            //here problem
+                            setSelFood([...selFood, newCont])
+                          }}
 
-
-                                setSelFood([...selFood, e])
-
-                              }}>
+                              >
                                 Add
                               </Button>
-
 :
+  <div style={{ display: 'flex', alignItems: 'center' }}>
+<Button  type="primary" style={{ fontWeight:'bold'}} onClick={()=>{
+  let newCont = category.content.map((p)=>{
+    if(p.name  === da.name){
+      return {...p,
+      quantity:p.quantity-=1 }
+    }
+    return p;
+  })
+setFood((pr)=>pr.map((data)=>{
+if(data.heading === category.heading){
+return {
+...data,
+content:newCont
+}
+}
+return data;
+}))
 
 
-                              <div style={{ display: 'flex', alignItems: 'center' }}>
-<Button  type="primary" style={{ fontWeight:'bold'}}>-</Button>
+// update cart array quantity
+
+setSelFood((pr)=>pr.map((data)=>{
+  if(data.name === da.name){
+    return{
+      ...data,
+      quantity:data.quantity-=1
+    }
+  }
+  return data;
+}))
+  console.log(da)
+}}>-</Button>
 
       <div style={{ width: '40px',fontWeight:'500', textAlign: 'center', fontSize: '16px', padding: '10px' }}>
-       {e.quantity}
+       {da.quantity}
       </div>
-      <Button  type="primary" style={{ fontWeight:'500'}}>+</Button>
+      <Button  type="primary" style={{ fontWeight:'500'}}   onClick={()=>{
+        let newCont = category.content.map((p)=>{
+          if(p.name  === da.name){
+            return {...p,
+            quantity:p.quantity+=1 }
+          }
+          return p;
+        })
+      setFood((pr)=>pr.map((data)=>{
+      if(data.heading === category.heading){
+      return {
+      ...data,
+      content:newCont
+      }
+      }
+      return data;
+      }))
+
+
+
+
+// update cart array quantity
+
+setSelFood((pr)=>pr.map((data)=>{
+  if(data.name === da.name){
+    return{
+      ...data,
+      quantity:data.quantity+=1
+    }
+  }
+  return data;
+}))
+
+        console.log(da)
+      }}>+</Button>
 
     </div>
-} */}
+}
 
 
                             </div>
                           </div>
-
                         </>)
-                      }) : <p style={{}}>No Items...</p>}
-                    </div>
-
-                  </div>
-                  <div
-                    id="part-2"
-                    style={{
-                      background: 'rgba(0,255,0,0.02)',
-
-                    }}
-                  >
-                    <h3 style={{ marginLeft: '12px' }}>{food[1].heading}</h3>
-                    <div style={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap', gap: '12px', alignItems: 'center' }}>
-                      {food[1].content.filter(e => e.name.toLowerCase().includes(inp.toLowerCase()) && e.isVeg === isVeg).length > 0 ? food[1].content.filter(e => e.name.toLowerCase().includes(inp.toLowerCase()) && e.isVeg === isVeg).map((e, i) => {
-                        return (<>
-
-                          <div
-                            key={i}
-                            style={{
-                              display: 'flex',
-                              background: '#fff',
-                              width: '300px',
-                              border: '1px solid #ccc',
-                              borderRadius: '8px',
-                              padding: '5px',
-                              marginBottom: '16px',
-                              boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-                              margin: '10px',
-                              justifyContent: 'space-around',
-                            }}
-                          >
-                            <div
-                              style={{
-                                width: '140px',
-                                height: '200px',
-                                borderRadius: '10px',
-                              }}
-                            >
-                              <img
-                                style={{
-                                  objectFit: 'contain',
-                                  width: '100%',
-                                  height: '100%',
-                                  borderRadius: '10px',
-                                }}
-                                src={
-                                  e.img ||
-                                  'https://img.freepik.com/premium-photo/vada-pav-wada-pao-is-indian-desi-burger-is-roadside-fast-food-dish-from-maharashtra-selective-focus_466689-67470.jpg'
-                                }
-                                alt="Vada Pav - Indian Street Food"
-                              />
-                            </div>
-                            <div
-                              style={{
-                                display: 'flex',
-                                flexDirection: 'column',
-                                alignItems: 'space-between',
-                                justifyContent: 'center',
-                                width: '140px',
-                                padding: '12px 0 0 0',
-                              }}
-                            >
-                              <h3
-                                style={{
-                                  marginBottom: '8px',
-                                  wordBreak: 'break-word',
-                                }}
-                              >
-                                {e.name}
-                              </h3>
-                              <p
-                                style={{
-                                  marginBottom: '8px',
-                                  fontSize: '20px',
-                                  fontWeight: 'bold',
-                                }}
-                              >
-                                ₹ {e.price}
-                              </p>
-                              <p
-                                style={{
-                                  marginBottom: '8px',
-                                  fontSize: '13px',
-                                  wordBreak: 'break-word',
-                                  lineHeight: '14px',
-                                }}
-                              >
-                                {e.description}
-                              </p>
-                              <div style={{ marginBottom: '8px' }}>
-                                <Tag color="geekblue">{e.tag}</Tag>
-                              </div>
-                              <Button type="primary" onClick={() => {
-                                setSelFood([...selFood, e])
-                              }}>
-                                Add
-                              </Button>
-                            </div>
-                          </div>
-
-                        </>)
-                      }) : 'No Items...'}
-                    </div>
-                  </div>
-                  <div
-                    id="part-3"
-                    style={{
-
-                      background: 'rgba(0,0,255,0.02)',
-                    }}
-                  >
-                    <h3 style={{ marginLeft: '12px' }}>{food[2].heading}</h3>
-                    <div style={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap', gap: '12px', alignItems: 'center' }}>
-                      {food[2].content.filter(e => e.name.toLowerCase().includes(inp.toLowerCase()) && e.isVeg === isVeg).length > 0 ? food[2].content.filter(e => e.name.toLowerCase().includes(inp.toLowerCase()) && e.isVeg === isVeg).map((e, i) => {
-                        return (<>
-
-
-
-                          <div
-                            key={i}
-                            style={{
-                              display: 'flex',
-                              background: '#fff',
-                              width: '300px',
-                              border: '1px solid #ccc',
-                              borderRadius: '8px',
-                              padding: '5px',
-                              marginBottom: '16px',
-                              boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-                              margin: '10px',
-                              justifyContent: 'space-around',
-                            }}
-                          >
-                            <div
-                              style={{
-                                width: '140px',
-                                height: '200px',
-                                borderRadius: '10px',
-                              }}
-                            >
-                              <img
-                                style={{
-                                  objectFit: 'contain',
-                                  width: '100%',
-                                  height: '100%',
-                                  borderRadius: '10px',
-                                }}
-                                src={
-                                  e.img ||
-                                  'https://img.freepik.com/premium-photo/vada-pav-wada-pao-is-indian-desi-burger-is-roadside-fast-food-dish-from-maharashtra-selective-focus_466689-67470.jpg'
-                                }
-                                alt="Vada Pav - Indian Street Food"
-                              />
-                            </div>
-                            <div
-                              style={{
-                                display: 'flex',
-                                flexDirection: 'column',
-                                alignItems: 'space-between',
-                                justifyContent: 'center',
-                                width: '140px',
-                                padding: '12px 0 0 0',
-                              }}
-                            >
-                              <h3
-                                style={{
-                                  marginBottom: '8px',
-                                  wordBreak: 'break-word',
-                                }}
-                              >
-                                {e.name}
-                              </h3>
-                              <p
-                                style={{
-                                  marginBottom: '8px',
-                                  fontSize: '20px',
-                                  fontWeight: 'bold',
-                                }}
-                              >
-                                ₹ {e.price}
-                              </p>
-                              <p
-                                style={{
-                                  marginBottom: '8px',
-                                  fontSize: '13px',
-                                  wordBreak: 'break-word',
-                                  lineHeight: '14px',
-                                }}
-                              >
-                                {e.description}
-                              </p>
-                              <div style={{ marginBottom: '8px' }}>
-                                <Tag color="geekblue">{e.tag}</Tag>
-                              </div>
-                              <Button type="primary" onClick={() => {
-                                setSelFood([...selFood, e])
-                              }}>
-                                Add
-                              </Button>
-                            </div>
-                          </div>
-
-                        </>)
-                      }) : 'No Items...'}
-                    </div>
-
-
-
-                  </div>
+                      })
+                      : 
+                      <p>No items.</p>
+                      }
+                        </div>
+                        
+                        
+                        </div>
+                      </>)
+                      }
+                      
+                      )
+                      
+                      }
                 </Col>
               </Row>
+{/*dynamic items end */}
+              
               {isSmallScreen && <Button
                 style={{ position: 'fixed', bottom: 65, right: 30, color: 'white', background: 'black' }}
 
