@@ -1179,7 +1179,7 @@ showPhoneNo
                       setToggleCart(!toggleCart)
                     }} />
                     <div style={{ position: 'absolute', background: 'red', top: 5, borderRadius: '50%', color: 'white', padding: '5px', height: '12px', width: '12px', fontWeight: '800', left: '50px', display: 'flex', justifyContent: "center", alignItems: 'center' }}>{selFood?.length}</div>
-                    <p style={{ color: 'white', position: 'absolute', top: '17px', left: '75px', fontWeight: 'bold' }}>₹{selFood?.reduce((ac, cu) => ac + cu.price, 0)}</p>
+                    <p style={{ color: 'white', position: 'absolute', top: '17px', left: '75px', fontWeight: 'bold' }}>₹{selFood?.reduce((ac, cu) => ac + cu.price * cu.quantity, 0)}</p>
                     {/* <a href={`upi://pay?pa=7875853859@paytm&pn=anurag&tn=Test%20UPI&am=${selFood?.reduce((ac,cu)=>ac+cu.price,0)}&cu=INR&mc=1234&tr=01234re`}><Button type="primary" style={{position:'absolute',right:'12px',fontWeight:'bold'}}>pay
   </Button></a> */}
                     {/* <a href={`upi://pay?pa=iotronicssystempvtlt.62347918@hdfcbank&pn=VerifiedMerchant&mode=00&orgid=00000&tid=${dyn}&tr=${dyn}&mam=null&tn=trialdemopaytment&am=1&cu=INR&url=https://t.ly/5Tocf`}><Button type="primary" style={{position:'absolute',right:'12px',fontWeight:'bold'}}>pay
@@ -1424,7 +1424,8 @@ return data;
 
 
 // update cart array quantity
-  //also remove 0 quantity
+  // remove quantity when more than 1
+  if(da.quantity > 0){
 setSelFood((pr)=>pr.map((data)=>{
   if(data.name === da.name){
     return{
@@ -1432,8 +1433,15 @@ setSelFood((pr)=>pr.map((data)=>{
       quantity:data.quantity-=1
     }
   }
- // return data;
+   return data;
 }))
+}
+else{
+  setSelFood([]);
+}
+
+
+
   console.log(da)
 }}>-</Button>
 
