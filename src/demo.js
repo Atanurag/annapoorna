@@ -827,6 +827,20 @@ console.log(selFood,food,'ppp')
   return (
     <>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {/* <OtpInput value={otp} onChange={handleChange} numInputs={6} separator={<span style={{marginRight:'12px'}}></span>} />; */} 
  
  {food.map((category,i)=>{
