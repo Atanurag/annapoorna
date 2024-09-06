@@ -821,8 +821,8 @@ const App = () => {
 
 
 React.useEffect(()=>{
-console.log(selFood,food,'p')
-},[selFood,food])
+console.log(selFood,food,'ppp')
+},[selFood])
 
   return (
     <>
@@ -862,22 +862,6 @@ setFood((pr)=>pr.map((data)=>{
     
   </>)
 })}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1048,16 +1032,6 @@ showPhoneNo
 
               </div>
               {/* phone verification  end */}
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1401,15 +1375,14 @@ showPhoneNo
                                 <Tag color="geekblue">{da.tag}</Tag>
                               </div>
 
-                              {da.quantity < 1 ? <Button type="primary" 
-// setSelFood([...selFood, da])
+                              {da.quantity < 1 ? <Button type="primary"
                           onClick={()=>{
                             let newCont = category.content.map((p)=>{
                               if(p.name  === da.name){
+                                //update cart first
                                 setSelFood([...selFood, {...p,quantity:1}])
                                 return {...p,
-                                quantity:1
-                              }
+                                quantity:1 }
                               }
                               return p;
                             })
@@ -1423,8 +1396,7 @@ showPhoneNo
                           return data;
                           }))
                             //console.log(da)
-                            
-                            
+                            //here problem
                           }}
 
                               >
@@ -1452,7 +1424,7 @@ return data;
 
 
 // update cart array quantity
-
+  //also remove 0 quantity
 setSelFood((pr)=>pr.map((data)=>{
   if(data.name === da.name){
     return{
@@ -1460,7 +1432,7 @@ setSelFood((pr)=>pr.map((data)=>{
       quantity:data.quantity-=1
     }
   }
-  return data;
+ // return data;
 }))
   console.log(da)
 }}>-</Button>
