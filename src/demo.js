@@ -1217,10 +1217,12 @@ showPhoneNo
                   {/* paytmmp://pay?pa=7875853859@paytm&pn=anurag&tn=Test UPI&am=1&cu=INR&mc=1234&tr=01234 */}
                 </div>}
 
-              <div style={{
+             { //cart drawer start
+             
+             <div style={{
                 background: '#fff',
                 position: 'fixed',
-                bottom: toggleCart ? '0px' : '-258px', // Corrected this line
+                bottom: toggleCart ? '0px' : '-310px', // Corrected this line
                 left: '50%',
                 width: '100%',
                 transform: 'translateX(-50%)', // Corrected this line
@@ -1231,13 +1233,24 @@ showPhoneNo
                 borderTopRightRadius: '23px'
 
               }}>
+                <div style={{display:'flex',justifyContent:'center'}}>
+                <div style={{marginTop:'12px',width: '300px', padding: '12px 0',alignItems:'center', display: 'flex', justifyContent: 'space-between' }}>
+                  <p style={{ fontWeight: 'bold' }}>Item Name</p>
+                  <p style={{ fontWeight: 'bold' }}>Price</p>
+                  <p style={{ fontWeight: 'bold' }}>Qty</p>
+                  <p style={{ fontWeight: 'bold' }}>Qty Price</p>
+                </div>
+                </div>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '150px', overflow: 'scroll', width: '100%', padding: '9px 0', margin: '12px 0' }}>
-
+                
                   {/* <div style={{height:'150px',border:'1px solid red',width:'150px'}}></div> */}
                   {selFood?.map((e, i) => {
                     return (<>
-                      <div key={i} style={{ borderBottom: '1px solid black', width: '200px', padding: '12px 0', display: 'flex', justifyContent: 'space-around' }}>
-                        <p style={{ fontWeight: 'bold' }}>{e.name}</p> <p style={{ fontWeight: 'bold' }}>₹ {e.price} &nbsp; <span>
+                      <div key={i} style={{ borderBottom: '0.4px solid black', width: '300px', padding: '12px 0', display: 'flex', justifyContent: 'space-between',textAlign:'left' }}>
+                        <p style={{ fontWeight: '400' }}>{e.name.length > 13 ? e.name.substring(0,13) +'...' : e.name}</p>
+                        <p style={{ fontWeight: 'bold' }}>₹ {e.price} &nbsp; </p>
+                        <p style={{ fontWeight: 'bold' }}>₹ {e.price} &nbsp; </p>
+                         <p style={{ fontWeight: 'bold' }}>₹ {e.price} &nbsp; <span>
                           <CloseOutlined onClick={() => {
                             setSelFood(selFood.filter(r => r.name !== e.name));
                           }} style={{ fontSize: '16px' }} /> </span>   </p>
@@ -1253,7 +1266,8 @@ showPhoneNo
 
 
               </div>
-
+//cart drawer end
+}
 
 
 
@@ -1451,7 +1465,7 @@ setSelFood((pr)=>pr.map((data)=>{
 }))
 }
 else{
-  setSelFood([]);
+  setSelFood((pr)=>pr.filter((data)=>data.name !== da.name));
 }
 
 
