@@ -1217,7 +1217,7 @@ showPhoneNo
                   {/* paytmmp://pay?pa=7875853859@paytm&pn=anurag&tn=Test UPI&am=1&cu=INR&mc=1234&tr=01234 */}
                 </div>}
 
-             { //cart drawer start
+             { //cart drawer start see how to align ext properly at on side
              
              <div style={{
                 background: '#fff',
