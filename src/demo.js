@@ -1253,7 +1253,7 @@ showPhoneNo
                               <div key={i} style={{ borderBottom: '0.4px solid black', width: '300px', padding: '12px 0', display: 'flex', justifyContent: 'space-between' }}>
                 <p style={{ fontWeight: '400',flexBasis: '30%' }}>{e.name.length > 13 ? e.name.substring(0, 13) + '...' : e.name}</p>
                 <p style={{ fontWeight: '400', flexBasis: '20%',textAlign:'right' }}>₹ {e.price} &nbsp;</p>
-                <p style={{ fontWeight: '400', flexBasis: '15%',textAlign:'right'  }}>x {e.quantity} </p>
+                <p style={{ fontWeight: '400', flexBasis: '15%',textAlign:'right'  }}><CloseOutlined style={{fontSize: '11px'}} /> {e.quantity} </p>
                 <p style={{ fontWeight: '400', flexBasis: '30%',textAlign:'right'  }}>₹ {e.price*e.quantity} &nbsp; <span>
                   <CloseOutlined onClick={() => {
                     setSelFood(selFood.filter(r => r.name !== e.name));
