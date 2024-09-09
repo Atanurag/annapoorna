@@ -1233,8 +1233,12 @@ showPhoneNo
                 borderTopRightRadius: '23px'
 
               }}>
-                <div style={{display:'flex',justifyContent:'center'}}>
-                <div style={{marginTop:'12px',width: '300px', padding: '12px 0',alignItems:'center', display: 'flex', justifyContent: 'space-between' }}>
+                <CloseOutlined onClick={() => {
+                  setToggleCart(!toggleCart)
+                }} style={{position:'absolute', right:'20px',fontSize: '25px',}} />
+                
+                <div style={{display:'flex',justifyContent:'center',margin:'12px 0' }}>
+                <div style={{marginTop:'12px',width: '300px', padding: '8px 0',alignItems:'center', display: 'flex', justifyContent: 'space-between' }}>
                   <p style={{ fontWeight: 'bold' }}>Item Name</p>
                   <p style={{ fontWeight: 'bold' }}>Price</p>
                   <p style={{ fontWeight: 'bold' }}>Qty</p>
@@ -1246,23 +1250,27 @@ showPhoneNo
                   {/* <div style={{height:'150px',border:'1px solid red',width:'150px'}}></div> */}
                   {selFood?.map((e, i) => {
                     return (<>
-                      <div key={i} style={{ borderBottom: '0.4px solid black', width: '300px', padding: '12px 0', display: 'flex', justifyContent: 'space-between',textAlign:'left' }}>
-                        <p style={{ fontWeight: '400' }}>{e.name.length > 13 ? e.name.substring(0,13) +'...' : e.name}</p>
-                        <p style={{ fontWeight: 'bold' }}>₹ {e.price} &nbsp; </p>
-                        <p style={{ fontWeight: 'bold' }}>₹ {e.price} &nbsp; </p>
-                         <p style={{ fontWeight: 'bold' }}>₹ {e.price} &nbsp; <span>
-                          <CloseOutlined onClick={() => {
-                            setSelFood(selFood.filter(r => r.name !== e.name));
-                          }} style={{ fontSize: '16px' }} /> </span>   </p>
-                      </div>
+                              <div key={i} style={{ borderBottom: '0.4px solid black', width: '300px', padding: '12px 0', display: 'flex', justifyContent: 'space-between' }}>
+                <p style={{ fontWeight: '400',flexBasis: '30%' }}>{e.name.length > 13 ? e.name.substring(0, 13) + '...' : e.name}</p>
+                <p style={{ fontWeight: '400', flexBasis: '20%',textAlign:'right' }}>₹ {e.price} &nbsp;</p>
+                <p style={{ fontWeight: '400', flexBasis: '15%',textAlign:'right'  }}>x {e.quantity} </p>
+                <p style={{ fontWeight: '400', flexBasis: '35%',textAlign:'right'  }}>₹ {e.price*e.quantity} &nbsp; <span>
+                  <CloseOutlined onClick={() => {
+                    setSelFood(selFood.filter(r => r.name !== e.name));
+                  }} style={{ fontSize: '16px' }} /> </span>   </p>
+      </div>
 
                     </>)
                   })}
+                 
                 </div>
-
-                <CloseOutlined onClick={() => {
+                <div style={{fontWeight:'bold',width:'300px',display:'flex',justifyContent:'space-between',margin:'0px auto 25px auto'}}>
+  <p>Total:</p>
+  <p>858595</p>
+</div>
+                {/* <CloseOutlined onClick={() => {
                   setToggleCart(!toggleCart)
-                }} style={{ float: 'right', marginRight: '36px', marginBottom: '30px', fontSize: '25px' }} />
+                }} style={{ float: 'right', marginRight: '36px', marginBottom: '40px', fontSize: '25px' }} /> */}
 
 
               </div>
