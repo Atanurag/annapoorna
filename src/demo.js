@@ -1235,9 +1235,9 @@ showPhoneNo
               }}>
                 <CloseOutlined onClick={() => {
                   setToggleCart(!toggleCart)
-                }} style={{position:'absolute', right:'20px',fontSize: '25px',}} />
+                }} style={{position:'absolute', right:'20px',fontSize: '25px',top:'15px'}} />
                 
-                <div style={{display:'flex',justifyContent:'center',margin:'12px 0' }}>
+                <div style={{display:'flex',justifyContent:'center',marginTop:'20px' }}>
                 <div style={{marginTop:'12px',width: '300px', padding: '8px 0',alignItems:'center', display: 'flex', justifyContent: 'space-between' }}>
                   <p style={{ fontWeight: 'bold' }}>Item Name</p>
                   <p style={{ fontWeight: 'bold' }}>Price</p>
