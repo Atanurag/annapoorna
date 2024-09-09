@@ -1235,7 +1235,7 @@ showPhoneNo
               }}>
                 <CloseOutlined onClick={() => {
                   setToggleCart(!toggleCart)
-                }} style={{position:'absolute', right:'20px',fontSize: '25px',top:'15px'}} />
+                }} style={{position:'absolute', right:'20px',fontSize: '20px',top:'15px'}} />
                 
                 <div style={{display:'flex',justifyContent:'center',marginTop:'20px' }}>
                 <div style={{marginTop:'12px',width: '300px', padding: '8px 0',alignItems:'center', display: 'flex', justifyContent: 'space-between' }}>
@@ -1254,7 +1254,7 @@ showPhoneNo
                 <p style={{ fontWeight: '400',flexBasis: '30%' }}>{e.name.length > 13 ? e.name.substring(0, 13) + '...' : e.name}</p>
                 <p style={{ fontWeight: '400', flexBasis: '20%',textAlign:'right' }}>₹ {e.price} &nbsp;</p>
                 <p style={{ fontWeight: '400', flexBasis: '15%',textAlign:'right'  }}>x {e.quantity} </p>
-                <p style={{ fontWeight: '400', flexBasis: '35%',textAlign:'right'  }}>₹ {e.price*e.quantity} &nbsp; <span>
+                <p style={{ fontWeight: '400', flexBasis: '30%',textAlign:'right'  }}>₹ {e.price*e.quantity} &nbsp; <span>
                   <CloseOutlined onClick={() => {
                     setSelFood(selFood.filter(r => r.name !== e.name));
                   }} style={{ fontSize: '16px' }} /> </span>   </p>
@@ -1266,7 +1266,7 @@ showPhoneNo
                 </div>
                 <div style={{fontWeight:'bold',width:'300px',display:'flex',justifyContent:'space-between',margin:'0px auto 25px auto'}}>
   <p>Total:</p>
-  <p>858595</p>
+  <p>₹ {selFood?.reduce((ac, cu) => ac + cu.quantity*cu.price, 0).toFixed(2)}</p>
 </div>
                 {/* <CloseOutlined onClick={() => {
                   setToggleCart(!toggleCart)
