@@ -510,11 +510,11 @@ const App = () => {
       return;
     }
     //checking isVerifed user
-    if (!JSON.parse(localStorage.getItem('isVerified'))?.verified) {
-      setPhoneVerifyBox(true);
-      otpFocusRef.current[0].focus()
-      return;
-    }
+    // if (!JSON.parse(localStorage.getItem('isVerified'))?.verified) {
+    //   setPhoneVerifyBox(true);
+    //   otpFocusRef.current[0].focus()
+    //   return;
+    // }
     // Create supported payment method.
     const supportedInstruments = [
       {
@@ -984,7 +984,7 @@ showPhoneNo
                 <div className='phone-verify-box'>
 
 
-                  {showOtpInput ?
+                  {/* {showOtpInput ?
                     <>
                       <p style={{ textAlign: 'center' }}>Please Verify Phone Number</p>
                       <div style={{ height: '25px' }}>
@@ -1029,7 +1029,7 @@ showPhoneNo
                             inputRef={otpRefs}
                           /> */}
 
-                      <Button style={{ margin: '12px 0' }} type="primary" onClick={() => {
+                      {/* <Button style={{ margin: '12px 0' }} type="primary" onClick={() => {
 
                         verifyOtp(phoneNumber, otpValue)
                       }}> Verify OTP</Button>
@@ -1039,9 +1039,9 @@ showPhoneNo
                         otpFocusRef.current[0].focus()
                         sendOtp(phoneNumber)
                       }}> Resend OTP</Button>
-                    </>
+                    </>} */}
 
-                  }
+                  
                 </div>
 
               </div>
