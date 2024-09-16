@@ -552,7 +552,6 @@ const App = () => {
     let request = null;
     try {
       request = new PaymentRequest(supportedInstruments, details);
-      console.log('request',request)
       console.log('payment request creation check')
     } catch (e) {
       console.log('Payment Request Error: ' + e.message);
@@ -566,7 +565,7 @@ const App = () => {
     var canMakePaymentPromise = checkCanMakePayment(request);
     canMakePaymentPromise
       .then((result) => {
-        console.log('showPayment ui then',request,result)
+        console.log('showPayment ui then')
         showPaymentUI(request, result);
       })
       .catch((err) => {
@@ -600,7 +599,7 @@ const App = () => {
           console.log('Unable to abort, user is in the process of paying.');
         });
     }, 20 * 60 * 1000); /* 20 minutes */
-console.log(request.show())
+
     request.show()
       .then(function (instrument) {
 
