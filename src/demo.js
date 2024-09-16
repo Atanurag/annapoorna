@@ -573,7 +573,7 @@ const App = () => {
     const orderAmount = "1.00"; // Amount in INR
     const transactionUrl = "https://annapoorna.snazzy.live/contact-us"; // URL for transaction details
   
-    const uri = new URL(`upi://pay`);
+    const uri = new URL(`tez://pay`);
     uri.searchParams.append("pa", merchantVPA);
     uri.searchParams.append("pn", merchantName);
     uri.searchParams.append("mc", merchantCode);
