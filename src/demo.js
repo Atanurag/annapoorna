@@ -536,16 +536,16 @@ const App = () => {
         label: 'Total',
         amount: {
           currency: 'INR',
-          value:'1.00'
-          //value: selFood?.reduce((ac, cu) => ac + cu.price, 0).toFixed(2),
+          //value:'1.00'
+          value: selFood?.reduce((ac, cu) => ac + cu.price, 0).toFixed(2),
         },
       },
       displayItems: [{
         label: 'Original Amount',
         amount: {
           currency: 'INR',
-          value:'1.00'
-          //value: selFood?.reduce((ac, cu) => ac + cu.price, 0).toFixed(2),
+          //value:'1.00'
+          value: selFood?.reduce((ac, cu) => ac + cu.price, 0).toFixed(2),
         },
       }],
     };
