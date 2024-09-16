@@ -824,8 +824,38 @@ React.useEffect(()=>{
 console.log(selFood,food,'ppp')
 },[selFood])
 
+
+
+const handlePayment = () => {
+  const merchantVPA = '7875853859@pthdfc'; // Replace with your VPA
+  const merchantName = "Anurag Tiwari"; // Replace with your merchant name
+  const merchantCode = "5812"; // Replace with your merchant code
+  const transactionRefId = "443f4fdewr43efwa"; // Unique transaction ID
+  const transactionNote = "Purchase in Merchant"; // Transaction note
+  const orderAmount = "1.00"; // Amount in INR
+  const transactionUrl = "https://developer.chrome.com/docs/payments/secure-payment-confirmation"; // URL for transaction details
+
+  const uri = new URL(`upi://pay`);
+  uri.searchParams.append("pa", merchantVPA);
+  uri.searchParams.append("pn", merchantName);
+  uri.searchParams.append("mc", merchantCode);
+  uri.searchParams.append("tr", transactionRefId);
+  uri.searchParams.append("tn", transactionNote);
+  uri.searchParams.append("am", orderAmount);
+  uri.searchParams.append("cu", "INR");
+  uri.searchParams.append("url", transactionUrl);
+
+  // Redirect to the UPI URI
+  window.location.href = uri.toString();
+};
   return (
     <>
+
+<button onClick={handlePayment}>
+            Pay with Google Pay
+        </button>
+
+
 
 tez.google.com/pay
 
