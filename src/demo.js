@@ -536,14 +536,16 @@ const App = () => {
         label: 'Total',
         amount: {
           currency: 'INR',
-          value: selFood?.reduce((ac, cu) => ac + cu.price, 0).toFixed(2),
+          value:'1.00'
+          //value: selFood?.reduce((ac, cu) => ac + cu.price, 0).toFixed(2),
         },
       },
       displayItems: [{
         label: 'Original Amount',
         amount: {
           currency: 'INR',
-          value: selFood?.reduce((ac, cu) => ac + cu.price, 0).toFixed(2),
+          value:'1.00'
+          //value: selFood?.reduce((ac, cu) => ac + cu.price, 0).toFixed(2),
         },
       }],
     };
@@ -562,15 +564,91 @@ const App = () => {
       return;
     }
 
-    var canMakePaymentPromise = checkCanMakePayment(request);
-    canMakePaymentPromise
-      .then((result) => {
-        console.log('showPayment ui then')
-        showPaymentUI(request, result);
-      })
-      .catch((err) => {
-        console.log('Error calling checkCanMakePayment: ' + err);
-      });
+
+    const merchantVPA = '7875853859@pthdfc'; // Replace with your VPA
+    const merchantName = "Anurag Tiwari"; // Replace with your merchant name
+    const merchantCode = "5812"; // Replace with your merchant code
+    const transactionRefId = tx; // Unique transaction ID
+    const transactionNote = "Purchase in Merchant"; // Transaction note
+    const orderAmount = "1.00"; // Amount in INR
+    const transactionUrl = "https://annapoorna.snazzy.live/contact-us"; // URL for transaction details
+  
+    const uri = new URL(`upi://pay`);
+    uri.searchParams.append("pa", merchantVPA);
+    uri.searchParams.append("pn", merchantName);
+    uri.searchParams.append("mc", merchantCode);
+    uri.searchParams.append("tr", transactionRefId);
+    uri.searchParams.append("tn", transactionNote);
+    uri.searchParams.append("am", orderAmount);
+    uri.searchParams.append("cu", "INR");
+    uri.searchParams.append("url", transactionUrl);
+  
+    // Redirect to the UPI URI
+    window.location.href = uri.toString();
+    request.show()
+    .then(function (instrument) {
+
+      window.clearTimeout(paymentTimeout);
+      const status = instrument.details.Status;
+      const txnRef = instrument.details.txnRef;
+
+     instrument.complete('success').then(function(){
+      
+        setPaymentState({ status, txnRef });
+         
+        document.body.style.overflow = 'hidden';
+        //document.getElementsByTagName('body')[0].style.background = 'inherit';
+      
+     })
+      
+
+      //alert(instrument);
+      // let dataString = JSON.stringify({k: instrument});
+      // fetch('https://c0ccd437-87bb-4fd4-b585-6ef2b6165e6e-00-xn5f3f0kqnav.sisko.replit.dev/', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json'
+      //   },
+      //   body: dataString,
+      // })
+      // .then(response => response.json())
+      // .then(data => {
+      //   alert(JSON.stringify({ status: data.status, txnRef: data.txnRef ,e:data.e}));
+      //   document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+      //   console.log(data);
+      // })
+      // .catch(error => console.error('Error:', error));
+
+
+
+      //processResponse(instrument); // Handle response from browser.
+    })
+    .catch(function (err) {
+      console.log('on catch from gpay')
+
+      //navigate('/contact-us')
+    
+      setPaymentState({
+        status: 'FAILED',
+        txnRef: '-'
+      }
+      );
+       document.body.style.overflow = 'hidden';
+       
+
+      console.log(err);
+
+    });
+
+    // var canMakePaymentPromise = checkCanMakePayment(request);
+    // canMakePaymentPromise
+    //   .then((result) => {
+    //     console.log('showPayment ui then')
+    //     showPaymentUI(request, result);
+    //   })
+    //   .catch((err) => {
+    //     console.log('Error calling checkCanMakePayment: ' + err);
+    //   });
   }
 
   function showPaymentUI(request, canMakePayment) {
