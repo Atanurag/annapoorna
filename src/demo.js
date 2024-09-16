@@ -827,9 +827,9 @@ console.log(selFood,food,'ppp')
   return (
     <>
 
+tez.google.com/pay
 
-
-<a href="https://tez.google.com/pay?7875853859@pthdfc&pn=Anurag%20Tiwari&mc=5812&tr=yrhty464dd&tn=Purchase%20in%20Merchant&am=1.00&cu=INR&url=https://mystar.co
+<a href="tez.google.com://pay?7875853859@pthdfc&pn=Anurag%20Tiwari&mc=5812&tr=yrhty464dd&tn=Purchase%20in%20Merchant&am=1.00&cu=INR&url=https://mystar.co
 m/orderid=92ggg&mid=BCR2DN4TWP2JPZJG">
   go
 </a>
