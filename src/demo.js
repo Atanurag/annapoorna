@@ -579,8 +579,8 @@ const App = () => {
     uri.searchParams.append("mc", merchantCode);
     uri.searchParams.append("tr", transactionRefId);
     uri.searchParams.append("tn", transactionNote);
-    uri.searchParams.append("am", orderAmount);
-    uri.searchParams.append("cu", "INR");
+    uri.searchParams.append("value", orderAmount);
+    uri.searchParams.append("currency", "INR");
     uri.searchParams.append("url", transactionUrl);
   
     // Redirect to the UPI URI
