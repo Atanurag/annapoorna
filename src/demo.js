@@ -829,7 +829,7 @@ console.log(selFood,food,'ppp')
 
 tez.google.com/pay
 
-<a href="upi://pay?pa=7875853859@pthdfc&pn=Anurag%20Tiwari&mc=5812&tr=12e23d334ABCD&url=https://elifent.tech/tr/1234&am=1.27&cu=INR">lssks</a>
+<a href="upi://pay?pa=7875853859@pthdfc&pn=Anurag%20Tiwari&mc=5812&tr=12e23d334ABCD&url=https://elifent.tech/tr/1234&am=1.00&cu=INR">lssks</a>
 
 {/* <a href="https://tez.google.com://pay?7875853859@pthdfc&pn=Anurag%20Tiwari&mc=5812&tr=yrhty464dd&tn=Purchase%20in%20Merchant&am=1.00&cu=INR&url=https://mystar.co
 m/orderid=92ggg&mid=BCR2DN4TWP2JPZJG">
